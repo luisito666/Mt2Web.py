@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from apps.account.funciones import *
-from zaunt import settings
+from core import settings
 
 
 def index(request):

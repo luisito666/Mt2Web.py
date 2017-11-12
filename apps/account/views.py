@@ -28,7 +28,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.utils import timezone
 
 #importando las configuracines de django
-from zaunt import settings
+from core import settings
 
 #clase usada para el registro de usuarios
 class Create(CreateView):
@@ -45,7 +45,7 @@ class Create(CreateView):
     self.object.save()
     try:
       send_mail(
-              'Bienvenido Metin2 Zaunt',
+              'Bienvenido a '+ settings.SERVERNAME,
               'Content',
               settings.EMAIL_HOST_USER ,
               [self.object.email],
