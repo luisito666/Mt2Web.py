@@ -1,0 +1,17 @@
+{% extends "index.html.old" %}
+{% load staticfiles %}
+	{% block meta %}
+	<meta content='Juega ahora' name='description'>
+    <meta content='width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0' name='viewport'>
+    <meta content='3' data-name='image-counter'>
+	{% endblock %}
+	{% block css %}
+	<link href='https://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet'>
+    <link href='https://cdn.jsdelivr.net/flexboxgrid/6.3.0/flexboxgrid.min.css' rel='stylesheet'>
+    <link href='{% static "css/normalize.css" %}' rel='stylesheet'>
+    <link href='{% static "css/bootstrap.css" %}' rel='stylesheet'>
+    <link href='{% static "css/especial.css" %}' rel='stylesheet'>
+	{% endblock %}
+	{% block js %}
+	<script src='{% static "js/vendor/modernizr-2.8.3.min.js" %}'></script>
+	{% endblock %}

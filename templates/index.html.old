@@ -1,0 +1,262 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+	{% block meta %}
+	<meta content='Juega ahora' name='description'>
+    <meta content='width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0' name='viewport'>
+    <meta content='3' data-name='image-counter'>
+	{% endblock %}
+	{% block css %}
+	<link href='https://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet'>
+    <link href='https://cdn.jsdelivr.net/flexboxgrid/6.3.0/flexboxgrid.min.css' rel='stylesheet'>
+    <link href='{% static "css/normalize.css" %}' rel='stylesheet'>
+    <link href='{% static "css/bootstrap.css" %}' rel='stylesheet'>
+    <link href='{% static "css/app.css" %}' rel='stylesheet'>
+	{% endblock %}
+	{% block js %}
+	<script src='{% static "js/vendor/modernizr-2.8.3.min.js" %}'></script>  
+	{% endblock  %}
+
+  {% block ext %}
+
+  {% endblock  %}
+	{% block title %} Metin2 Kai {% endblock %}
+{% block body %} 
+    <div class='video-container'>
+      <video autoplay height='720' loop poster='{% static "videos/imagenes/meetin2.png" %}' width='1280'>
+        <source src='{% static "videos/webm/videom2.webm" %}' type='video/webm'>
+        <source src='{% static "videos/mp4/videom2.mp4" %}' type='video/mp4'>
+      </video>
+    </div>
+    <div class='row full-height middle-xs center-xs relative up' id='home'>
+      <div class='col-xs-12'>
+        <div class='box'></div>
+        <img src='{% static "imgs/logo_metin.png" %}' width='25%'>
+          <!-- %h1.white-text.no-margin Metin2 Renacer -->
+          <p class='white-text no-margin metin medium' id='is-open'></p>
+        </img>
+      </div>
+      <nav class='fixed top right navigation white-text metin' id='navigation'>
+        <ul class='list-inline'>
+          <li>
+            <a href="{% url 'index' %}" >Home</a>
+          </li>
+          <li>
+            <a href="{% url 'account:create' %}#content">Registro</a>
+          </li>
+          <li>
+            <a href="{% url 'account:descarga' %}#content">Descargas</a>
+          </li>
+          <li>
+            <a href="{% url 'index' %}#galeria">Galeria</a>
+          </li>
+          <li>
+            <a href="{% url 'donaciones' %}#content">Donaciones</a>
+          </li>
+          <li>
+            <a href="https://foro.metin2kai.co">Foro</a>
+          </li>
+          <li>
+            <a href="{% url 'account:login' %}">Login</a>
+          </li>
+        </ul>
+      </nav>
+      <div class='absolute black large-padding full-width white-text left metin' id='description'>
+        <div class='row middle-xs center-xs'>
+          <div class='col-xs-7 col-sm-5 white-text medium'>
+            Una nueva aventura inicia
+          </div>
+          <div class='col-xs hidden' id='sticky-navigation'>
+            <div class='box'>
+              <nav class='text-right navigation'>
+                <ul class='list-inline'>
+                  <li>
+                    <a href="{% url 'index' %}" >Home</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'account:create' %}#content">Registro</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'account:descarga' %}#content">Descargas</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'index' %}#galeria">Galeria</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'donaciones' %}#content">Donaciones</a>
+                  </li>
+                  <li>
+                    <a href="https://foro.metin2kai.co">Foro</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'account:login' %}">Login</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  {% block galeria %}
+  <div class='text-center relative' id='galeria'>
+    <div class='absolute white' id='menu-title'>
+      <h2 class='metin title'>Clases de personajes</h2>
+    </div>
+    <div class='row'>
+      <div class='col-md-4 col-lg-3 col-sm-6 col-xs-12 food' style='background-image: url({% static "imgs/game/metin2-licano.jpg" %})'>
+        <div class='screen'>
+          <div class='row middle-xs full-height'>
+            <div class='col-xs-12 white-text'>
+              <h3 class='metin subtitle'>Chaman Dragon</h3>
+              <p class='no-margin'>Con la ayuda de las fuerzas del dragon, este chaman puede lanzar hechizos que pueden quemar y matar a su adversario</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='col-md-4 col-lg-3 col-sm-6 col-xs-12 food' style='background-image: url({% static "imgs/game/tocon.jpg" %})'>
+        <div class='screen'>
+          <div class='row middle-xs full-height'>
+            <div class='col-xs-12 white-text'>
+              <h3 class='metin subtitle'>Guerrero Mental</h3>
+              <p class='no-margin'>Su principal característica es que se basa en su defensa, el mental esta hecho para resistir ataques pero de lo contrario, también tiene menor daño. Suele llevar armas pesadas</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='col-md-4 col-lg-3 col-sm-6 col-xs-12 food' style='background-image: url({% static "imgs/game/ninja-arquero.jpg" %})'>
+        <div class='screen'>
+          <div class='row middle-xs full-height'>
+            <div class='col-xs-12 white-text'>
+              <h3 class='metin subtitle'> Ninja Arquero</h3>
+              <p class='no-margin'>la principal característica de estos asesinos son ataques a distancia y gran movilidad, derriban al objetivo con poderoso ataques a distancia</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='col-md-4 col-lg-3 col-sm-6 col-xs-12 food' style='background-image: url({% static "imgs/game/maxresdefault.jpg" %})'>
+        <div class='screen'>
+          <div class='row middle-xs full-height'>
+            <div class='col-xs-12 white-text'>
+              <h3 class='metin subtitle'>Sura Magia Negra</h3>
+              <p class='no-margin'>Semidemonios con gran rango de ataque, explotan a sus objetivos con devastadores ataques mágicos a distancia</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='col-md-4 col-lg-3 col-sm-6 col-xs-12 food' style='background-image: url({% static "imgs/game/1.jpg" %})'>
+        <div class='screen'>
+          <div class='row middle-xs full-height'>
+            <div class='col-xs-12 white-text'>
+              <h3 class='metin subtitle'>Chaman Luz</h3>
+              <p class='no-margin'>Basa su fuerza en la fuerza en la luz,la curación y la energía del relámpago</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='col-md-4 col-lg-3 col-sm-6 col-xs-12 food' style='background-image: url({% static "imgs/game/giro2.jpg" %})'>
+        <div class='screen'>
+          <div class='row middle-xs full-height'>
+            <div class='col-xs-12 white-text'>
+              <h3 class='metin subtitle'>Guerrero Corporal</h3>
+              <p class='no-margin'>Basa sus habilidades en su fuerza e increíble velocidad, se caracteriza por llevar armas ligeras y rápidas </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='col-md-4 col-lg-3 col-sm-6 col-xs-12 food' style='background-image: url({% static "imgs/game/ninja-asesino.jpg" %})'>
+        <div class='screen'>
+          <div class='row middle-xs full-height'>
+            <div class='col-xs-12 white-text'>
+              <h3 class='metin subtitle'>Ninja Asesino</h3>
+              <p class='no-margin'>Dotados de gran agilidad y sigilo estos asesinos cazan a sus presas con ataques precisos de gran efectividad</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='col-md-4 col-lg-3 col-sm-6 col-xs-12 food' style='background-image: url({% static "imgs/game/4.jpg" %})'>
+        <div class='screen'>
+          <div class='row middle-xs full-height'>
+            <div class='col-xs-12 white-text'>
+              <h3 class='metin subtitle'>Sura Espejo</h3>
+              <p class='no-margin'>dotado de gran resistencia, resistencia y daño, el sura espejo basa sus ataques en golpes directos y ataques a corta distancia</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
+  {% block contenido %}
+  {% endblock %}
+  
+  <link href="https://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+<!--footer start from here-->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-sm-6 footerleft ">
+        <div class="logofooter">Estadisticas del Servidor</div>
+          <p> Registros: {{ account}} </p>
+          <p> Personajes: {{ player }} </p>
+          <p> {{ actualmente }} Jugadores online </p>
+          <p> {{ online }} Jugadores ult. 24h </p>
+        <p><i class="fa fa-envelope"></i> E-mail : soporte@metin2kai.co</p>
+        
+      </div>
+      <div class="col-md-2 col-sm-6 paddingtop-bottom">
+        <h6 class="heading7"></h6>
+        <ul class="footer-ul">
+          
+        </ul>
+      </div>
+      <div class="col-md-3 col-sm-6 paddingtop-bottom">
+        <h6 class="heading7">Links Generales</h6>
+        <div class="post">
+          <ul class="footer-ul">
+          <li><a href="https://foro.metin2kai.co"> Foro</a></li>
+          <li><a href="{% url 'account:top' %}#content"> Ranking Jugadores</a></li>
+          <li><a href="{% url 'account:top_g' %}#content"> Ranking Gremios</a></li>
+          <li><a href="{% url 'account:descarga' %}"> Descargas</a></li>
+          <li><a href="#"> Staff</a></li>
+          <li><a href="#"> Reglas del juego</a></li>
+          <li><a href="#"> Preguntas Frecuentes</a></li>
+        </ul>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6 paddingtop-bottom">
+        <div class="fb-page" data-href="https://www.facebook.com/facebook" data-tabs="timeline" data-height="300" data-small-header="false" style="margin-bottom:15px;" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+          <div class="fb-xfbml-parse-ignore">            
+            <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FMetin2-Kai-116679465086752%2F&tabs=timeline&width=260&height=280&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="260" height="280" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!--footer start from here-->
+
+<div class="copyright">
+  <div class="container">
+    <div class="col-md-6">
+      <p>© 2016 - Todos los derechos reservados</p>
+    </div>
+    <div class="col-md-6">
+      <ul class="bottom_ul">
+        <li><a href="#">Metin2 Kai</a></li>
+        <li><a href="#">About us</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Faq's</a></li>
+        <li><a href="#">Contact us</a></li>
+        <li><a href="#">Site Map</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+  
+  <script crossorigin='anonymous' integrity='sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=' src='http://code.jquery.com/jquery-3.0.0.min.js'></script>
+  <script>
+    window.JQuery || document.write("<script src='{% static "js/vendor/jquery-1.12.0.min.js" %}'><\/script>");
+  </script>
+  <script src='{% static "js/app.js" %}'></script>
+{% endblock %}

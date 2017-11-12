@@ -1,0 +1,20 @@
+{% extends "account/registro.html" %}
+{% load bootstrap %}
+
+
+{% block title %} Metin2 Zaunt - Bye {% endblock %}
+
+
+{% block contenido %} 
+
+	<h1> Logout </h1>
+	<hr>
+	{% if datos.real_name %}
+	<p class="metin">el usuario {{ datos.real_name }} </p>
+	{% else %}
+	<p class="metin">el usuario {{ datos.login }} </p>
+	{% endif %}
+	<p class="metin"> se ha desconectado de forma correcta. </p>
+	<p><a class="metin" href="{% url 'account:login' %}"> Login </a></p>
+
+{% endblock %}

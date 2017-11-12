@@ -1,0 +1,50 @@
+{% extends "account/registro.html" %}
+{% load bootstrap %}
+
+{% block title %}Metin2 Zaunt - Login{% endblock %}
+
+
+{% block contenido %} 
+<!--<h3> Login </h3>
+
+{% if context.key %}
+<p> {{ context.key }} </p>
+{% endif %} ->
+
+<!--<form action="" method="post">
+   {% csrf_token %} 
+  {{ form.as_p }}
+  <input type="submit" value="Login">
+</form> -->
+<h1>Iniciar sesión </h1>
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-7">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    
+                <div class="panel-body">
+                    <form action="" method="POST" class="form-horizontal metin">
+						{% csrf_token %}
+		    			{{ form|bootstrap_horizontal }}
+		    				<div class="form-group">
+                                <br>
+		     					<input type="submit" class="btn login lime" value="ingresar">
+		    				</div>
+					</form>
+                </div>
+                {% if key %}
+                    <p class="metin2"> {{ key }} </p>
+                {% endif %}
+                <div class="panel-footer">
+                    No esta registrado? <a href="{% url 'account:create' %}#content">Registrese aqui</a><br>
+                    <a href="{% url 'account:request' %}#content"> Recuperar password</a>					
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

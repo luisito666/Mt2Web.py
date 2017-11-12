@@ -1,0 +1,51 @@
+{% extends "account/registro.html" %}
+{% load staticfiles %}
+
+{% block title %}Metin2 Zaunt - Descargas{% endblock %}
+
+{% block contenido %}
+	<h1>Pagina de Descargas </h3>
+	<hr>
+    <p class="metin">En esta pagina encontraras la descarga del cliente oficial del juego </p>
+	<div class="container container-custom metin">
+		<table border="1" style="border: 1px solid #fff;">
+        	<tr>
+            	<td>Opciones </td>
+            	<td>Peso (MB)</td>
+            	<td>Fecha</td>
+            	<td>Link</td>                      				
+            </tr>
+            {% for cosa in descarga %}
+            <tr>
+                <td>{{ cosa.provedor }}</td>
+                <td>{{ cosa.peso}} MB</td>
+                <td>{{ cosa.fecha }} </td>
+                <td><a href="{{ cosa.link }}" target="blank">Link </a></td>
+                      				
+            </tr>        
+            {% endfor %}
+            <!-- <tr>
+                <td>Media Fire</td>
+                <td>1380 GB</td>
+                <td>2016-11-16</td>
+                <td><a href="{{ key.download2 }}" target="blank">Link </a></td>
+                              
+            </tr> -->
+        </table>
+        <br><br>
+        <!--<table class="table table-hover">
+            <tr>
+                <td>Parche</td>
+                <td>Peso (MB)</td>
+                <td>Fecha</td>
+                <td>Link</td>                             
+            </tr>
+			<tr>
+                <td>Parche Oficial</td>
+                <td>4.17 MB</td>
+                <td>2016-11-16</td>
+                <td><a href="#" target="blank">Link </a></td>
+            </tr>
+        </table> -->
+    </div>
+{% endblock %}

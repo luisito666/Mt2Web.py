@@ -1,0 +1,70 @@
+{% extends "account/registro.html" %}
+{% load staticfiles %}
+
+{% block title %}Metin2 Zaunt - Ranking{% endblock %}
+
+{% block contenido %}
+	<h1 class="metin">Ranking PVP </h3>
+	<hr>
+    <p class="metin">El ranking sera actualizado cada 4 horas. </p>
+    <p class="metin">El ranking se reiniciara cada 15 dias.</p>
+	<div class="container container-custom ">
+		<table>
+        	<tr>
+            	<td class="color-white">Posición </td>
+                <td class="color-white">Nombre </td>
+            	<td class="color-white">Nivel </td>
+                <td class="color-white">Gremio </td>
+            	<td class="color-white">Puntos</td>
+            	<!--<td></td>-->                      				
+            </tr>
+            {% for cosa in object_list %}
+            <tr>
+                <td class="color-white"> {{ page_obj.start_index|add:forloop.counter0 }} </td>
+                <td class="color-white"> {{ cosa.name }} </td>
+                <td class="color-white"> {{ cosa.level}} </td>
+                <td class="color-white"> {{ cosa.guild_name}} </td>
+                <td class="color-white"> {{ cosa.ranking }} </td>
+                <!--<td></td>-->
+                      				
+            </tr>        
+            {% endfor %}
+            <!-- <tr>
+                <td>Media Fire</td>
+                <td>1380 GB</td>
+                <td>2016-11-16</td>
+                <td><a href="{{ key.download2 }}" target="blank">Link </a></td>
+                              
+            </tr> -->
+        </table>
+        {% if is_paginated %}
+        <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="{% url 'account:top' %}?page={{ page_obj.previous_page_number }}#content">anterior</a>
+                {% endif %}
+                <span class="page-current">
+                    Pagina {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="{% url 'account:top' %}?page={{ page_obj.next_page_number }}#content">siguiente</a>
+                {% endif %}
+            </span>
+        </div>
+    	{% endif %}
+        <!--<table class="table table-hover">
+            <tr>
+                <td>Parche</td>
+                <td>Peso (MB)</td>
+                <td>Fecha</td>
+                <td>Link</td>                             
+            </tr>
+			<tr>
+                <td>Parche Oficial</td>
+                <td>4.17 MB</td>
+                <td>2016-11-16</td>
+                <td><a href="#" target="blank">Link </a></td>
+            </tr>
+        </table> -->
+    </div>
+{% endblock %}

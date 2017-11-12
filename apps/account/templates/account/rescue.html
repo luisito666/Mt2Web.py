@@ -1,0 +1,22 @@
+{% extends "account/registro.html" %}
+{% load bootstrap %}
+
+{% block title %} Metin2 Zaunt - Cambiar Password {% endblock %}
+
+{% block contenido %}
+  <h1>Restablecer Password</h1>
+  <hr>
+  <p class="metin">Usa el siguiente formulario para recuperar tu password</p>
+  {% if key %}
+  <p>Mensaje: <strong> {{ key }} </strong> </p>
+  {% endif %}  
+  <form action="" method="POST" class="form-horizontal metin">
+      {% csrf_token %}
+        {{ form|bootstrap_horizontal }}
+        <div class="form-group">
+          <br>
+          <input type="submit" class="btn login lime" value="Recuperar">
+        </div>
+      </form>
+
+{% endblock %}

@@ -1,0 +1,269 @@
+{% load staticfiles %}
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <!--Titulo de la pagina-->
+  <title> {% block title %} Metin2 Zaunt - Comienza la nueva aventura {% endblock %} </title>
+  
+  <!--Inicio bloque meta --> 
+  <meta name="Keywords" content="Pagina oficial de Metin2 Zaunt" />
+
+  <!-- Meta -->
+	  
+	<!-- Favicon -->
+	<!-- <link rel="shortcut icon" href="favicon.ico" />-->
+
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,700,300,100' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Rajdhani:400,700,600,500,300' rel='stylesheet' type='text/css'>	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" media="screen" href='{% static "css/reborn.css" %}'/>
+  {% block css %}
+  {% endblock  %}
+	<!--[if lte IE 7]><link rel="stylesheet" type="text/css" media="screen" href="css/ie7.css" /><![endif]-->
+  
+	<!-- JS -->
+  {% block ext %}
+
+  {% endblock  %}
+	<script type="text/javascript" src='{% static "scripts/jq.js" %}'></script>
+	<script type="text/javascript" src='{% static "scripts/hoverflow.js" %}'></script>	
+	<script type="text/javascript" src='{% static "scripts/slider.js" %}'></script>
+	<script type="text/javascript" src='{% static "scripts/init.js" %}'></script>
+	<style>
+  @import 'https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i,900,900i';
+  .sucess {      
+  margin-top: 5px;       
+  padding: 5px;    
+  background-color: #0C3;   
+  border: 2px solid #666;    
+  width:80%;
+  color: #000000;
+  text-align:center; 
+  }
+  </style>
+  </head>  
+  <body>
+	<div id="bb">
+		<div id="wrapper">
+  		<header>
+        <nav class="">
+          <!--Inicio navegacion principal -->
+				    <center>
+              <ul>
+					     <li class="menu1"><a href="{% url 'index' %}" style="font-size: 10px;"><span class="chinese">INICIO</span><br>HOME</a></li>
+					     <li class="menu2">
+                <a href="{% url 'account:create' %}" style="font-size: 10px;"><span class="chinese">REGISTRO</span><br>REGISTER</a>
+               </li>
+					     <li class="menu3">
+                <a href="{% url 'account:descarga' %}" style="font-size: 10px;"><span class="chinese">DESCARGAR</span><br>DOWNLOAD</a>
+               </li>
+					     <li class="menu4">
+                <a href="{% url 'account:top' %}" style="font-size: 10px;"><span class="chinese">TOP PVP</span><br>RANKING PVP</a>
+               </li>
+					     <li class="menu8">
+                <a href="{% url 'account:login' %}" style="font-size: 10px;"><span class="chinese">Ingresar </span><br>login</a>
+               </li>					
+				      </ul>
+            </center>				
+				  <!-- subnavigation -->				
+        </nav>
+        <div id="logo">
+				  <img class="logo" src='{% static "img/logo.png" %}' alt="Logo" style="">
+        </div>
+        <div id="logo_placeholder">
+        </div>
+		  </header>
+      <div class="main">
+        <div class="w940">
+        <!-- sidebar -->
+        <div id="sidebar">
+          <div class="left"><!-- User Panel -->
+            <div class="sbox">
+              <div class="sbui sb-con-nao">
+                <center>
+                  <h10>Informaci&oacute;n</h10>
+                </center>
+                <hr>
+                <!-- Servers -->
+                <div class="srvstatus">
+                <p class="srv-on">Servidor online </p>
+                <p class="srv-on"></p>
+                <p class="srv-on"></p>
+                  </table>
+                    </tbody>
+                      <div class="sep2">
+                        
+                      </div>
+                      <p class="srv-mode">{{ actualmente }} Jugadores online.</p>
+                      <div class="sep2">
+                          
+                      </div>
+                      <p class=\"srv-mode\">{{ online }} Jugadores ult. 24h</p>
+                      <div class="sep2">
+                        
+                      </div>
+                      <p class="srv-mode">Registros: {{ account}} </p>
+                      <div class="sep2">
+                        
+                      </div>
+                      <p class="srv-mode">Personajes: {{ player }} </p>
+                      <div class="sep2">
+                        
+                      </div>
+                      <p class="srv-mode"> Nivel Inicial: 120 </p>
+                      <div class="sep2">
+                        
+                      </div>
+                      <p class="srv-mode"> Nivel Maximo: 120</p>
+                      <div class="sep2">
+                        
+                      </div>
+                      <p class="srv-mode">PVP 100% </p>
+                      <div class="sep2">
+                        
+                      </div>
+                    </div>
+					       </div>
+					       <div class="sbui sbft">
+                   
+                 </div>
+                </div>
+				        <div class="clear">
+                  
+                </div>
+
+              <div class="clear">
+                
+              </div>
+              <div class="sbui sb-con">
+              <center>
+                <h10>Top Gremios</h10>
+              </center>
+              <hr>
+              <span  id="minirankcontent">
+              <!-- Ranking Table -->
+              <table align="center">
+                <table id="sbRanking" width="82%" border=0 align=center>
+                  {% for gremio in guild_top %}
+                  <tr>
+                    <td class="t-rank"> {{ forloop.counter }} </td>
+                    <td class="t-name">{{ gremio.name }}</font></td>
+                    <td class="t-lvl">{{ gremio.level }}</td>
+                  </tr>
+                  {% endfor %}
+                  </table>
+              <a id="miniranklink" class="bplus" href="{% url 'account:top_g' %}">Clasificacion Comp.</a>
+              <div class="clear">
+                
+              </div>
+            </div> 
+          </div>
+          <div class="sbui sbft">
+            
+          </div>
+          </div>
+          <div id="content">
+            <div class="cui ctop"></div>
+            <!-- Main Content Container -->
+              <div class="cui ccon">
+                <div class="clearfix"></div>          
+                
+                <div class="cbox-ui">
+                  <div class="clearfix"></div>                                         
+                        <div class="postui post-con">		
+                          <div class="con-wrap">                            
+                              {% block contenido %}
+                                                          
+                          </div>
+                        </div>
+                        <div class="postui post-con">
+                          <div class="con-wrap">
+                            <h1>Bienvenidos a Zaunt</h1>
+                            <hr>
+                            <p>Información Básica: Servidor Dedicado a las Guerras y Duelos.
+							Todo Accesible en el Juego; Servidor de Alta Calidad y Estabilidad.
+                            </p>
+                            <p>El Yang es el objeto mas valioso en Metin2 Zaunt, Inevitablemente se deberá comerciar, no esperes
+							mas, anímate y únete a esta gran aventura.
+                            </p>
+                            <p> Todo es adquirible en el juego, el jugador puede escoger entre conseguir su equipamiento
+							mediante el PVM o batallando en contra otros jugadores PVP para ganar puntos de Gloria. </p>
+                            <p> Nuevos Jefes, Desafían a los Jugadores, Eventos de Jefes Semanales, Encontraras una gran
+							variedad de mobs en Metin2 Zaunt. </p>
+							                           
+                            {% endblock %}
+                            </div>
+                          </div>
+                          <br><br>
+                          {% block video %} 
+                          <div class="postui post-con">		
+                          <div class="con-wrap">                             
+                          </div>
+                          <div class="con-wrap">
+
+                          </div>
+                            <div class="con-wrap">                              
+                                <h1>PRESENTACION DEL SERVIDOR</h1>
+                                <hr>
+                                <iframe width="530" height="400" src="https://www.youtube.com/" frameborder="0" allowfullscreen></iframe><br>
+                              
+                            </div>
+                          </div>
+                          {% endblock %}
+                        </div>
+                      </div>
+                    </div>
+                  <br>
+                </div>
+                <div id="sidebar">
+                  <a class="sb-download" href="{% url 'account:descarga' %}"></a>
+                  <a class="sb-community" href="https://foro.zaunt2.es" target="_blank"></a>
+                  <a class="sb-guide" href="{% url 'donaciones' %}"></a>
+                  <div class="clear"></div>
+                  <!-- Player Ranking -->
+                    <div class="sbox">
+                      <div class="sbui sb-con">
+                        <center>
+                          <h10>Top Jugadores</h10>
+                        </center>
+                        <hr>
+                        <span  id="minirankcontent">
+                        <!-- Ranking Table -->
+                        <table id="sbRanking" align="center">
+                        {% for personaje in top_player %}
+                        <tr>
+                          <td class="sbrc1"> {{ forloop.counter }} </td>
+                          <td class="sbrc1"> {{ personaje.name }} </td>
+                          <td class="sbrc1">{{ personaje.level }}</td>
+                        </tr>
+                        {% endfor %}
+                        </table>
+                        </span>
+                        <a id="miniranklink" class="bplus" href="{% url 'account:top' %}">Clasificacion Comp.</a> 
+                      </div>
+                      <div class="sbui sbft"></div>
+                    </div>
+                    <div class="clear"></div>
+                      <div class="clear"></div>
+                </div> 
+                <div class="clear"></div>
+                  <div class="clearfix"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="footer">
+            <div class="f-left">
+              <p>Copyright &copy; Metin2 Zaunt 2017. All rights reserved. Edited Design by <a href="#">Zaunt2 Staff</a></p>
+				    </div>
+				    <div class="f-right"> 
+              <a href="{% url 'index' %}">Inicio</a> &middot; 
+              <a href="{% url 'account:create' %}">Registro</a> &middot; 
+              <!-- <a href="#">Equipo</a> &middot;--> 
+              <a href="{% url 'account:descarga' %}">Descarga</a> &middot; 
+            </div>
+				    <div class="clear"></div>
+          </div>
+          <br><br>
+  </body>
+</html>

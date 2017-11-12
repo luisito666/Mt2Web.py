@@ -1,0 +1,26 @@
+{% extends "index.html" %}
+{% load bootstrap %}
+
+{% block ext %}
+  <script src='https://www.google.com/recaptcha/api.js'></script>
+{% endblock  %}
+
+{% block title %} Metin2 Zaunt - Registro {% endblock %}
+
+
+{% block contenido %} 		
+		<h1 class="metin"> Registro de Cuenta </h3>
+		<hr>
+		<p class="metin">Al registrarse aceptas las condiciones de uso de Metin2 Zaunt </p> 
+			<form action="" method="POST" class="form-horizontal metin">
+			{% csrf_token %}
+		    {{ form|bootstrap_horizontal }}
+		    <br>
+		    <div class="form-group">
+		      <input type="submit" class="btn login lime" value="Registrar">
+		    </div>
+			</form>	
+			<br><br>
+{% endblock %}
+
+{% block video %} {% endblock %}

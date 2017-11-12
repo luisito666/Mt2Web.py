@@ -1,0 +1,30 @@
+{% extends "account/registro.html" %}
+{% load bootstrap %}
+
+{% block title %} Metin2 Zaunt - Desbuguear Personajes {% endblock %}
+
+
+{% block contenido %}
+    <h1>Desbloquear Personajes  </h3>
+    <hr>
+    {% if if_form %}
+    <a href="{% url 'account:login' %}#content">Regresar</a>
+    <p>Diligencia el formulario.</p> 
+    <p>Introduce el nombre del personaje que quieres desbuguear.</p>
+    {% if key %}
+        <p> Mensaje: <strong>{{ key }}</strong> </p>
+    {% endif %}   
+      <form action="" method="POST" class="form-horizontal metin">
+      {% csrf_token %}
+        {{ form|bootstrap_horizontal }}
+        <div class="form-group">
+          <button type="submit" class="btn boton-personalizado">Enviar</button>
+        </div>
+      </form>
+    {% else %}
+      {% if key %}
+        <p> Mensaje: <strong>{{ key }}</strong> </p>
+      {% endif %}
+    {% endif %}
+ 
+{% endblock %}
