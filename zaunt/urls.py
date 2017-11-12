@@ -13,11 +13,8 @@ urlpatterns = [
     url(r'^donaciones$', donaciones, name="donaciones"),
     url(r'^account/', include('apps.account.urls', namespace='account')),
     url(r'^admin/', include(admin.site.urls)),
-    #url(r'^markdown/', include("django_markdown.urls")),
-    #url(r'^blog/', include("apps.blog.urls", namespace='blog')),
     url(r'^password/(?P<url>\w{0,40})$', process_password, name='recuperar_p' ),
-    url(r'^activar/(?P<url>\w{0,40})$', process_reg, name='activar_cuenta' ),
-    url(r'^api/', include('apps.rest.urls', namespace='rest')),
+    url(r'^activar/(?P<url>\w{0,40})$', process_reg, name='activar_cuenta' ),    
 ]
 
 """if settings.DEBUG:

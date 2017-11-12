@@ -1,17 +1,17 @@
 {% extends "account/registro.html" %}
 {% load bootstrap %}
 
-{% block title %} Metin2 Zaunt - Recuperar password {% endblock %}
+{% block title %} {{ servername }} - Recuperar password {% endblock %}
 
 
 {% block contenido %}
     <h1>Recuperar password </h3>
     <hr>
     {% if if_form %}
-    <p>Diligencia el formulario</p> 
+    <p>Diligencia el formulario</p>
     {% if key %}
         <p> Mensaje: <strong>{{ key }}</strong> </p>
-    {% endif %}   
+    {% endif %}
       <form action="" method="POST" class="form-horizontal metin">
       {% csrf_token %}
         {{ form|bootstrap_horizontal }}
@@ -24,5 +24,5 @@
         <p> Mensaje: <strong>{{ key }}</strong> </p>
       {% endif %}
     {% endif %}
- 
+
 {% endblock %}

@@ -1,7 +1,7 @@
 {% extends "account/registro.html" %}
 {% load bootstrap %}
 
-{% block title %} Metin2 Zaunt - Cambiar Password {% endblock %}
+{% block title %} {{ servername }} - Cambiar Password {% endblock %}
 
 {% block contenido %}
   <h1>Restablecer Password</h1>
@@ -9,7 +9,7 @@
   <p class="metin">Usa el siguiente formulario para recuperar tu password</p>
   {% if key %}
   <p>Mensaje: <strong> {{ key }} </strong> </p>
-  {% endif %}  
+  {% endif %}
   <form action="" method="POST" class="form-horizontal metin">
       {% csrf_token %}
         {{ form|bootstrap_horizontal }}

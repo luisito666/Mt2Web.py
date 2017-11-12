@@ -22,24 +22,24 @@ import re
 """
 Diccionarios Espaciales con mensajes de error
 """
-ERROR_MESSAGES_USER = { 
+ERROR_MESSAGES_USER = {
                         'required': 'el nombre de usuario es requerido',
                         'unique': 'el nombre de usuario ya esta registrado',
-                        'invalid': 'ingrese un nombre de usuario valido', 
+                        'invalid': 'ingrese un nombre de usuario valido',
                       }
 
-ERROR_MESSAGES_GENERAL = { 
-                        'required': 'este campo es requerido',                        
+ERROR_MESSAGES_GENERAL = {
+                        'required': 'este campo es requerido',
                       }
 
-ERROR_MESSAGES_PASSWORD = { 
+ERROR_MESSAGES_PASSWORD = {
                           'required': 'el password es requerido'
                           }
 
-ERROR_MESSAGES_EMAIL =  {  
+ERROR_MESSAGES_EMAIL =  {
                           'required': 'el email es requerido',
                           'invalid': 'ingrese un correo valido',
-                        }               
+                        }
 
 """
 Funciones que realizan validaciones en los formularios
@@ -78,12 +78,12 @@ de lo contrario no funcionara """
 
 #Formulario de registro principal
 class CreateUserForm(forms.ModelForm):
-  login = forms.CharField(max_length=30, error_messages = ERROR_MESSAGES_USER, validators = [valida_5, valida_6])
+  login = forms.CharField(label='Nombre de Usuario',max_length=30, error_messages = ERROR_MESSAGES_USER, validators = [valida_5, valida_6])
   password = forms.CharField(max_length=30, widget = forms.PasswordInput(), validators = [must_be_gt] ,error_messages = ERROR_MESSAGES_PASSWORD)
-  real_name = forms.CharField(max_length=50, error_messages = ERROR_MESSAGES_GENERAL)
+  real_name = forms.CharField(label='Nombre real',max_length=50, error_messages = ERROR_MESSAGES_GENERAL)
   email = forms.EmailField(max_length=30 , error_messages = ERROR_MESSAGES_EMAIL )
-  social_id = forms.IntegerField( error_messages = ERROR_MESSAGES_GENERAL, validators = [valida_2, valida_3, valida_4])  
-  capcha = ReCaptchaField()
+  social_id = forms.IntegerField(label='Codigo de borrado' ,error_messages = ERROR_MESSAGES_GENERAL, validators = [valida_2, valida_3, valida_4])
+  #capcha = ReCaptchaField()
 
   class Meta:
     model = Account
@@ -92,24 +92,18 @@ class CreateUserForm(forms.ModelForm):
       'password',
       'real_name',
       'email',
-      'social_id',      
+      'social_id',
     ]
-    labels = {
-      'login': _('Nombre de Usuario'),
-      'password': _('Contrasena'),
-      'real_name': _('Nombre real'),
-      'email': _('Correo'),
-      'social_id': _('Codigo de borrado'),
-    }
 
-"""Los siguiente formularios heredan de la clase forms.Form por lo que no necesitan 
+
+"""Los siguiente formularios heredan de la clase forms.Form por lo que no necesitan
 de un modelo para su funcionamiento  """
 
 #Este formulario se usa para el login
 class CustomLoginForm(forms.Form):
-  login = forms.CharField(max_length=30, validators=[valida_5])
+  login = forms.CharField(label='Usuario',max_length=30, validators=[valida_5])
   password = forms.CharField(max_length=30, widget = forms.PasswordInput(), validators = [must_be_gt] ,error_messages = ERROR_MESSAGES_PASSWORD)
-  capcha = ReCaptchaField()
+  #capcha = ReCaptchaField()
 
 #Este formulario es para desbuguear player
 class CustomDesbugForm(forms.Form):
@@ -123,10 +117,10 @@ class CustomChangePassword(forms.Form):
 
 #Este formulario se usa para recuperar password por correo
 class ResPassword(forms.Form):
-  login = forms.CharField(max_length=30, validators=[valida_5])
+  login = forms.CharField(label='Usuario',max_length=30, validators=[valida_5])
   email = forms.CharField(max_length=30, validators = [valida_5] ,error_messages = ERROR_MESSAGES_PASSWORD)
-  capcha = ReCaptchaField()
-  
+  #capcha = ReCaptchaField()
+
 class FormResetPassword(forms.Form):
   password = forms.CharField(max_length=30, widget = forms.PasswordInput(), validators = [must_be_gt] ,error_messages = ERROR_MESSAGES_PASSWORD)
-  password_again = forms.CharField(max_length=30, widget = forms.PasswordInput(), validators = [must_be_gt] ,error_messages = ERROR_MESSAGES_PASSWORD) 
+  password_again = forms.CharField(max_length=30, widget = forms.PasswordInput(), validators = [must_be_gt] ,error_messages = ERROR_MESSAGES_PASSWORD)

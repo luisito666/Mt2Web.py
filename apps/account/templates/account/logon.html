@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 
-{% block title %} Metin2 Zaunt- Dashboard {% endblock %}
+{% block title %} {{ servername }} - Dashboard {% endblock %}
 
 {% block contenido %}
 
@@ -15,22 +15,22 @@
     <div class="container container-custom ">
         {% if personajes %}
         <table class="table table-condensed">
-            <tr>                
+            <tr>
                 <td class="color-white">Nombre </td>
                 <td class="color-white">Nivel </td>
-                <td class="color-white">Gremio </td>                
-                <!--<td></td>-->                                    
+                <td class="color-white">Gremio </td>
+                <!--<td></td>-->
             </tr>
             {% for cosa in personajes %}
-            <tr>               
+            <tr>
                 <td class="color-white"> {{ cosa.name }} </td>
                 <td class="color-white"> {{ cosa.level}} </td>
-                <td class="color-white"> {{ cosa.guild_name}} </td>                
+                <td class="color-white"> {{ cosa.guild_name}} </td>
                 <!--<td></td>-->
-                                    
-            </tr>        
+
+            </tr>
             {% endfor %}
-            
+
         </table>
         {% else %}
         <p> No se encontraron personajes
@@ -39,6 +39,6 @@
         <p><a href="{% url 'account:password' %}#content"> Cambiar Contraseña </a></p>
         <p><a href="{% url 'account:unlock' %}#content"> Desbug Personaje </a></p>
         <p><a href="{% url 'account:logout' %}#content"> Salir </a></p>
-        
+
     </div>
 {% endblock %}

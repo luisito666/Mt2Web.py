@@ -1,10 +1,10 @@
 {% extends "account/registro.html" %}
 {% load bootstrap %}
 
-{% block title %}Metin2 Zaunt - Login{% endblock %}
+{% block title %}{{ servername }} - Login{% endblock %}
 
 
-{% block contenido %} 
+{% block contenido %}
 <!--<h3> Login </h3>
 
 {% if context.key %}
@@ -12,7 +12,7 @@
 {% endif %} ->
 
 <!--<form action="" method="post">
-   {% csrf_token %} 
+   {% csrf_token %}
   {{ form.as_p }}
   <input type="submit" value="Login">
 </form> -->
@@ -23,7 +23,7 @@
         <div class="col-md-4 col-md-offset-7">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    
+
                 <div class="panel-body">
                     <form action="" method="POST" class="form-horizontal metin">
 						{% csrf_token %}
@@ -39,7 +39,7 @@
                 {% endif %}
                 <div class="panel-footer">
                     No esta registrado? <a href="{% url 'account:create' %}#content">Registrese aqui</a><br>
-                    <a href="{% url 'account:request' %}#content"> Recuperar password</a>					
+                    <a href="{% url 'account:request' %}#content"> Recuperar password</a>
                     </div>
             </div>
         </div>

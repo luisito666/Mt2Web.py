@@ -64,15 +64,15 @@ class Account(models.Model):
     verificacion = models.CharField(db_column='Verificacion', max_length=32,default=0)  # Field name made lowercase.
     a_points = models.IntegerField(default=0)
     votecoins = models.IntegerField(default=0)
-    token_expire = models.DateTimeField(blank=True, null=True)
+    #token_expire = models.DateTimeField(blank=True, null=True)
 
     class Meta:
         managed = True
         db_table = 'account'
-    
+
     def __str__(self):
         return self.login
-    #Funcion para encryptar password 
+    #Funcion para encryptar password
     def micryp(password,other):
         from django.db import connection, transaction
         cursor = connection.cursor()
@@ -82,12 +82,10 @@ class Account(models.Model):
         cursor.close()
         start = str(row)
         valor = start.count(start)
-        control = 0 
-        s = ""       
+        control = 0
+        s = ""
         for letra in row:
             if control > 3 or control < 49:
                 s += letra
-        control = control + 1 
+        control = control + 1
         return s
-
-

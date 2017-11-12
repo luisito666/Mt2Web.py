@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 
-{% block title %}Metin2 Kai - Ranking Gremios{% endblock %}
+{% block title %} {{ servername }} - Ranking Gremios{% endblock %}
 
 {% block contenido %}
 	<h1>Ranking de Gremios </h3>
@@ -16,7 +16,7 @@
             	<td class="color-white">Nivel </td>
                 <td class="color-white">Puntos </td>
             	<td class="color-white">Experiencia</td>
-            	<!--<td></td>-->                      				
+            	<!--<td></td>-->
             </tr>
             {% for cosa in object_list %}
             <tr>
@@ -26,15 +26,15 @@
                 <td class="color-white"> {{ cosa.ladder_point}} </td>
                 <td class="color-white"> {{ cosa.exp }} </td>
                 <!--<td></td>-->
-                      				
-            </tr>        
+
+            </tr>
             {% endfor %}
             <!-- <tr>
                 <td>Media Fire</td>
                 <td>1380 GB</td>
                 <td>2016-11-16</td>
                 <td><a href="{{ key.download2 }}" target="blank">Link </a></td>
-                              
+
             </tr> -->
         </table>
         {% if is_paginated %}
@@ -57,7 +57,7 @@
                 <td>Parche</td>
                 <td>Peso (MB)</td>
                 <td>Fecha</td>
-                <td>Link</td>                             
+                <td>Link</td>
             </tr>
 			<tr>
                 <td>Parche Oficial</td>

@@ -5,13 +5,13 @@
   <script src='https://www.google.com/recaptcha/api.js'></script>
 {% endblock  %}
 
-{% block title %} Metin2 Zaunt - Registro {% endblock %}
+{% block title %} {{ servername }} - Registro {% endblock %}
 
 
-{% block contenido %} 		
+{% block contenido %}
 		<h1 class="metin"> Registro de Cuenta </h3>
 		<hr>
-		<p class="metin">Al registrarse aceptas las condiciones de uso de Metin2 Zaunt </p> 
+		<p class="metin">Al registrarse aceptas las condiciones de uso de Metin2 Zaunt </p>
 			<form action="" method="POST" class="form-horizontal metin">
 			{% csrf_token %}
 		    {{ form|bootstrap_horizontal }}
@@ -19,7 +19,7 @@
 		    <div class="form-group">
 		      <input type="submit" class="btn login lime" value="Registrar">
 		    </div>
-			</form>	
+			</form>
 			<br><br>
 {% endblock %}
 

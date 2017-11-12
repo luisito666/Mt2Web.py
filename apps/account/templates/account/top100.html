@@ -1,7 +1,7 @@
 {% extends "account/registro.html" %}
 {% load staticfiles %}
 
-{% block title %}Metin2 Zaunt - Ranking{% endblock %}
+{% block title %} {{ servername }} - Ranking{% endblock %}
 
 {% block contenido %}
 	<h1 class="metin">Ranking PVP </h3>
@@ -16,7 +16,7 @@
             	<td class="color-white">Nivel </td>
                 <td class="color-white">Gremio </td>
             	<td class="color-white">Puntos</td>
-            	<!--<td></td>-->                      				
+            	<!--<td></td>-->
             </tr>
             {% for cosa in object_list %}
             <tr>
@@ -26,15 +26,15 @@
                 <td class="color-white"> {{ cosa.guild_name}} </td>
                 <td class="color-white"> {{ cosa.ranking }} </td>
                 <!--<td></td>-->
-                      				
-            </tr>        
+
+            </tr>
             {% endfor %}
             <!-- <tr>
                 <td>Media Fire</td>
                 <td>1380 GB</td>
                 <td>2016-11-16</td>
                 <td><a href="{{ key.download2 }}" target="blank">Link </a></td>
-                              
+
             </tr> -->
         </table>
         {% if is_paginated %}
@@ -57,7 +57,7 @@
                 <td>Parche</td>
                 <td>Peso (MB)</td>
                 <td>Fecha</td>
-                <td>Link</td>                             
+                <td>Link</td>
             </tr>
 			<tr>
                 <td>Parche Oficial</td>
