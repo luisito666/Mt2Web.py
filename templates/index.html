@@ -60,9 +60,15 @@
 					     <li class="menu4">
                 <a href="{% url 'account:top' %}" style="font-size: 10px;"><span class="chinese">TOP PVP</span><br>RANKING PVP</a>
                </li>
+               {% if request.session.id %}
+					     <li class="menu8">
+                <a href="{% url 'account:login' %}" style="font-size: 10px;"><span class="chinese">USER PANEL</span><br>User CP</a>
+               </li>
+               {% else %}
 					     <li class="menu8">
                 <a href="{% url 'account:login' %}" style="font-size: 10px;"><span class="chinese">Ingresar </span><br>login</a>
                </li>
+               {% endif %}
 				      </ul>
             </center>
 				  <!-- subnavigation -->
