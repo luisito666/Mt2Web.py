@@ -1,6 +1,7 @@
 from core import settings
 from paymentwall.base import Paymentwall
 from paymentwall.widget import Widget
+from paymentwall.pingback import Pingback
 
 Paymentwall.set_api_type(Paymentwall.API_VC)
 Paymentwall.set_app_key(settings.PAYMENTWALL_PUBLIC_KEY) # available in your merchant area
@@ -25,7 +26,7 @@ def ProcessPay(request):
         if pingback.is_deliverable():
             # deliver the virtual currency
             print(virtual_currency)
-            
+
         elif pingback.is_cancelable():
             # withdraw the virtual currency
             pass

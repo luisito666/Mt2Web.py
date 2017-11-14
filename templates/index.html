@@ -189,13 +189,13 @@
                             <p>Información Básica: Servidor Dedicado a las Guerras y Duelos.
 							Todo Accesible en el Juego; Servidor de Alta Calidad y Estabilidad.
                             </p>
-                            <p>El Yang es el objeto mas valioso en Metin2 Zaunt, Inevitablemente se deberá comerciar, no esperes
+                            <p>El Yang es el objeto mas valioso en {{ servername }}, Inevitablemente se deberá comerciar, no esperes
 							mas, anímate y únete a esta gran aventura.
                             </p>
                             <p> Todo es adquirible en el juego, el jugador puede escoger entre conseguir su equipamiento
 							mediante el PVM o batallando en contra otros jugadores PVP para ganar puntos de Gloria. </p>
                             <p> Nuevos Jefes, Desafían a los Jugadores, Eventos de Jefes Semanales, Encontraras una gran
-							variedad de mobs en Metin2 Zaunt. </p>
+							variedad de mobs en {{ servername }}. </p>
 
                             {% endblock %}
                             </div>
@@ -223,7 +223,7 @@
                 </div>
                 <div id="sidebar">
                   <a class="sb-download" href="{% url 'account:descarga' %}"></a>
-                  <a class="sb-community" href="https://foro.zaunt2.es" target="_blank"></a>
+                  <a class="sb-community" href="#" target="_blank"></a>
                   <a class="sb-guide" href="{% url 'donaciones' %}"></a>
                   <div class="clear"></div>
                   <!-- Player Ranking -->
@@ -260,7 +260,7 @@
           </div>
           <div id="footer">
             <div class="f-left">
-              <p>Copyright &copy; Metin2 Zaunt 2017. All rights reserved. Edited Design by <a href="#">Zaunt2 Staff</a></p>
+              <p>Copyright &copy; {{ servername }} 2017. All rights reserved. Edited Design by <a href="#">luisito666</a></p>
 				    </div>
 				    <div class="f-right">
               <a href="{% url 'index' %}">Inicio</a> &middot;
