@@ -7,11 +7,13 @@
 	<h1 class="metin">Donaciones</h3>
 	<hr>
   <p>Las donaciones son usadas para el mantenimiento del servidor, el pago del hosting web y otros gastos relacionados con el servidor </p>
-  	<p>Dependiendo de la cantidad de dinero que donas asi mismo seras recompenzado con MDS que sirven para comprar items especiales en el juego.</p>
-  	<br>
-		<iframe src="{{ widget }}"  height="400" width="500" frameborder="0"></iframe>
-
-  	<br>
+  <p>Dependiendo de la cantidad de dinero que donas asi mismo seras recompenzado con MDS que sirven para comprar items especiales en el juego.</p>
+	<p>Cuenta: {{ session.login }} </p>
+  <p>Correo: {{ session.email }} </p>
+  <p><a href="{% url 'account:login' %}#content"> Regresar </a></p>
+	<br>
+	<iframe src="{{ widget }}"  height="400" width="500" frameborder="0"></iframe>
+  <br>
   <!--	<h3 class="metin">Donaciones por SMS </h1>
   </br></br>
   <p>Por cada mensaje donado se entregara DRS dependiendo del pais de residencia <a href="#">info</a></p>

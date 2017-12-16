@@ -1,15 +1,8 @@
-appdirs==1.4.3
 Django==1.11
 django-bootstrap-form==3.2.1
 django-cors-headers==2.1.0
-django-markdown==0.8.4
 django-recaptcha==1.3.0
-djangorestframework==3.6.3
 gunicorn==19.7.1
-Markdown==2.6.8
 mysqlclient==1.3.10
-packaging==16.8
-PyJWT==1.5.3
-pyparsing==2.2.0
-pytz==2017.2
-six==1.10.0
+paymentwall-python==1.0.7
+pytz==2017.3

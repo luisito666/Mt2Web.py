@@ -91,12 +91,3 @@ def cambio_mapa(cuenta, personaje):
 	cursor.fetchall()
 
 	return a
-
-
-#cursor.fetchall()
-"""def token_time(now, token):
-	dia = (now - token).days
-	if dia >= 1:
-		return False
-	else:
-		return True"""

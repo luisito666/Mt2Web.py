@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from apps.account.funciones import *
-from apps.account.payview import PayWidget, ProcessPay
+from apps.account.payview import PayWidget
 from core import settings
 from apps.account import models
 
@@ -26,6 +26,7 @@ def donaciones(request):
 		widget = PayWidget(a.login,a.email)
 		context = {
 				'widget':widget,
+				'session': a ,
 				'servername': settings.SERVERNAME,
 				'player': total_pl(),
 				'account': total_us(),
@@ -37,7 +38,3 @@ def donaciones(request):
 		return render(request, 'donaciones.html', context)
 	else:
 		return redirect('account:login')
-
-def payproces(request):
-	context = ProcessPay(request)
-	return render(request, 'donaciones.html', context)

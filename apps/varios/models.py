@@ -24,3 +24,12 @@ class Top(models.Model):
     def __str__(self):
     	return self.name
 
+class RegistroCompras(models.Model):
+	ref_id = models.IntegerField()
+	account_id = models.IntegerField()
+	login = models.CharField(max_length=30)
+	coins_compradas = models.IntegerField()
+	status = models.BooleanField(default=False)
+
+	def __str__(self):
+		return self.login
