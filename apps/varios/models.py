@@ -20,7 +20,6 @@ class Top(models.Model):
     exp = models.IntegerField()
     ranking = models.SmallIntegerField(blank=True, null=True)
 
-
     def __str__(self):
     	return self.name
 
@@ -33,3 +32,7 @@ class RegistroCompras(models.Model):
 
 	def __str__(self):
 		return self.login
+
+	class Meta:
+		verbose_name = 'Registro Compra'
+		verbose_name_plural = 'Registro Compras'

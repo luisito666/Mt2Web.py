@@ -64,14 +64,16 @@ class Account(models.Model):
     verificacion = models.CharField(db_column='Verificacion', max_length=32,default=0)  # Field name made lowercase.
     a_points = models.IntegerField(default=0)
     votecoins = models.IntegerField(default=0)
-    #token_expire = models.DateTimeField(blank=True, null=True)
+    token_expire = models.DateTimeField(blank=True, null=True)
 
     class Meta:
-        managed = True
         db_table = 'account'
+        verbose_name = 'Cuenta'
+        verbose_name_plural = 'Cuentas'
 
     def __str__(self):
         return self.login
+
     #Funcion para encryptar password
     def micryp(password,other):
         from django.db import connection, transaction
