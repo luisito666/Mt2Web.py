@@ -41,9 +41,10 @@ pip install -r requirements.txt
 1. instala el paquete virtualenv de Python
 2. crea un entorno virtual llamado miweb
 3. ingresa al directorio
-4. clona el repositorio de github
-5. ingresa el directorio del proyecto
-6. instalan las dependencias del proyecto
+4. activar el entorno virtual
+5. clona el repositorio de github
+6. ingresa el directorio del proyecto
+7. instalan las dependencias del proyecto
 
 Ya con eso finalizamos la Instalacion del proyecto, ahora hay que alistar el archivo de configuracion, en este archivo definiremos la conexion a la base de datos y otros aspectos importantes del funcionamiento del proyecto.
 
