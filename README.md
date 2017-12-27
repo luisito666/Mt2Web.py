@@ -32,6 +32,7 @@ Los comandos para instalar son los siguientes.
 pip install virtualenv
 virtualenv miweb
 cd miweb/
+source bin/activate
 git clone https://github.com/luisito666/Mt2Web.py.git
 cd Mt2Web.py/
 pip install -r requirements.txt
