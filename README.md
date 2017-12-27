@@ -28,14 +28,14 @@ La motivacion principal para realizar este proyecto, es tener una web de metin2 
 
 Los comandos para instalar son los siguientes.
 
-...
+```
 pip install virtualenv
 virtualenv miweb
 cd miweb/
 git clone https://github.com/luisito666/Mt2Web.py.git
 cd Mt2Web.py/
 pip install -r requirements.txt
-...
+```
 
 1. instala el paquete virtualenv de Python
 2. crea un entorno virtual llamado miweb
@@ -48,9 +48,9 @@ Ya con eso finalizamos la Instalacion del proyecto, ahora hay que alistar el arc
 
 Se copia el archivo de configuracion que aparece descrito en la parte inferior, este archivo se pone en el directorio core, con el nombre de settings.py
 
-Se tiene que configurar los datos de conexion a mysql 
+Se tiene que configurar los datos de conexion a mysql
 
-...
+```
 
 import os
 
@@ -234,16 +234,16 @@ EMAIL_PORT = 25
 EMAIL_HOST_USER = 'no_reply@tudominio.com'
 EMAIL_HOST_PASSWORD = '****'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-...
+```
 
 Despues de lo anterior se ejecutan las migraciones.
 
-...
+```
 cd miweb
 source bin/activate
 cd Mt2Web.py/
 ./manage.py migrate
-...
+```
 
 ## Entorno de pruebas.
 
@@ -252,11 +252,11 @@ Tener en cuenta que este servidor soporta muy pocos usuario y no sirve para un e
 
 Estando en el directorio miweb
 
-...
+```
 source bin/activate
 cd Mt2Web.py/
 ./manage.py runserver
-...
+```
 
 El server de pruebas queda ejecutandose localmente.
 La url es http://127.0.0.1:8000/
