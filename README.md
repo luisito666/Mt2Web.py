@@ -1,4 +1,4 @@
-# Mt2Web.py
+ # Mt2Web.py
 
 Web para servidores de Metin2.
 
@@ -50,7 +50,6 @@ Ya con eso finalizamos la Instalacion del proyecto, ahora hay que alistar el arc
 
 Se copia el archivo de configuracion que aparece descrito en la parte inferior, este archivo se pone en el directorio core, con el nombre de settings.py
 
-Se tiene que configurar los datos de conexion a mysql
 
 ```
 
@@ -262,3 +261,13 @@ cd Mt2Web.py/
 
 El server de pruebas queda ejecutandose localmente.
 La url es http://127.0.0.1:8000/
+
+## Crear super usuario
+
+El super usuario sirve para entrar a la interface de administraicon del proyecto, en ese lugar podras realizar tareas administrativas, tambien podras supervisar cuales usuarios han realizando donaciones mediante paymentwall
+
+```
+./manage.py createsuperuser
+```
+La url de la interface de administracion es.
+http://tudominio.com/admin
