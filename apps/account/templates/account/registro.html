@@ -11,7 +11,7 @@
 {% block contenido %}
 		<h1 class="metin"> Registro de Cuenta </h3>
 		<hr>
-		<p class="metin">Al registrarse aceptas las condiciones de uso de Metin2 Zaunt </p>
+		<p class="metin">Al registrarse aceptas las condiciones de uso de {{ servername }} </p>
 			<form action="" method="POST" class="form-horizontal metin">
 			{% csrf_token %}
 		    {{ form|bootstrap_horizontal }}
