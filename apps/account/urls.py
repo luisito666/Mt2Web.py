@@ -1,8 +1,12 @@
+#imporacion por defecto
 from django.conf.urls import url
+
+#Importando vistas para el correcto funcionamiento de las urls
 from apps.account import views
 
+#urls del proyecto
 urlpatterns = [
-    #url(r'^show/(?P<pk>\d+)/$', views.ShowView.as_view(), name = 'show'),    
+    #url(r'^show/(?P<pk>\d+)/$', views.ShowView.as_view(), name = 'show'),
     url(r'^create/$', views.Create.as_view(), name = 'create'),
     url(r'^exito/$', views.exito , name = 'exito'),
     url(r'^login/$', views.login, name='login'),

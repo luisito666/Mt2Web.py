@@ -11,17 +11,17 @@ from django.db import models
 #importando datetime
 from datetime import datetime
 
-#importando funcion daa
+#importando ugettext_lazy
 from django.utils.translation import ugettext_lazy as _
 
 #importando el capcha de los formularios
 from captcha.fields import ReCaptchaField
 
+#impoortanfo re - es usado para validar el login
 import re
 
-"""
-Diccionarios Espaciales con mensajes de error
-"""
+#Diccionarios Espaciales con mensajes de error
+
 ERROR_MESSAGES_USER = {
                         'required': 'el nombre de usuario es requerido',
                         'unique': 'el nombre de usuario ya esta registrado',
@@ -41,34 +41,41 @@ ERROR_MESSAGES_EMAIL =  {
                           'invalid': 'ingrese un correo valido',
                         }
 
-"""
-Funciones que realizan validaciones en los formularios
-"""
 
+#Funciones que realizan validaciones en los formularios
+
+
+#validando espacios en blanco
 def valida_5(value_login):
   if re.search(r'[\s]', value_login):
     raise forms.ValidationError('El login no puede contener espacios en blanco')
 
+#validando caracteres login
 def valida_6(value_login):
   if len(value_login) <= 4:
     raise forms.ValidationError('el nombre de usuario debe contener mas de 4 caracteres')
 
+#validando caracteres de password
 def must_be_gt(value_password):
   if len(value_password) < 5:
     raise forms.ValidationError('el password debe contener por lo menos 5 caracteres')
 
+#validando que el sociial id sea positivo
 def valida_2(value_social_id):
   if value_social_id <= 0:
     raise forms.ValidationError('el codigo debe ser un valor positivo.')
 
+#validando que el social id tenga sea mayor o igual 6
 def valida_3(value_social_id):
   if len(str(value_social_id)) <= 6:
     raise forms.ValidationError('el codigo debe tener 7 caracteres')
 
+#validando que el social id tenga menos de 8 caracteres
 def valida_4(value_social_id):
   if len(str(value_social_id)) >= 8:
     raise forms.ValidationError('el codigo no puede contener mas de 7 caracteres')
 
+#validando formulario desbug personajes
 def valida_7(value_login):
   if re.search(r'[\s]', value_login):
     raise forms.ValidationError('El campo no puede contener espacios en blanco')

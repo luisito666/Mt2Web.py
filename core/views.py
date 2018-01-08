@@ -5,16 +5,7 @@ from core import settings
 from apps.account import models
 
 def index(request):
-	context = {
-			'servername': settings.SERVERNAME,
-			'player': total_pl(),
-			'account': total_us(),
-			'online': last_hour(),
-			'actualmente': last_min(),
-			'top_player': player_top(),
-			'guild_top': guild_top()
-	}
-	return render(request, 'index.html', context)
+	return render(request, 'index.html', contexto())
 
 def donaciones(request):
 	if request.session.has_key('id'):
@@ -24,17 +15,11 @@ def donaciones(request):
 			pass
 
 		widget = PayWidget(a.login,a.email)
-		context = {
+		context = contexto()
+		context.update({
 				'widget':widget,
 				'session': a ,
-				'servername': settings.SERVERNAME,
-				'player': total_pl(),
-				'account': total_us(),
-				'online': last_hour(),
-				'actualmente': last_min(),
-				'top_player': player_top(),
-				'guild_top': guild_top()
-		}
+		})
 		return render(request, 'donaciones.html', context)
 	else:
 		return redirect('account:login')

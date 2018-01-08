@@ -56,13 +56,7 @@ class Create(CreateView):
     return HttpResponseRedirect( self.get_success_url() )
   def get_context_data(self, **kwargs):
         context = super(Create, self).get_context_data(**kwargs)
-        context['servername'] = settings.SERVERNAME
-        context['player'] = total_pl()
-        context['account'] = total_us()
-        context['online'] = last_hour()
-        context['actualmente'] = last_min()
-        context['top_player'] = player_top()
-        context['guild_top'] = guild_top()
+        context.update(contexto())
         return context
 
 #funcion usada para el login
@@ -71,15 +65,7 @@ def login(request):
   """Declarando el formulario que usara esta funcion  """
   form = CustomLoginForm(request.POST or None)
   """Preparado el contexto usando por la funcion"""
-  context = {
-    'servername': settings.SERVERNAME,
-    'player': total_pl(),
-    'account': total_us(),
-    'online': last_hour(),
-    'actualmente': last_min(),
-    'guild_top': guild_top(),
-    'top_player': player_top()
-  }
+  context = contexto()
   if request.session.has_key('id'):
     a = Account.objects.get(id=request.session['id'])
     b = Top.objects.filter(account_id=a.id)
@@ -136,16 +122,10 @@ def logout(request):
   except:
   	pass
   b = Top.objects.filter(account_id=a.id)
-  context = {
-              'servername': settings.SERVERNAME,
-              'datos': a,
-              'player': total_pl(),
-              'account': total_us(),
-              'online': last_hour(),
-              'actualmente': last_min(),
-              'top_player': player_top(),
-              'guild_top': guild_top()
-  }
+  context = contexto()
+  context.update({
+    'datos': a
+  })
   return render(request, 'account/salir.html',  context  )
 
 #funcion usada para cambiar password estando logeado
@@ -153,16 +133,7 @@ def changepasswd(request):
   """Declarando el formulario que usara esta funcion  """
   form = CustomChangePassword(request.POST or None)
   """Preparado el contexto usado por la funcion"""
-  context = {
-    'servername': settings.SERVERNAME,
-    'form': form,
-    'player': total_pl(),
-    'account': total_us(),
-    'online': last_hour(),
-    'actualmente': last_min(),
-    'top_player': player_top(),
-    'guild_top': guild_top()
-  }
+  context = contexto()
   if request.session.has_key('id'):
     try:
       a = Account.objects.get(id=request.session['id'])
@@ -191,30 +162,15 @@ def changepasswd(request):
 
 #Funcion usada para confirmar el registro exitoso
 def exito(request):
-  context = {
-            'servername': settings.SERVERNAME,
-            'player': total_pl(),
-            'account': total_us(),
-            'online': last_hour(),
-            'actualmente': last_min(),
-            'top_player': player_top(),
-            'guild_top': guild_top()
-  }
-  return render(request, 'account/exito.html', context)
+  return render(request, 'account/exito.html', contexto())
 
 #funcion usada para la pagina de descarga
 def descarga(request):
   a = Descarga.objects.all()
-  context = {
-              'servername': settings.SERVERNAME,
-              'descarga': a,
-              'player': total_pl(),
-              'account': total_us(),
-              'online': last_hour(),
-              'actualmente': last_min(),
-              'top_player': player_top(),
-              'guild_top': guild_top()
-  }
+  context = contexto()
+  context.update({
+    'descarga': a
+  })
   return render(request, 'account/download.html', context)
 
 
@@ -229,13 +185,7 @@ class top(ListView):
 
   def get_context_data(self, **kwargs):
         context = super(top, self).get_context_data(**kwargs)
-        context['servername'] = settings.SERVERNAME
-        context['player'] = total_pl()
-        context['account'] = total_us()
-        context['online'] = last_hour()
-        context['actualmente'] = last_min()
-        context['top_player'] = player_top()
-        context['guild_top'] = guild_top()
+        context.update(contexto())
         return context
 
 #clase usada para renderizar el top del juego y paginarlo
@@ -247,13 +197,7 @@ class top_g(ListView):
 
   def get_context_data(self, **kwargs):
         context = super(top_g, self).get_context_data(**kwargs)
-        context['servername'] = settings.SERVERNAME
-        context['player'] = total_pl()
-        context['account'] = total_us()
-        context['online'] = last_hour()
-        context['actualmente'] = last_min()
-        context['top_player'] = player_top()
-        context['guild_top'] = guild_top()
+        context.update(contexto())
         return context
 
 #Funcion usada para recuperar password por correo
@@ -262,16 +206,10 @@ def recuperar_password(request):
     """Declarando el formulario"""
     form = ResPassword(request.POST or None)
     """Preparando el contexto que manajara la funcion"""
-    context = {
-          'servername': settings.SERVERNAME,
-          'form': form ,
-          'player': total_pl(),
-          'account': total_us(),
-          'online': last_hour(),
-          'actualmente': last_min(),
-          'top_player': player_top(),
-          'guild_top': guild_top()
-    }
+    context = contexto()
+    context.update({
+        'form': form
+    })
     #validando los datos que se envian por post
     if request.method == 'POST' and form.is_valid():
       a = request.POST['login']
@@ -313,15 +251,7 @@ def process_password(request,url):
   """Declarando el formulario"""
   form = FormResetPassword(request.POST or None)
   """Preparando el contexto de la funcion"""
-  context = {
-    'servername': settings.SERVERNAME,
-    'player': total_pl(),
-    'account': total_us(),
-    'online': last_hour(),
-    'actualmente': last_min(),
-    'top_player': player_top(),
-    'guild_top': guild_top()
-  }
+  context = contexto()
   if request.method == 'GET':
     if url:
       try:
@@ -390,15 +320,7 @@ def process_password(request,url):
 #Aqui validamos los link's de activacion de la cuenta.
 def process_reg(request, url):
   """Preparando el contexto usado por la funcion """
-  context = {
-        'servername': settings.SERVERNAME,
-        'player': total_pl(),
-        'account': total_us(),
-        'online': last_hour(),
-        'actualmente': last_min(),
-        'top_player': player_top(),
-        'guild_top': guild_top()
-  }
+  context = contexto()
   if request.method == 'GET':
     if url:
       try:
@@ -434,16 +356,10 @@ def desbuguear(request):
     """Declarando el formulario que usara la funcion """
     form = CustomDesbugForm(request.POST or None)
     """Preparando el contexto usado por la funcion """
-    context = {
-        'servername': settings.SERVERNAME,
+    context = contexto()
+    context.update({
         'form': form,
-        'player': total_pl(),
-        'account': total_us(),
-        'online': last_hour(),
-        'actualmente': last_min(),
-        'top_player': player_top(),
-        'guild_top': guild_top()
-    }
+    })
     if request.session.has_key('id'):
         try:
             a = Account.objects.get(id=request.session['id'])

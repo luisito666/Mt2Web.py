@@ -34,7 +34,7 @@ class Account(models.Model):
     newsletter = models.IntegerField(blank=True, null=True)
     empire = models.IntegerField(default=0)
     name_checked = models.IntegerField(default=0)
-    availdt = models.DateTimeField(db_column='availDt',default="2009-01-01T00:00:00")  # Field name made lowercase.
+    availdt = models.DateTimeField(db_column='availDt',default="2020-01-01T00:00:00")  # Field name made lowercase.
     mileage = models.IntegerField(default=0)
     coins = models.IntegerField(default=0)
     gold_expire = models.DateTimeField(default="2020-01-01T00:00:00")
