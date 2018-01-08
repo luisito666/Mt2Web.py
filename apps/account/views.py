@@ -134,6 +134,9 @@ def changepasswd(request):
   form = CustomChangePassword(request.POST or None)
   """Preparado el contexto usado por la funcion"""
   context = contexto()
+  context.update({
+    'form':form
+  })
   if request.session.has_key('id'):
     try:
       a = Account.objects.get(id=request.session['id'])
