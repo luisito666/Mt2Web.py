@@ -4,7 +4,7 @@ Web para servidores de Metin2.
 
 ## Motivación
 
-La principal motivación que da surgimiento a este proyecto, es tener una web de Metin2 con los estándares actualizados, un cádigo limpio y fácil de leer con una alternativa para implementar las donaciones. 
+La principal motivación que da surgimiento a este proyecto, es tener una web de Metin2 con los estándares actualizados, un código limpio y fácil de leer con alternativas para las donaciones (paymentwall). 
 
 ## Caracteristicas principales.
 
