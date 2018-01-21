@@ -2,19 +2,19 @@
 
 Web para servidores de Metin2.
 
-## Motivacion
+## Motivación
 
-La motivacion principal para realizar este proyecto, es tener una web de metin2 con los estandares actualizado, ademas de un codigo limpio y facil de leer, tambien tener una alternativa para implementar las donaciones mediante Paymentwall.
+La principal motivación que da surgimiento a este proyecto, es tener una web de Metin2 con los estándares actualizados, un código limpio y fácil de leer con alternativas para las donaciones (paymentwall). 
 
 ## Caracteristicas principales.
 
-1. Implementacion de paymentwall para las donaciones
-2. Correo de activacion
-3. Implementacion de google re captcha en el registro login y recuperacion de contraseña
-4. Recuperacion de contraseña via email
-5. Panel de administracion
+1. Implementación de paymentwall para las donaciones.
+2. Correo de activación.
+3. Implementación de google re captcha en el registro login y recuperación de contraseña.
+4. Recuperación de contraseña via email.
+5. Panel de administración.
 6. Analizador de base de datos.
-7. Top de jugadore con crontab - aliviana carga de la pagina y el juego
+7. Top de jugadores con crontab - (aliviana carga de la pagina y el juego).
 
 ## Requerimientos
 
@@ -24,9 +24,9 @@ La motivacion principal para realizar este proyecto, es tener una web de metin2 
 4. Git
 5. Servidor web Apache o nginx
 
-## Instalacion.
+## Instalación.
 
-Los comandos para instalar son los siguientes.
+Los comandos de instalación son los siguientes.
 
 ```
 pip install virtualenv
@@ -38,18 +38,18 @@ cd Mt2Web.py/
 pip install -r requirements.txt
 ```
 
-1. instala el paquete virtualenv de Python
-2. crea un entorno virtual llamado miweb
-3. ingresa al directorio
-4. activar el entorno virtual
-5. clona el repositorio de github
-6. ingresa el directorio del proyecto
-7. instalan las dependencias del proyecto
+1. Instala el paquete virtualenv de Python.
+2. Crea un entorno virtual llamado miweb.
+3. Ingresa al directorio.
+4. Activar el entorno virtual.
+5. Clona el repositorio de github.
+6. Ingresa el directorio del proyecto.
+7. Instala las dependencias del proyecto.
 
-Ya con eso finalizamos la Instalacion del proyecto, ahora hay que alistar el archivo de configuracion, en este archivo definiremos la conexion a la base de datos y otros aspectos importantes del funcionamiento del proyecto.
+Con esto, se finaliza la Instalacion del proyecto. Ahora, hay que alistar el archivo de configuracion, en este archivo definiremos la conexion a la base de datos y otros aspectos importantes del funcionamiento.
 
-Se copia el archivo de configuracion que aparece descrito en la parte inferior, este archivo se pone en el directorio core, con el nombre de settings.py
 
+Se crea un archivo de nombre settings.py en el directorio llamado core, editamos el archivo colocando el siguiente código: 
 
 ```
 
@@ -63,7 +63,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ''
+SECRET_KEY = 'wye8(vj+&1s(g(%bh_3=aw4h@w5&nwgl9ar4x5p6+n0i*&tl8t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
