@@ -1,13 +1,15 @@
+# Copyright (c) 2017-2018 luispenagos91@gmail.com
+# Distribuido bajo la licencia MIT Software Licence
+# Mas informacion http://www.opensource.org/licenses/mit-license.php
 from django.contrib import admin
 
-# Register your models here.
 #importando modelos a visualar en interface administrativa
 from apps.account import models
 
 #creando el modelo a registar
 class AccountDisplay(admin.ModelAdmin):
-	list_display = ('id', 'login', 'real_name', 'email', 'status', 'coins', 'a_points', 'votecoins')
-	search_fields = ['login' , 'real_name']
+	list_display = ('id', 'login', 'real_name', 'email')
+	search_fields = ['login' , 'email']
 
 
 #Registrando modelos en interface administrativa

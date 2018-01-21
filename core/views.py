@@ -1,3 +1,7 @@
+# Copyright (c) 2017-2018 luispenagos91@gmail.com
+# Distribuido bajo la licencia MIT Software Licence
+# Mas informacion http://www.opensource.org/licenses/mit-license.php
+
 from django.shortcuts import render, redirect
 from apps.account.funciones import *
 from apps.account.payview import PayWidget

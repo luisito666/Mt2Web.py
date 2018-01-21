@@ -1,3 +1,7 @@
+# Copyright (c) 2017-2018 luispenagos91@gmail.com
+# Distribuido bajo la licencia MIT Software Licence
+# Mas informacion http://www.opensource.org/licenses/mit-license.php
+
 #importando  modelos necesarios
 from apps.account.models import Account
 from apps.player.models import Player
