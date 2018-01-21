@@ -4,7 +4,7 @@ Web para servidores de Metin2.
 
 ## Motivación
 
-La principal motivación que da surgimiento a este proyecto, es tener una web de Metin2 con los estándares actualizados, un código limpio y fácil de leer con alternativas para las donaciones (paymentwall). 
+La principal motivación que da surgimiento a este proyecto, es tener una web de Metin2 con los estándares actualizados, un código limpio y fácil de leer con alternativas para las donaciones (paymentwall).
 
 ## Caracteristicas principales.
 
@@ -49,7 +49,7 @@ pip install -r requirements.txt
 Con esto, se finaliza la Instalacion del proyecto. Ahora, hay que alistar el archivo de configuracion, en este archivo definiremos la conexion a la base de datos y otros aspectos importantes del funcionamiento.
 
 
-Se crea un archivo de nombre settings.py en el directorio llamado core, editamos el archivo colocando el siguiente código: 
+Se crea un archivo de nombre settings.py en el directorio llamado core, editamos el archivo colocando el siguiente código:
 
 ```
 
@@ -63,12 +63,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'wye8(vj+&1s(g(%bh_3=aw4h@w5&nwgl9ar4x5p6+n0i*&tl8t'
+SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1']
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -244,6 +244,15 @@ cd miweb
 source bin/activate
 cd Mt2Web.py/
 ./manage.py migrate
+```
+
+Continuamos agregando un campo extra a la base de datos, esto para que el aplicativo funcione correctamente.
+
+Ejecutar desde el navicat el siguiente query
+
+```
+alter table account.account add column token_expire DATETIME null
+
 ```
 
 ## Entorno de pruebas.
