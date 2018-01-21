@@ -17,7 +17,7 @@ class Account(models.Model):
     coins = models.IntegerField(default=0)
     create_time = models.DateTimeField(default=timezone.now)
     availdt = models.DateTimeField(db_column='availDt',default="2020-01-01T00:00:00")
-    #token_expire = models.DateTimeField(blank=True, null=True) #Descomentar cuando se crea el campo en la bd
+    token_expire = models.DateTimeField(blank=True, null=True) #Descomentar cuando se crea el campo en la bd
 
     class Meta:
         db_table = 'account'
