@@ -279,7 +279,8 @@ def process_password(request,url):
         request.session['tmp_id'] = a.id
         context.update({
             'key': 'ingresa tu nuevo password',
-            'form': form
+            'form': form,
+            'if_form': True   
         })
         return render(request, 'account/cambio_passwd.html' , context)
     else:
