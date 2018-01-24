@@ -125,7 +125,6 @@ def logout(request):
     del request.session['id']
   except:
   	pass
-  b = Top.objects.filter(account_id=a.id)
   context = contexto()
   context.update({
     'datos': a
