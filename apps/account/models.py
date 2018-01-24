@@ -14,6 +14,7 @@ class Account(models.Model):
     social_id = models.CharField(max_length=13)
     email = models.CharField(max_length=64)
     address = models.CharField(max_length=128, blank=True, null=True)
+    status = models.CharField(max_length=8,default="OK")
     coins = models.IntegerField(default=0)
     create_time = models.DateTimeField(default=timezone.now)
     availdt = models.DateTimeField(db_column='availDt',default="2020-01-01T00:00:00")
