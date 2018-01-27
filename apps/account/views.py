@@ -124,7 +124,9 @@ def logout(request):
     a = Account.objects.get(id=request.session['id'])
     del request.session['id']
   except:
-  	pass
+  	a = {
+        'real_name':'invalido'
+    }
   context = contexto()
   context.update({
     'datos': a
@@ -280,7 +282,7 @@ def process_password(request,url):
         context.update({
             'key': 'ingresa tu nuevo password',
             'form': form,
-            'if_form': True   
+            'if_form': True
         })
         return render(request, 'account/cambio_passwd.html' , context)
     else:
