@@ -38,8 +38,9 @@
                     <p class="metin2"> {{ key }} </p>
                 {% endif %}
                 <div class="panel-footer">
-                    No esta registrado? <a href="{% url 'account:create' %}#content">Registrese aqui</a><br>
-                    <a href="{% url 'account:request' %}#content"> Recuperar password</a>
+                    <p>No esta registrado? <a href="{% url 'account:create' %}#content">Registrese aqui</a></p>
+                    <p><a href="{% url 'account:request' %}#content"> Recuperar password</a></p>
+                    <p><a href="{% url 'email' %}#content"> Re enviar correo de activacion </a></p>
                     </div>
             </div>
         </div>

@@ -41,6 +41,7 @@ def last_min():
 	a = cursor.fetchall()
 	b = a[0][0]
 	return b
+
 #Esta funcion es para ver cuantos jugadores en promedio hay en las ultimas 24 horas
 def last_hour():
 	cursor = connections['player'].cursor()
@@ -88,22 +89,22 @@ def get_mail_register(cuenta, key):
 	mensaje+= '<p>Usa el siguiente link para activar tu cuenta: <a href="' + settings.SERVERURL + '/activar/%s"> Activar </a> </p>' % key
 	mensaje+= '----------------------------'
 	mensaje+= '<p>Tu clave ha sido encriptada en nuestra base de datos. Si la olvidaste'
-	mensaje+= 'podras solicitar una nueva la cual sera activada en la misma forma que esta'
+	mensaje+= 'podras solicitar una nueva la cual sera activada en la misma forma que esta '
 	mensaje+= 'cuenta. </p>'
 	mensaje+= '<p> Gracias por registrarte. </p>'
 	mensaje+= '--'
 	mensaje+= '<p>Att: Staff ' + settings.SERVERNAME + ' </p>'
 	return mensaje
 
-#Funcion usara para cambiar de mapa a un personaje
+#Funcion usada para cambiar de mapa a un personaje
 def cambio_mapa(cuenta, personaje):
 	sql = "UPDATE player SET x=436377, y=215769, map_index=61, exit_x=436378, exit_y=215769, exit_map_index=61 WHERE name='%s' AND account_id='%s' " % ( personaje, cuenta )
 	cursor = connections['player'].cursor()
 	a = cursor.execute( sql )
 	cursor.fetchall()
-
 	return a
 
+#Funcion usada para manejar el contexto del proyecto
 def contexto():
 	return {
 		'servername': settings.SERVERNAME,

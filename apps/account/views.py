@@ -27,6 +27,7 @@ from django.core.mail import send_mail
 
 #importando funciones integradas en el framework
 from django.views.generic import CreateView, DetailView, ListView
+from django.views import View
 from django.http import HttpResponseRedirect , HttpResponse
 from django.core.urlresolvers import reverse_lazy
 from django.utils import timezone
@@ -407,3 +408,58 @@ def desbuguear(request):
             return render(request,'account/unlock.html', context)
     else:
         return redirect('account:login')
+
+#Clase usada para re enviar el correo de activacion , en caso de que no llegue.
+class requestToken(View):
+
+    template_name = 'account/envio_token.html'
+
+    def __init__(self):
+        super(requestToken,self).__init__()
+        self.context = contexto()
+
+    def get(self, request, *args, **kwargs):
+        form = ResPassword(request.POST or None)
+        self.context.update({
+            'form':form
+        })
+        return render(request, self.template_name, self.context)
+
+    def post(self, request, *args, **kwargs):
+        form = ResPassword(request.POST or None)
+        self.context.update({'form':form})
+        if form.is_valid():
+            try:
+                a = Account.objects.get(login=form.cleaned_data['login'])
+            except Account.DoesNotExist:
+                self.context.update({
+                    'key':'Cuenta no existe.'
+                })
+                return render(request, self.template_name, self.context)
+
+            if form.cleaned_data['email'] == a.email:
+                key = aleatorio(40)
+                a.address = key
+                a.save()
+                try:
+                    send_mail(
+                        'Activacion de cuentas '+settings.SERVERNAME,
+                        'Content',
+                        settings.EMAIL_HOST_USER ,
+                        [a.email],
+                        html_message=get_mail_register(a.login,key)
+                    )
+                except:
+                    self.context.update({'key':'Estoy aqui en pass'})
+                    return render(request, self.template_name, self.context)
+
+                self.context.update({'key':'Se ha enviado el codigo de activacion al email'})
+                return render(request, self.template_name, self.context)
+            else:
+                self.context.update({
+                    'key': 'El email no coincide con el usuario'
+                })
+                return render(request, self.template_name, self.context)
+        else:
+            self.context.update({'key':'Por favor rellena todos los campos correctamente.'})
+            return render(request, self.template_name, self.context)

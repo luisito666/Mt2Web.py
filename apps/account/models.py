@@ -2,9 +2,15 @@
 # Distribuido bajo la licencia MIT Software Licence
 # Mas informacion http://www.opensource.org/licenses/mit-license.php
 
+#Importaciones por default.
 from __future__ import unicode_literals
-from django.utils import timezone
 from django.db import models
+
+#Importando timezone 
+from django.utils import timezone
+
+#Importando el archivo de configuracion
+from core import settings
 
 #modelo generico compatible con todas las bases de datos
 class Account(models.Model):
@@ -17,14 +23,14 @@ class Account(models.Model):
     status = models.CharField(max_length=8,default="OK")
     coins = models.IntegerField(default=0)
     create_time = models.DateTimeField(default=timezone.now)
-    availdt = models.DateTimeField(db_column='availDt',default="2020-01-01T00:00:00")
-    gold_expire = models.DateTimeField(default="2020-01-01T00:00:00")
-    silver_expire = models.DateTimeField(default="2020-01-01T00:00:00")
-    safebox_expire = models.DateTimeField(default="2020-01-01T00:00:00")
-    autoloot_expire = models.DateTimeField(default="2020-01-01T00:00:00")
-    fish_mind_expire = models.DateTimeField(default="2020-01-01T00:00:00")
-    marriage_fast_expire = models.DateTimeField(default="2020-01-01T00:00:00")
-    money_drop_rate_expire = models.DateTimeField(default="2020-01-01T00:00:00")
+    availdt = models.DateTimeField(db_column='availDt',default=settings.ACTIVATE)
+    gold_expire = models.DateTimeField(default=settings.BUFFSTUF)
+    silver_expire = models.DateTimeField(default=settings.BUFFSTUF)
+    safebox_expire = models.DateTimeField(default=settings.BUFFSTUF)
+    autoloot_expire = models.DateTimeField(default=settings.BUFFSTUF)
+    fish_mind_expire = models.DateTimeField(default=settings.BUFFSTUF)
+    marriage_fast_expire = models.DateTimeField(default=settings.BUFFSTUF)
+    money_drop_rate_expire = models.DateTimeField(default=settings.BUFFSTUF)
     token_expire = models.DateTimeField(blank=True, null=True) #Descomentar cuando se crea el campo en la bd
 
     class Meta:

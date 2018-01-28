@@ -195,32 +195,25 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
-
 STATIC_URL = '/static/'
-#STATIC_ROOT = '/home/zaunt/static'
 
 #Nombre del servidor.
 SERVERNAME = 'Metin2 XxX'
 
 #URL del servidor.
-"""Se usa para crear urls manuales. incluir el protocolo ejemplo http://tudominio.com o
-   https://tudominio.com
-"""
-#Pruebas
-#SERVERURL = 'http://127.0.0.1:8000'
+#Se usa para crear urls manuales. incluir el protocolo ejemplo http://tudominio.com o
+#   https://tudominio.com
+SERVERURL = 'http://127.0.0.1:8000'
 
-#Produccion
-SERVERURL = ''
-
-#Configuracion del recapcha
+#Llaves del recapcha
 RECAPTCHA_PUBLIC_KEY = ''
 RECAPTCHA_PRIVATE_KEY = ''
 
-#configuracion del paymentwall
+#Llaves del paymentwall
 PAYMENTWALL_PUBLIC_KEY = ''
 PAYMENTWALL_PRIVATE_KEY = ''
 
-#No Tocar
+#Configuracion del recapcha no tocar
 NOCAPTCHA = True
 
 #Configuracion files entorno de desarrollo no tocar
@@ -235,6 +228,20 @@ EMAIL_PORT = 25
 EMAIL_HOST_USER = 'no_reply@tudominio.com'
 EMAIL_HOST_PASSWORD = '****'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+#Configuracion de duracion de buff
+#Con esta configuracion al momento del registro se definira la duracion de los buff
+#Por defecto se vencen el 2020
+BUFFSTUF = '2020-01-01T00:00:00'
+
+#Configuracion de la fecha de activacion.
+#Con esta configuracion se definira desde que fecha esta disponible la cuenta.
+#* Adelantar la fecha 2 años a partir del año en el que se encuentren, en caso
+#  de tener activado el email de activacion.
+#* Atrazarlo un año en caso de no usar email de actiacion y la cuenta quede
+#  activada al momento del registro
+
+ACTIVATE = '2020-01-01T00:00:00'
 ```
 
 Despues de lo anterior se ejecutan las migraciones.
