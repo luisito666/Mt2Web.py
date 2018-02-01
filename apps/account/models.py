@@ -12,6 +12,9 @@ from django.utils import timezone
 #Importando el archivo de configuracion
 from core import settings
 
+#Importando el libería de encriptación
+from hashlib import sha1
+
 #modelo generico compatible con todas las bases de datos
 class Account(models.Model):
     login = models.CharField(unique=True, max_length=30)
@@ -31,7 +34,7 @@ class Account(models.Model):
     fish_mind_expire = models.DateTimeField(default=settings.BUFFSTUF)
     marriage_fast_expire = models.DateTimeField(default=settings.BUFFSTUF)
     money_drop_rate_expire = models.DateTimeField(default=settings.BUFFSTUF)
-    token_expire = models.DateTimeField(blank=True, null=True) #Descomentar cuando se crea el campo en la bd
+    # token_expire = models.DateTimeField(blank=True, null=True) #Descomentar cuando se crea el campo en la bd
 
     class Meta:
         db_table = 'account'
@@ -42,19 +45,9 @@ class Account(models.Model):
         return self.login
 
     #Funcion para encryptar password
-    def micryp(password,other):
-        from django.db import connection, transaction
-        cursor = connection.cursor()
-        #cursor.execute("select PASSWORD(%s)",other)
-        cursor.execute("select PASSWORD('%s')" % other)
-        row = cursor.fetchone()
-        cursor.close()
-        start = str(row)
-        valor = start.count(start)
-        control = 0
-        s = ""
-        for letra in row:
-            if control > 3 or control < 49:
-                s += letra
-        control = control + 1
-        return s
+    def micryp(self,password):
+ 
+        mysql_hash = '*' + sha1(sha1(password.encode()).digest()).hexdigest()
+
+        return mysql_hash
+		
