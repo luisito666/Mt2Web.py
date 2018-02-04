@@ -6,7 +6,7 @@
 from __future__ import unicode_literals
 from django.db import models
 
-#Importando timezone 
+#Importando timezone
 from django.utils import timezone
 
 #Importando el archivo de configuracion
@@ -46,8 +46,7 @@ class Account(models.Model):
 
     #Funcion para encryptar password
     def micryp(self,password):
- 
-        mysql_hash = '*' + sha1(sha1(password.encode()).digest()).hexdigest()
-
+        mysql_hash = sha1(sha1(password.encode()).digest()).hexdigest()
+        mysql_hash = str(mysql_hash).upper()
+        mysql_hash = '*'+mysql_hash
         return mysql_hash
-		

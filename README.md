@@ -240,8 +240,8 @@ BUFFSTUF = '2020-01-01T00:00:00'
 #  de tener activado el email de activacion.
 #* Atrazarlo un año en caso de no usar email de actiacion y la cuenta quede
 #  activada al momento del registro
-
 ACTIVATE = '2020-01-01T00:00:00'
+
 ```
 
 Despues de lo anterior se ejecutan las migraciones.
