@@ -46,7 +46,6 @@ class Account(models.Model):
 
     #Funcion para encryptar password
     def micryp(self,password):
-        mysql_hash = sha1(sha1(password.encode()).digest()).hexdigest()
-        mysql_hash = str(mysql_hash).upper()
-        mysql_hash = '*'+mysql_hash
-        return mysql_hash
+        mysql_hash = '*'+sha1(sha1(password.encode()).digest()).hexdigest() #Generando el hash
+        mysql_hash = mysql_hash.upper()                                 #Convirtiendo el hash a mayusculas
+        return mysql_hash                                               #Retornando el hash

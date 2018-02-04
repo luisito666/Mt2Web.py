@@ -65,59 +65,68 @@ class Create(CreateView):
         return context
 
 #funcion usada para el login
-""" es necesario agregar re factorin a esta funcion """
-def login(request):
-  """Declarando el formulario que usara esta funcion  """
-  form = CustomLoginForm(request.POST or None)
-  """Preparado el contexto usando por la funcion"""
-  context = contexto()
-  if request.session.has_key('id'):
-    a = Account.objects.get(id=request.session['id'])
-    b = Top.objects.filter(account_id=a.id)
-    context.update({
-        'session': a ,
-        'personajes': b
-    })
-    return render(request, 'account/logon.html', context)
-  else:
-    if request.method == 'POST':  #Validando que los datos vengan por post
-      if form.is_valid():
-        try:
-          a = Account.objects.get(login=request.POST['login'])  #obteniendo datos de usuario
-        except Account.DoesNotExist:
-          context.update({
-              'key':'El nombre de usuario no existe',
-              'form': form
-          })
-          return render(request, 'account/login.html', context)
-      else:
-        context.update({
-            'key':'Por favor no deje campos en blanco',
-            'form': form
+#Refactorizando la funcion de login
+class login(View):
+
+    template_name = 'account/login.html'
+    template_name_login = 'account/logon.html'
+    modelA = Account
+    modelB = Top
+
+    def __init__(self):
+        super(login,self).__init__()
+        self.context = contexto()
+
+
+    def get(self, request):
+        self.form = CustomLoginForm()
+        if request.session.has_key('id'):
+            userinfo = self.modelA.objects.get(id=request.session['id'])
+            pjinfo = self.modelB.objects.filter(account_id=userinfo.id)
+            self.context.update({
+                'session': userinfo,
+                'personajes': pjinfo
+            })
+            return render(request, self.template_name_login, self.context)
+        else:
+            pass
+
+        self.context.update({
+            'form':self.form
         })
-        return render(request, 'account/login.html', context )
-      b = a.micryp(request.POST['password']) #uso implicito de cursor para encriptar password
-      if a.password == b:
-        request.session['id'] = a.id
-      if request.session.has_key('id'):
-        b = Top.objects.filter(account_id=a.id)
-        context.update({
-            'session': a ,
-            'personajes': b
-        })
-        return render(request, 'account/logon.html', context )
-      else:
-        context.update({
-            'key':'Nombre de usuario o password incorrecto',
-            'form': form
-        })
-        return render(request, 'account/login.html',  context, )
-    else:
-      context.update({
-          'key': '',
-          'form': form
-      })
-      return render(request,'account/login.html', context)
+        return render(request, self.template_name, self.context)
+
+    def post(self, request):
+        self.form = CustomLoginForm(request.POST or None)
+        if self.form.is_valid():
+            try:
+                a = self.modelA.objects.get(login=self.form.cleaned_data['login'])
+            except Account.DoesNotExist:
+                self.context.update({
+                    'key':'Nombre de usuario o password incorrecto',
+                    'form':self.form
+                })
+                return render(request, self.template_name, self.context)
+
+            b = a.micryp(self.form.cleaned_data['password'])
+            if a.password == b:
+                request.session['id'] = a.id
+                if request.session.has_key('id'):
+                    return redirect('account:login')
+
+            else:
+                self.context.update({
+                    'key':'Nombre de usuario o password incorrecto',
+                    'form':self.form
+                })
+                return render(request, self.template_name, self.context)
+
+        else:
+            self.context.update({
+                'key':'Rellene todos los campos correctamente',
+                'form':self.form
+            })
+            return render(request, self.template_name, self.context)
 
 #funcion usada para cerra session
 def logout(request):
