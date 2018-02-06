@@ -72,14 +72,14 @@ class login(View):
     template_name_login = 'account/logon.html'
     modelA = Account
     modelB = Top
+    form = CustomLoginForm
 
     def __init__(self):
         super(login,self).__init__()
         self.context = contexto()
 
-
     def get(self, request):
-        self.form = CustomLoginForm()
+        form = self.form()
         if request.session.has_key('id'):
             userinfo = self.modelA.objects.get(id=request.session['id'])
             pjinfo = self.modelB.objects.filter(account_id=userinfo.id)
@@ -92,23 +92,23 @@ class login(View):
             pass
 
         self.context.update({
-            'form':self.form
+            'form':form
         })
         return render(request, self.template_name, self.context)
 
     def post(self, request):
-        self.form = CustomLoginForm(request.POST or None)
-        if self.form.is_valid():
+        form = self.form(request.POST or None)
+        if form.is_valid():
             try:
-                a = self.modelA.objects.get(login=self.form.cleaned_data['login'])
+                a = self.modelA.objects.get(login=form.cleaned_data['login'])
             except Account.DoesNotExist:
                 self.context.update({
                     'key':'Nombre de usuario o password incorrecto',
-                    'form':self.form
+                    'form':form
                 })
                 return render(request, self.template_name, self.context)
 
-            b = a.micryp(self.form.cleaned_data['password'])
+            b = a.micryp(form.cleaned_data['password'])
             if a.password == b:
                 request.session['id'] = a.id
                 if request.session.has_key('id'):
@@ -117,14 +117,14 @@ class login(View):
             else:
                 self.context.update({
                     'key':'Nombre de usuario o password incorrecto',
-                    'form':self.form
+                    'form':form
                 })
                 return render(request, self.template_name, self.context)
 
         else:
             self.context.update({
                 'key':'Rellene todos los campos correctamente',
-                'form':self.form
+                'form':form
             })
             return render(request, self.template_name, self.context)
 
@@ -422,24 +422,26 @@ def desbuguear(request):
 class requestToken(View):
 
     template_name = 'account/envio_token.html'
+    model = Account
+    form = ResPassword
 
     def __init__(self):
         super(requestToken,self).__init__()
         self.context = contexto()
 
     def get(self, request, *args, **kwargs):
-        form = ResPassword(request.POST or None)
+        form = self.form(request.POST or None)
         self.context.update({
             'form':form
         })
         return render(request, self.template_name, self.context)
 
     def post(self, request, *args, **kwargs):
-        form = ResPassword(request.POST or None)
+        form = self.form(request.POST or None)
         self.context.update({'form':form})
         if form.is_valid():
             try:
-                a = Account.objects.get(login=form.cleaned_data['login'])
+                a = self.model.objects.get(login=form.cleaned_data['login'])
             except Account.DoesNotExist:
                 self.context.update({
                     'key':'Cuenta no existe.'
