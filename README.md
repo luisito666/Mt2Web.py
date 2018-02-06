@@ -138,6 +138,19 @@ DATABASES = {
 		            'init_command': querys.event_top,
 					},
     },
+    'account': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'account',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '3306',
+        'OPTIONS': {
+		            'init_command': "SET sql_mode='STRICT_TRANS_TABLES';",
+		            'init_command': "CREATE DATABASE IF NOT EXISTS django_metin2;",
+					},
+    },
+
     'player': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'player',
@@ -146,16 +159,6 @@ DATABASES = {
         'HOST': '',
         'PORT': '3306',
     },
-    'account': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'account',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '3306',
-        'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",},
-    },
-
 }
 
 DATABASE_ROUTERS = {
