@@ -85,9 +85,9 @@ INSTALLED_APPS = [
     'bootstrapform',
     'corsheaders',
     #aplicaciones
-    'apps.varios',
     'apps.account',
     'apps.player',
+    'apps.varios',
 ]
 
 MIDDLEWARE = [
@@ -126,17 +126,6 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 # Configuracion de la base de datos
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django_metin2',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '3306',
-        'OPTIONS': {
-		            'init_command': "SET GLOBAL event_scheduler = ON;" +  querys.event_top,
-					},
-    },
     'account': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'account',
@@ -145,10 +134,20 @@ DATABASES = {
         'HOST': '',
         'PORT': '3306',
         'OPTIONS': {
-		            'init_command': "SET sql_mode='STRICT_TRANS_TABLES';CREATE DATABASE IF NOT EXISTS django_metin2;",
+		            'init_command': "SET sql_mode='STRICT_TRANS_TABLES';",
 					},
     },
-
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'django_metin2',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '3306',
+        'OPTIONS': {
+		            'init_command': "SET GLOBAL event_scheduler = ON;" +  querys.event_top + "SET sql_mode='STRICT_TRANS_TABLES';",
+					},
+    },
     'player': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'player',
@@ -156,6 +155,9 @@ DATABASES = {
         'PASSWORD': '',
         'HOST': '',
         'PORT': '3306',
+        'OPTIONS': {
+		            'init_command': "CREATE DATABASE IF NOT EXISTS django_metin2;" ,
+					},
     },
 }
 
