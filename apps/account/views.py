@@ -197,7 +197,7 @@ class top(ListView):
   model = Top
   template_name = 'account/top100.html'
   #context_object_name = 'player'
-  queryset = Top.objects.all().exclude(Q(name__contains='[')).order_by('-level','-ranking')
+  queryset = Top.objects.all().exclude(Q(name__contains='[')).order_by('-level','ranking')
   #queryset = Player.objects.filter(string__contains='[%]%')
   paginate_by = 20
 

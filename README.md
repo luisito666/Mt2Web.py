@@ -133,6 +133,10 @@ DATABASES = {
         'PASSWORD': '',
         'HOST': '',
         'PORT': '3306',
+        'OPTIONS': {
+		            'init_command': "SET GLOBAL event_scheduler = ON",
+		            'init_command': querys.event_top,
+					},
     },
     'player': {
         'ENGINE': 'django.db.backends.mysql',

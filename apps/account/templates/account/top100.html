@@ -8,13 +8,13 @@
 	<hr>
     <p class="metin">El ranking sera actualizado cada 4 horas. </p>
 	<div class="container container-custom ">
+	<center>
 		<table>
         	<tr>
             	<td class="color-white">Posición </td>
                 <td class="color-white">Nombre </td>
             	<td class="color-white">Nivel </td>
                 <td class="color-white">Gremio </td>
-            	<td class="color-white">Puntos</td>
             	<!--<td></td>-->
             </tr>
             {% for cosa in object_list %}
@@ -23,7 +23,6 @@
                 <td class="color-white"> {{ cosa.name }} </td>
                 <td class="color-white"> {{ cosa.level}} </td>
                 <td class="color-white"> {{ cosa.guild_name}} </td>
-                <td class="color-white"> {{ cosa.ranking }} </td>
                 <!--<td></td>-->
 
             </tr>
@@ -36,6 +35,7 @@
 
             </tr> -->
         </table>
+	
         {% if is_paginated %}
         <div class="pagination">
             <span class="page-links">
@@ -51,6 +51,7 @@
             </span>
         </div>
     	{% endif %}
+		</center>
         <!--<table class="table table-hover">
             <tr>
                 <td>Parche</td>
