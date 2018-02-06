@@ -134,8 +134,7 @@ DATABASES = {
         'HOST': '',
         'PORT': '3306',
         'OPTIONS': {
-		            'init_command': "SET GLOBAL event_scheduler = ON",
-		            'init_command': querys.event_top,
+		            'init_command': "SET GLOBAL event_scheduler = ON;" +  querys.event_top,
 					},
     },
     'account': {
@@ -146,8 +145,7 @@ DATABASES = {
         'HOST': '',
         'PORT': '3306',
         'OPTIONS': {
-		            'init_command': "SET sql_mode='STRICT_TRANS_TABLES';",
-		            'init_command': "CREATE DATABASE IF NOT EXISTS django_metin2;",
+		            'init_command': "SET sql_mode='STRICT_TRANS_TABLES';CREATE DATABASE IF NOT EXISTS django_metin2;",
 					},
     },
 
