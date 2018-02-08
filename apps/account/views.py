@@ -429,14 +429,14 @@ class requestToken(View):
         super(requestToken,self).__init__()
         self.context = contexto()
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request):
         form = self.form(request.POST or None)
         self.context.update({
             'form':form
         })
         return render(request, self.template_name, self.context)
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request):
         form = self.form(request.POST or None)
         self.context.update({'form':form})
         if form.is_valid():
@@ -461,7 +461,7 @@ class requestToken(View):
                         html_message=get_mail_register(a.login,key)
                     )
                 except:
-                    self.context.update({'key':'Estoy aqui en pass'})
+                    self.context.update({'key':'Error enviando correo al usuario'})
                     return render(request, self.template_name, self.context)
 
                 self.context.update({'key':'Se ha enviado el codigo de activacion al email'})
