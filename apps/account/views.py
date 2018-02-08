@@ -388,7 +388,7 @@ def desbuguear(request):
         if request.method == 'POST' and form.is_valid():
             b = request.POST['nombre']
             c = Top.objects.filter(account_id=a.id)
-            for pexrsonaje in c:
+            for personaje in c:
                 if str.lower(personaje.name) == str.lower(b):
                     resultado = cambio_mapa(a.id, personaje.name)
                     if resultado:
