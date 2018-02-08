@@ -54,6 +54,7 @@ Se crea un archivo de nombre settings.py en el directorio llamado core, editamos
 ```
 
 import os
+from core import querys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -85,9 +86,9 @@ INSTALLED_APPS = [
     'bootstrapform',
     'corsheaders',
     #aplicaciones
-    'apps.varios',
     'apps.account',
     'apps.player',
+    'apps.varios',
 ]
 
 MIDDLEWARE = [
@@ -126,6 +127,17 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 # Configuracion de la base de datos
 DATABASES = {
+    'account': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'account',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '3306',
+        'OPTIONS': {
+		            'init_command': "SET sql_mode='STRICT_TRANS_TABLES';",
+					},
+    },
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'django_metin2',
@@ -133,6 +145,9 @@ DATABASES = {
         'PASSWORD': '',
         'HOST': '',
         'PORT': '3306',
+        'OPTIONS': {
+		            'init_command': "SET GLOBAL event_scheduler = ON;" +  querys.event_top + "SET sql_mode='STRICT_TRANS_TABLES';",
+					},
     },
     'player': {
         'ENGINE': 'django.db.backends.mysql',
@@ -141,17 +156,10 @@ DATABASES = {
         'PASSWORD': '',
         'HOST': '',
         'PORT': '3306',
+        'OPTIONS': {
+		            'init_command': "CREATE DATABASE IF NOT EXISTS django_metin2;" ,
+					},
     },
-    'account': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'account',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '3306',
-        'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",},
-    },
-
 }
 
 DATABASE_ROUTERS = {
@@ -240,8 +248,8 @@ BUFFSTUF = '2020-01-01T00:00:00'
 #  de tener activado el email de activacion.
 #* Atrazarlo un año en caso de no usar email de actiacion y la cuenta quede
 #  activada al momento del registro
-
 ACTIVATE = '2020-01-01T00:00:00'
+
 ```
 
 Despues de lo anterior se ejecutan las migraciones.
