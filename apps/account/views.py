@@ -2,6 +2,9 @@
 # Distribuido bajo la licencia MIT Software Licence
 # Mas informacion http://www.opensource.org/licenses/mit-license.php
 
+#import de python
+import datetime
+
 #importaciones que realiza django por defecto
 from django.shortcuts import render, redirect
 
@@ -109,10 +112,19 @@ class login(View):
                 return render(request, self.template_name, self.context)
 
             b = a.micryp(form.cleaned_data['password'])
+            #Validando que las contraseñas coincidan
             if a.password == b:
-                request.session['g1jwvO'] = a.id
-                if request.session.has_key('g1jwvO'):
-                    return redirect('account:login')
+                #Validando que la cuenta no este baneada
+                if a.status == 'OK':
+                    request.session['g1jwvO'] = a.id
+                    if request.session.has_key('g1jwvO'):
+                        return redirect('account:login')
+                else:
+                    self.context.update({
+                        'key':'Tu cuenta esta baneada',
+                        'form':form
+                    })
+                    return render(request, self.template_name, self.context)
 
             else:
                 self.context.update({
@@ -161,7 +173,7 @@ def changepasswd(request):
     	if request.POST['new_password'] == request.POST['new_password_again']:
     		if a.password == a.micryp(request.POST['password']):
     			if form.is_valid():
-    				new_password = a.micryp( request.POST['new_password'] )
+    				new_password = a.micryp( form.cleaned_data['new_password'] )
     				a.password = new_password
     				a.save()
     				context.update({'key':'se ha cambiado el password exitosamente.'})
@@ -183,7 +195,6 @@ def changepasswd(request):
 def exito(request):
   return render(request, 'account/exito.html', contexto())
 
-
 #Clase que se uso para realizar comparacion entre una funcion y una Clase
 #Cuando hicimos los test el rendimiento de esta clase en comparacion con la funcion exito
 #El rendimiento de la funcion fue superior, aparte la funcion exito solo tenia una linea de codigo
@@ -203,8 +214,7 @@ class ExitoRefine(View):
         #Se renderiza el template con el contexto.
         return render(request,self.template_name, self.context)
 
-
-#clase usada para las descargas.
+#clase usada para la pagina de descargas.
 class Descargas(View):
     model = Descarga
     template_name = 'account/download.html'
@@ -219,7 +229,7 @@ class Descargas(View):
         })
         return render(request, self.template_name, self.context)
 
-#clase usada para renderizar el TOP del juego y paginarlo
+#clase usada para la pagina del ranking del juego y paginarlo
 class top(ListView):
   model = Top
   template_name = 'account/top100.html'
@@ -371,12 +381,12 @@ def process_reg(request, url):
     if url:
       try:
         a = Account.objects.get(address=url)
-        b = Account.objects.get(login='luisito666') #cuenta base para la comparacion de fecha de activacion
       except:
-        context.update({'key': 'El token que instentas usar no existe.'})
+        context.update({'key': 'El token que intentas usar no existe.'})
         return render(request, 'account/activar_cuenta.html', context)
       if a.status == 'OK':
-        if a.availdt == b.availdt:
+        b = datetime.datetime(2009, 1, 1, 0, 0,)
+        if a.availdt.year == b.year and a.availdt.month == b.month:
           a.address = aleatorio(40)
           a.save()
           context.update({'key': 'Tu cuenta ya esta activada'})
@@ -413,7 +423,7 @@ def desbuguear(request):
             pass
 
         if request.method == 'POST' and form.is_valid():
-            b = request.POST['nombre']
+            b = form.cleaned_data['nombre']
             c = Top.objects.filter(account_id=a.id)
             for personaje in c:
                 if str.lower(personaje.name) == str.lower(b):
@@ -475,6 +485,19 @@ class requestToken(View):
                 })
                 return render(request, self.template_name, self.context)
 
+            b = datetime.datetime(2009, 1, 1, 0, 0,)
+            if a.availdt.year == b.year and a.availdt.month == b.month:
+                self.context.update({
+                    'key': 'Tu cuenta ya esta activada',
+                })
+                return render(request, self.template_name, self.context)
+
+            if a.status != 'OK':
+                self.context.update({
+                    'key':'Tu cuenta esta baneada'
+                })
+                return render(request, self.template_name, self.context)
+
             if form.cleaned_data['email'] == a.email:
                 key = aleatorio(40)
                 a.address = key
@@ -488,10 +511,14 @@ class requestToken(View):
                         html_message=get_mail_register(a.login,key)
                     )
                 except:
-                    self.context.update({'key':'Error enviando correo al usuario'})
+                    self.context.update({
+                        'key':'Error enviando correo al usuario'
+                    })
                     return render(request, self.template_name, self.context)
 
-                self.context.update({'key':'Se ha enviado el codigo de activacion al email'})
+                self.context.update({
+                    'key':'Se ha enviado el codigo de activacion al email'
+                })
                 return render(request, self.template_name, self.context)
             else:
                 self.context.update({
@@ -499,5 +526,7 @@ class requestToken(View):
                 })
                 return render(request, self.template_name, self.context)
         else:
-            self.context.update({'key':'Por favor rellena todos los campos correctamente.'})
+            self.context.update({
+                'key':'Por favor rellena todos los campos correctamente.'
+            })
             return render(request, self.template_name, self.context)
