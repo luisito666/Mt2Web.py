@@ -2,17 +2,24 @@
 # Distribuido bajo la licencia MIT Software Licence
 # Mas informacion http://www.opensource.org/licenses/mit-license.php
 
+#Importando configuraciones del core
 from core import settings
+
+#Importando las bases del api de paymentwall
 from paymentwall.base import Paymentwall
 from paymentwall.widget import Widget
 from paymentwall.pingback import Pingback
-from django.utils.decorators import method_decorator
-#from django.views.decorators.csrf import csrf_exempt
+
+#Importando desde el framework django
 from django.views import View
 from django.http import HttpResponse
+from django.utils import timezone
+
+#importando modelos necesarios para el funcionamiento
 from apps.account.models import Account
 from apps.varios.models import RegistroCompras
 
+#Configuraciones iniciales de paymentwall
 Paymentwall.set_api_type(Paymentwall.API_VC)
 Paymentwall.set_app_key(settings.PAYMENTWALL_PUBLIC_KEY) # available in your merchant area
 Paymentwall.set_secret_key(settings.PAYMENTWALL_PRIVATE_KEY) # available in your merchant area
@@ -56,7 +63,8 @@ class PaymentwallCallbackView(View):
                                     login=a.login,
                                     account_id=a.id,
                                     coins_compradas=virtual_currency,
-                                    status=True)
+                                    status=True,
+                                    fecha_compra=timezone.now)
                     b.save()
                     a.save()
 

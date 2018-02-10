@@ -8,7 +8,7 @@ from apps.varios.models import Descarga, Top, RegistroCompras
 # Register your models here.
 
 class DescargaDisplay(admin.ModelAdmin):
-	list_display = ('provedor','peso','fecha','link')
+	list_display = ('provedor','peso','fecha','link', 'publicado')
 	search_fields = ['provedor']
 
 class TopDisplay(admin.ModelAdmin):
