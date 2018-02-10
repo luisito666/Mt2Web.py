@@ -80,8 +80,8 @@ class login(View):
 
     def get(self, request):
         form = self.form()
-        if request.session.has_key('id'):
-            userinfo = self.modelA.objects.get(id=request.session['id'])
+        if request.session.has_key('g1jwvO'):
+            userinfo = self.modelA.objects.get(id=request.session['g1jwvO'])
             pjinfo = self.modelB.objects.filter(account_id=userinfo.id)
             self.context.update({
                 'session': userinfo,
@@ -110,8 +110,8 @@ class login(View):
 
             b = a.micryp(form.cleaned_data['password'])
             if a.password == b:
-                request.session['id'] = a.id
-                if request.session.has_key('id'):
+                request.session['g1jwvO'] = a.id
+                if request.session.has_key('g1jwvO'):
                     return redirect('account:login')
 
             else:
@@ -131,8 +131,8 @@ class login(View):
 #funcion usada para cerra session
 def logout(request):
   try:
-    a = Account.objects.get(id=request.session['id'])
-    del request.session['id']
+    a = Account.objects.get(id=request.session['g1jwvO'])
+    del request.session['g1jwvO']
   except:
   	a = {
         'real_name':'invalido'
@@ -152,9 +152,9 @@ def changepasswd(request):
   context.update({
     'form':form
   })
-  if request.session.has_key('id'):
+  if request.session.has_key('g1jwvO'):
     try:
-      a = Account.objects.get(id=request.session['id'])
+      a = Account.objects.get(id=request.session['g1jwvO'])
     except Account.DoesNotExist:
       pass
     if request.method == 'POST':
@@ -179,18 +179,45 @@ def changepasswd(request):
   	return redirect('account:login')
 
 #Funcion usada para confirmar el registro exitoso
+#Esta funcion demuestra que aveces lo mas simple, es lo que mejor funciona.
 def exito(request):
   return render(request, 'account/exito.html', contexto())
 
-#funcion usada para la pagina de descarga
-def descarga(request):
-  a = Descarga.objects.all()
-  context = contexto()
-  context.update({
-    'descarga': a
-  })
-  return render(request, 'account/download.html', context)
 
+#Clase que se uso para realizar comparacion entre una funcion y una Clase
+#Cuando hicimos los test el rendimiento de esta clase en comparacion con la funcion exito
+#El rendimiento de la funcion fue superior, aparte la funcion exito solo tenia una linea de codigo
+#Esto permitia que fuera procesada en menos tiempo en comparacion con lesta clase
+class ExitoRefine(View):
+    #primero definimos el template o skin que se usara en la pagina.
+    template_name = 'account/exito.html'
+
+    #Ahora vamos a crear un contexto personalizado, este contexto se usara para renderizarlo
+    #en el template que se definio primero.
+    def __init__(self):
+        super(ExitoRefine, self).__init__()
+        self.context = contexto()
+
+    #Se sobre escribe el methodo get, esto para atender este tipo de peticiones.
+    def get(self,request):
+        #Se renderiza el template con el contexto.
+        return render(request,self.template_name, self.context)
+
+
+#clase usada para las descargas.
+class Descargas(View):
+    model = Descarga
+    template_name = 'account/download.html'
+
+    def __init__(self):
+        super(Descargas,self).__init__()
+        self.context = contexto()
+
+    def get(self, request):
+        self.context.update({
+            'descarga': self.model.objects.publicado(),
+        })
+        return render(request, self.template_name, self.context)
 
 #clase usada para renderizar el TOP del juego y paginarlo
 class top(ListView):
@@ -379,9 +406,9 @@ def desbuguear(request):
     context.update({
         'form': form,
     })
-    if request.session.has_key('id'):
+    if request.session.has_key('g1jwvO'):
         try:
-            a = Account.objects.get(id=request.session['id'])
+            a = Account.objects.get(id=request.session['g1jwvO'])
         except Account.DoesNotExist:
             pass
 

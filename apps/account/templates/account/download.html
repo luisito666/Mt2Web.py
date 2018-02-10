@@ -8,6 +8,7 @@
 	<hr>
     <p class="metin">En esta pagina encontraras la descarga del cliente oficial del juego </p>
 	<div class="container container-custom metin">
+		{% if descarga %}
 		<table border="1" style="border: 1px solid #fff;">
         	<tr>
             	<td>Opciones </td>
@@ -32,6 +33,9 @@
 
             </tr> -->
         </table>
+				{% else %}
+				<p>Aun no se han publicado los links de descarga</p>
+				{% endif %}
         <br><br>
         <!--<table class="table table-hover">
             <tr>
