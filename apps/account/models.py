@@ -17,13 +17,17 @@ from hashlib import sha1
 
 #modelo generico compatible con todas las bases de datos
 class Account(models.Model):
+    STATUS_ACCOUNT = (
+        ('OK','Disponible'),
+        ('BLOCK','Baneado'),
+    )
     login = models.CharField(unique=True, max_length=30)
     password = models.CharField(max_length=45)
     real_name = models.CharField(max_length=16, blank=True, null=True)
     social_id = models.CharField(max_length=13)
     email = models.CharField(max_length=64)
     address = models.CharField(max_length=128, blank=True, null=True)
-    status = models.CharField(max_length=8,default="OK")
+    status = models.CharField(max_length=8,default="OK", choices=STATUS_ACCOUNT)
     coins = models.IntegerField(default=0)
     create_time = models.DateTimeField(default=timezone.now)
     availdt = models.DateTimeField(db_column='availDt',default=settings.ACTIVATE)
@@ -34,7 +38,7 @@ class Account(models.Model):
     fish_mind_expire = models.DateTimeField(default=settings.BUFFSTUF)
     marriage_fast_expire = models.DateTimeField(default=settings.BUFFSTUF)
     money_drop_rate_expire = models.DateTimeField(default=settings.BUFFSTUF)
-    # token_expire = models.DateTimeField(blank=True, null=True) #Descomentar cuando se crea el campo en la bd
+    token_expire = models.DateTimeField(blank=True, null=True) 
 
     class Meta:
         db_table = 'account'

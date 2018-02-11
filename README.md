@@ -213,6 +213,9 @@ SERVERNAME = 'Metin2 XxX'
 #   https://tudominio.com
 SERVERURL = 'http://127.0.0.1:8000'
 
+#habilitar y deshabilitar Recapcha
+RECAPTCHA = True
+
 #Llaves del recapcha
 RECAPTCHA_PUBLIC_KEY = ''
 RECAPTCHA_PRIVATE_KEY = ''
