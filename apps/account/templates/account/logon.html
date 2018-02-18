@@ -37,7 +37,7 @@
         {% endif %}
 
         <p><a href="{% url 'account:password' %}#content"> Cambiar Contraseña </a></p>
-        <p><a href="{% url 'account:unlock' %}#content"> Desbug Personaje </a></p>
+        {% if personajes %}<p><a href="{% url 'account:unlock' %}#content"> Mover Personaje </a></p> {% else %} <p>Mover Personaje </p> {% endif %}
         <p><a href="{% url 'account:logout' %}#content"> Salir </a></p>
 
     </div>
