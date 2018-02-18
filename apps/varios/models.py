@@ -39,6 +39,10 @@ class Top(models.Model):
     def __str__(self):
     	return self.name
 
+	class Meta:
+		verbose_name = 'Personaje'
+		verbose_name_plural = 'Personajes'
+
 class RegistroCompras(models.Model):
 	ref_id = models.IntegerField()
 	account_id = models.IntegerField()

@@ -16,7 +16,7 @@ class TopDisplay(admin.ModelAdmin):
 	search_fields = ['name']
 
 class RegistroComprasDisplay(admin.ModelAdmin):
-	list_display = ('ref_id','account_id','login','coins_compradas','status')
+	list_display = ('ref_id','account_id','login','coins_compradas','status','fecha_compra')
 	search_fields = ['login']
 
 admin.site.register(Descarga, DescargaDisplay )

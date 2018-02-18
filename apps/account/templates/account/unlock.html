@@ -1,16 +1,16 @@
 {% extends "account/registro.html" %}
 {% load bootstrap %}
 
-{% block title %} {{ servername }} - Desbuguear Personajes {% endblock %}
+{% block title %} {{ servername }} - Mover Personajes {% endblock %}
 
 
 {% block contenido %}
-    <h1>Desbloquear Personajes  </h3>
+    <h1>Mover Personajes  </h3>
     <hr>
     {% if if_form %}
     <a href="{% url 'account:login' %}#content">Regresar</a>
     <p>Diligencia el formulario.</p>
-    <p>Introduce el nombre del personaje que quieres desbuguear.</p>
+    <p>Introduce el nombre del personaje que quieres mover.</p>
     {% if key %}
         <p> Mensaje: <strong>{{ key }}</strong> </p>
     {% endif %}

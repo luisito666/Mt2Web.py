@@ -12,9 +12,9 @@ def index(request):
 	return render(request, 'index.html', contexto())
 
 def donaciones(request):
-	if request.session.has_key('id'):
+	if request.session.has_key('g1jwvO'):
 		try:
-			a = models.Account.objects.get(id=request.session['id'])
+			a = models.Account.objects.get(id=request.session['g1jwvO'])
 		except Account.DoesNotExist:
 			pass
 

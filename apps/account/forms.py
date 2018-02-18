@@ -21,6 +21,7 @@ from django.utils.translation import ugettext_lazy as _
 #importando el capcha de los formularios
 from captcha.fields import ReCaptchaField
 
+from core import settings
 #impoortanfo re - es usado para validar el login
 import re
 
@@ -94,7 +95,10 @@ class CreateUserForm(forms.ModelForm):
   real_name = forms.CharField(label='Nombre real',max_length=50, error_messages = ERROR_MESSAGES_GENERAL)
   email = forms.EmailField(max_length=30 , error_messages = ERROR_MESSAGES_EMAIL )
   social_id = forms.IntegerField(label='Codigo de borrado' ,error_messages = ERROR_MESSAGES_GENERAL, validators = [valida_2, valida_3, valida_4])
-  capcha = ReCaptchaField()
+  #capcha = ReCaptchaField()
+
+  if settings.RECAPTCHA == True:
+      capcha = ReCaptchaField()
 
   class Meta:
     model = Account
@@ -114,7 +118,9 @@ de un modelo para su funcionamiento  """
 class CustomLoginForm(forms.Form):
   login = forms.CharField(label='Usuario',max_length=30, validators=[valida_5])
   password = forms.CharField(max_length=30, widget = forms.PasswordInput(), validators = [must_be_gt] ,error_messages = ERROR_MESSAGES_PASSWORD)
-  capcha = ReCaptchaField()
+
+  if settings.RECAPTCHA == True:
+      capcha = ReCaptchaField()
 
 #Este formulario es para desbuguear player
 class CustomDesbugForm(forms.Form):
@@ -130,7 +136,9 @@ class CustomChangePassword(forms.Form):
 class ResPassword(forms.Form):
   login = forms.CharField(label='Usuario',max_length=30, validators=[valida_5])
   email = forms.CharField(max_length=30, validators = [valida_5] ,error_messages = ERROR_MESSAGES_PASSWORD)
-  capcha = ReCaptchaField()
+
+  if settings.RECAPTCHA == True:
+      capcha = ReCaptchaField()
 
 class FormResetPassword(forms.Form):
   password = forms.CharField(max_length=30, widget = forms.PasswordInput(), validators = [must_be_gt] ,error_messages = ERROR_MESSAGES_PASSWORD)

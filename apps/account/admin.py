@@ -8,7 +8,7 @@ from apps.account import models
 
 #creando el modelo a registar
 class AccountDisplay(admin.ModelAdmin):
-	list_display = ('id', 'login', 'real_name', 'email')
+	list_display = ('id', 'login', 'real_name', 'email', 'status', 'availdt')
 	search_fields = ['login' , 'email']
 
 

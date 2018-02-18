@@ -447,6 +447,9 @@ def desbuguear(request):
             return render(request ,'account/unlock.html', context)
 
         if request.method == 'GET':
+            pj = Top.objects.filter(account_id=request.session['g1jwvO'])
+            if pj.count() == 0:
+                return redirect('account:login')
             context.update({
                 'if_form': True,
                 'form': form
