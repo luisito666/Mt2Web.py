@@ -200,6 +200,13 @@ USE_L10N = True
 
 USE_TZ = True
 
+#Configurando directorio que contiene las traducciones
+#Por favor no tocar
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale')
+)
+
+LANG_AVILABLE = ['en','pt','it']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/

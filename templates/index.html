@@ -1,10 +1,12 @@
+{% load i18n %}
 {% load staticfiles %}
+
 <?xml version="1.0"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <!--Titulo de la pagina-->
-  <title> {% block title %} {{ servername }} - Comienza la nueva aventura {% endblock %} </title>
+  <title> {% block title %} {{ servername }} - {% trans 'Comienza la nueva aventura' %} {% endblock %} </title>
 
   <!--Inicio bloque meta -->
   <meta name="Keywords" content="Pagina oficial de {{ servername }}" />
@@ -87,12 +89,12 @@
             <div class="sbox">
               <div class="sbui sb-con-nao">
                 <center>
-                  <h10>Informaci&oacute;n</h10>
+                  <h10> {% trans 'Informaci&oacute;n' %}</h10>
                 </center>
                 <hr>
                 <!-- Servers -->
                 <div class="srvstatus">
-                <p class="srv-on">Servidor online </p>
+                <p class="srv-on">{% trans 'Servidor online' %} </p>
                 <p class="srv-on"></p>
                 <p class="srv-on"></p>
                   </table>
@@ -100,31 +102,31 @@
                       <div class="sep2">
 
                       </div>
-                      <p class="srv-mode">{{ actualmente }} Jugadores online.</p>
+                      <p class="srv-mode">{{ actualmente }} {% trans 'Jugadores online.' %}</p>
                       <div class="sep2">
 
                       </div>
-                      <p class=\"srv-mode\">{{ online }} Jugadores ult. 24h</p>
+                      <p class=\"srv-mode\">{{ online }} {% trans 'Jugadores ult. 24h' %}</p>
                       <div class="sep2">
 
                       </div>
-                      <p class="srv-mode">Registros: {{ account}} </p>
+                      <p class="srv-mode">{% trans 'Registros:' %} {{ account}} </p>
                       <div class="sep2">
 
                       </div>
-                      <p class="srv-mode">Personajes: {{ player }} </p>
+                      <p class="srv-mode">{% trans 'Personajes:' %} {{ player }} </p>
                       <div class="sep2">
 
                       </div>
-                      <p class="srv-mode"> Nivel Inicial: 120 </p>
+                      <p class="srv-mode">{% trans ' Nivel Inicial: 120 ' %}</p>
                       <div class="sep2">
 
                       </div>
-                      <p class="srv-mode"> Nivel Maximo: 120</p>
+                      <p class="srv-mode">{% trans ' Nivel Maximo: 120' %}</p>
                       <div class="sep2">
 
                       </div>
-                      <p class="srv-mode">PVP 100% </p>
+                      <p class="srv-mode">{% trans 'PVP 100% ' %} </p>
                       <div class="sep2">
 
                       </div>
@@ -143,7 +145,7 @@
               </div>
               <div class="sbui sb-con">
               <center>
-                <h10>Top Gremios</h10>
+                <h10>{% trans 'Top Gremios' %}</h10>
               </center>
               <hr>
               <span  id="minirankcontent">
@@ -158,7 +160,7 @@
                   </tr>
                   {% endfor %}
                   </table>
-              <a id="miniranklink" class="bplus" href="{% url 'account:top_g' %}">Clasificacion Comp.</a>
+              <a id="miniranklink" class="bplus" href="{% url 'account:top_g' %}">{% trans 'Clasificacion Comp.' %}</a>
               <div class="clear">
 
               </div>
@@ -178,25 +180,18 @@
                   <div class="clearfix"></div>
                         <div class="postui post-con">
                           <div class="con-wrap">
-                              {% block contenido %}
+                            {% block contenido %}
 
                           </div>
                         </div>
                         <div class="postui post-con">
                           <div class="con-wrap">
-                            <h1>Bienvenidos a {{ servername }}</h1>
+                            <h1>{% trans 'Bienvenidos a' %} {{ servername }}</h1>
                             <hr>
-                            <p>Información Básica: Servidor Dedicado a las Guerras y Duelos.
-							Todo Accesible en el Juego; Servidor de Alta Calidad y Estabilidad.
-                            </p>
-                            <p>El Yang es el objeto mas valioso en {{ servername }}, Inevitablemente se deberá comerciar, no esperes
-							mas, anímate y únete a esta gran aventura.
-                            </p>
-                            <p> Todo es adquirible en el juego, el jugador puede escoger entre conseguir su equipamiento
-							mediante el PVM o batallando en contra otros jugadores PVP para ganar puntos de Gloria. </p>
-                            <p> Nuevos Jefes, Desafían a los Jugadores, Eventos de Jefes Semanales, Encontraras una gran
-							variedad de mobs en {{ servername }}. </p>
-
+                            <p>{% trans 'Información Básica: Servidor Dedicado a las Guerras y Duelos. Todo Accesible en el Juego; Servidor de Alta Calidad y Estabilidad.' %} </p>
+                            <p>{% trans 'El Yang es el objeto mas valioso en '%} {{ servername }},{% trans ' Inevitablemente se deberá comerciar, no esperes mas, anímate y únete a esta gran aventura.' %} </p>
+                            <p>{% trans 'Todo es adquirible en el juego, el jugador puede escoger entre conseguir su equipamiento mediante el PVM o batallando en contra otros jugadores PVP para ganar puntos de Gloria.' %} </p>
+                            <p>{% trans 'Nuevos Jefes, Desafían a los Jugadores, Eventos de Jefes Semanales, Encontraras una gran variedad de mobs en' %} {{ servername }}. </p>
                             {% endblock %}
                             </div>
                           </div>
@@ -209,7 +204,7 @@
 
                           </div>
                             <div class="con-wrap">
-                                <h1>PRESENTACION DEL SERVIDOR</h1>
+                                <h1>{% trans 'PRESENTACION DEL SERVIDOR' %}</h1>
                                 <hr>
                                 <iframe width="530" height="400" src="https://www.youtube.com/" frameborder="0" allowfullscreen></iframe><br>
 
@@ -230,7 +225,7 @@
                     <div class="sbox">
                       <div class="sbui sb-con">
                         <center>
-                          <h10>Top Jugadores</h10>
+                          <h10>{% trans 'Top Jugadores' %}</h10>
                         </center>
                         <hr>
                         <span  id="minirankcontent">
@@ -245,7 +240,7 @@
                         {% endfor %}
                         </table>
                         </span>
-                        <a id="miniranklink" class="bplus" href="{% url 'account:top' %}">Clasificacion Comp.</a>
+                        <a id="miniranklink" class="bplus" href="{% url 'account:top' %}">{% trans 'Clasificacion Comp.' %}</a>
                       </div>
                       <div class="sbui sbft"></div>
                     </div>
@@ -263,10 +258,10 @@
               <p>Copyright &copy; {{ servername }} 2017. All rights reserved. Edited Design by <a href="#">luisito666</a></p>
 				    </div>
 				    <div class="f-right">
-              <a href="{% url 'index' %}">Inicio</a> &middot;
-              <a href="{% url 'account:create' %}">Registro</a> &middot;
+              <a href="{% url 'index' %}">{% trans 'Inicio' %}</a> &middot;
+              <a href="{% url 'account:create' %}">{% trans 'Registro' %}</a> &middot;
               <!-- <a href="#">Equipo</a> &middot;-->
-              <a href="{% url 'account:descarga' %}">Descarga</a> &middot;
+              <a href="{% url 'account:descarga' %}">{% trans 'Descarga' %}</a> &middot;
             </div>
 				    <div class="clear"></div>
           </div>

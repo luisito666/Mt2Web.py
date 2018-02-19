@@ -1,12 +1,13 @@
 {% extends "account/registro.html" %}
 {% load bootstrap %}
+{% load i18n %}
 
 
-{% block title %} {{ servername }} - Activacion de cuenta {% endblock %}
+{% block title %} {{ servername }} - {% trans 'Activacion de cuenta' %} {% endblock %}
 
 
 {% block contenido %}
-	<h1>Activacion de Cuentas</h1>
+	<h1>{% trans 'Activacion de Cuentas' %}</h1>
 	<hr>
 	<p> {{ key }} </p>
 {% endblock %}

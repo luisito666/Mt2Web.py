@@ -35,6 +35,9 @@ from django.http import HttpResponseRedirect , HttpResponse
 from django.core.urlresolvers import reverse_lazy
 from django.utils import timezone
 
+#importando clase usada para la traduccion
+from django.utils.translation import ugettext as _
+
 #importando las configuracines de django
 from core import settings
 
@@ -53,7 +56,7 @@ class Create(CreateView):
     self.object.save()
     try:
       send_mail(
-              'Bienvenido a '+ settings.SERVERNAME,
+              _('Bienvenido a ')+ settings.SERVERNAME,
               'Content',
               settings.EMAIL_HOST_USER ,
               [self.object.email],
@@ -106,7 +109,7 @@ class login(View):
                 a = self.modelA.objects.get(login=form.cleaned_data['login'])
             except Account.DoesNotExist:
                 self.context.update({
-                    'key':'Nombre de usuario o password incorrecto',
+                    'key':_('Nombre de usuario o password incorrecto'),
                     'form':form
                 })
                 return render(request, self.template_name, self.context)
@@ -121,21 +124,21 @@ class login(View):
                         return redirect('account:login')
                 else:
                     self.context.update({
-                        'key':'Tu cuenta esta baneada',
+                        'key':_('Tu cuenta esta baneada'),
                         'form':form
                     })
                     return render(request, self.template_name, self.context)
 
             else:
                 self.context.update({
-                    'key':'Nombre de usuario o password incorrecto',
+                    'key':_('Nombre de usuario o password incorrecto'),
                     'form':form
                 })
                 return render(request, self.template_name, self.context)
 
         else:
             self.context.update({
-                'key':'Rellene todos los campos correctamente',
+                'key':_('Rellene todos los campos correctamente'),
                 'form':form
             })
             return render(request, self.template_name, self.context)
@@ -147,7 +150,7 @@ def logout(request):
     del request.session['g1jwvO']
   except:
   	a = {
-        'real_name':'invalido'
+        'real_name':_('invalido')
     }
   context = contexto()
   context.update({
@@ -176,14 +179,14 @@ def changepasswd(request):
     				new_password = a.micryp( form.cleaned_data['new_password'] )
     				a.password = new_password
     				a.save()
-    				context.update({'key':'se ha cambiado el password exitosamente.'})
+    				context.update({'key':_('se ha cambiado el password exitosamente.')})
     				return render(request, 'account/password.html', context )
     		else:
-    			context.update({'key':'El password no es correcto'})
+    			context.update({'key':_('El password no es correcto')})
     			return render(request, 'account/password.html', context )
     	else:
     		#'contraseas no coinciden'
-    		context.update({'key':'Los password no coinciden'})
+    		context.update({'key':_('Los password no coinciden')})
     		return render(request, 'account/password.html', context )
     else:
     	return render(request, 'account/password.html' , context )
@@ -272,7 +275,7 @@ def recuperar_password(request):
       try:
         usuario = Account.objects.get(login=a)
       except Account.DoesNotExist:
-        context.update({'key': 'No se encuentran registros en nuestra base de datos'})
+        context.update({'key': _('No se encuentran registros en nuestra base de datos')})
         return render(request, 'account/rescue.html', context)
 
       if usuario.email == b:
@@ -289,13 +292,13 @@ def recuperar_password(request):
               html_message=get_mail(usuario.real_name,key),
             )
 
-            context.update({'key': 'se ha enviado un correo electronico con las instrucciones para recupear el password'})
+            context.update({'key': _('se ha enviado un correo electronico con las instrucciones para recupear el password')})
             return render(request, 'account/rescue.html', context)
         except:
-            context.update({'key': 'Error enviando el correo'})
+            context.update({'key': _('Error enviando el correo')})
             return render(request, 'account/rescue.html', context)
       else:
-        context.update({'key': 'El usuario no concuerda con el correo electronico'})
+        context.update({'key': _('El usuario no concuerda con el correo electronico')})
         return render(request, 'account/rescue.html', context)
     else:
       context.update({'key': ''})
@@ -313,28 +316,28 @@ def process_password(request,url):
         a = Account.objects.get(address=url)
       except:
         context.update({
-            'key': 'El token que intentas usar no existe',
+            'key': _('El token que intentas usar no existe'),
             'if_form': False
         })
         return render(request, 'account/cambio_passwd.html', context)
       z = (timezone.now() - a.token_expire).days
       if z >= 1:
         context.update({
-            'key': 'El token que intentas usar esta vencido',
+            'key': _('El token que intentas usar esta vencido'),
             'if_form': False
         })
         return render(request, 'account/cambio_passwd.html' , context)
       else:
         request.session['tmp_id'] = a.id
         context.update({
-            'key': 'ingresa tu nuevo password',
+            'key': _('ingresa tu nuevo password'),
             'form': form,
             'if_form': True
         })
         return render(request, 'account/cambio_passwd.html' , context)
     else:
       context.update({
-          'key': 'No has enviado ningun token',
+          'key': _('No has enviado ningun token'),
           'if_form': False
       })
       return render(request, 'account/cambio_passwd.html', context)
@@ -347,7 +350,7 @@ def process_password(request,url):
           a = Account.objects.get(id=request.session['tmp_id'])
         except:
           context.update({
-              'key': 'No se encuentra el usuario',
+              'key': _('No se encuentra el usuario'),
               'if_form': False
           })
           return render(request, 'account/cambio_passwd.html', context)
@@ -356,20 +359,20 @@ def process_password(request,url):
         a.save()
         del request.session['tmp_id']
         context.update({
-            'key': 'Password actualizado correctamente',
+            'key': _('Password actualizado correctamente'),
             'if_form': False
         })
         return render(request, 'account/cambio_passwd.html', context)
       else:
         context.update({
-            'key': 'No existe la session temporal',
+            'key': _('No existe la session temporal'),
             'if_form': False
         })
         return render(request, 'account/cambio_passwd.html', context )
     else:
       context.update({
           'if_form': True,
-          'key':'Los password no coinciden'
+          'key':_('Los password no coinciden')
       })
       return render(request, 'account/cambio_passwd.html', context)
 
@@ -382,30 +385,30 @@ def process_reg(request, url):
       try:
         a = Account.objects.get(address=url)
       except:
-        context.update({'key': 'El token que intentas usar no existe.'})
+        context.update({'key': _('El token que intentas usar no existe.')})
         return render(request, 'account/activar_cuenta.html', context)
       if a.status == 'OK':
         b = datetime.datetime(2009, 1, 1, 0, 0,)
         if a.availdt.year == b.year and a.availdt.month == b.month:
           a.address = aleatorio(40)
           a.save()
-          context.update({'key': 'Tu cuenta ya esta activada'})
+          context.update({'key': _('Tu cuenta ya esta activada')})
           return render(request, 'account/activar_cuenta.html', context )
         else:
           a.availdt = "2009-01-01T00:00:00"
           a.address = aleatorio(40)
           a.save()
 
-          context.update({'key': 'Tu cuenta se ha activado correctamente'})
+          context.update({'key': _('Tu cuenta se ha activado correctamente')})
           return render(request, 'account/activar_cuenta.html', context )
       else:
-        context.update({'key': 'Tu cuenta esta baneada'})
+        context.update({'key': _('Tu cuenta esta baneada')})
         return render(request, 'account/activar_cuenta.html', context )
     else:
-      context.update({'key': 'No has enviado ningun token'})
+      context.update({'key': _('No has enviado ningun token')})
       return render(request, 'account/activar_cuenta.html', context)
   else:
-    context.update({'key': 'Metodo no admitido'})
+    context.update({'key': _('Metodo no admitido')})
     return render(request, 'account/activar_cuenta.html', context)
 
 def desbuguear(request):
@@ -430,18 +433,18 @@ def desbuguear(request):
                     resultado = cambio_mapa(a.id, personaje.name)
                     if resultado:
                         context.update({
-                            'key':'Se ha desbugeado tu personaje correctamente debes esperar 30 min para iniciar con el.',
+                            'key':_('Se ha movido tu personaje correctamente debes esperar 30 min para iniciar con el.'),
                             'if_form': True
                         })
                         return render(request,'account/unlock.html', context)
                     else:
                         context.update({
-                            'key':'Error desbugueando.',
+                            'key':_('Error desbugueando.'),
                             'if_form': True
                         })
                         return render(request,'account/unlock.html', context)
             context.update({
-                'key':'Ningun personaje coincide.',
+                'key':_('Ningun personaje coincide.'),
                 'if_form': True
             })
             return render(request ,'account/unlock.html', context)
@@ -484,20 +487,20 @@ class requestToken(View):
                 a = self.model.objects.get(login=form.cleaned_data['login'])
             except Account.DoesNotExist:
                 self.context.update({
-                    'key':'Cuenta no existe.'
+                    'key':_('Cuenta no existe.')
                 })
                 return render(request, self.template_name, self.context)
 
             b = datetime.datetime(2009, 1, 1, 0, 0,)
             if a.availdt.year == b.year and a.availdt.month == b.month:
                 self.context.update({
-                    'key': 'Tu cuenta ya esta activada',
+                    'key': _('Tu cuenta ya esta activada'),
                 })
                 return render(request, self.template_name, self.context)
 
             if a.status != 'OK':
                 self.context.update({
-                    'key':'Tu cuenta esta baneada'
+                    'key':_('Tu cuenta esta baneada')
                 })
                 return render(request, self.template_name, self.context)
 
@@ -507,7 +510,7 @@ class requestToken(View):
                 a.save()
                 try:
                     send_mail(
-                        'Activacion de cuentas '+settings.SERVERNAME,
+                        _('Activacion de cuentas ')+settings.SERVERNAME,
                         'Content',
                         settings.EMAIL_HOST_USER ,
                         [a.email],
@@ -515,21 +518,21 @@ class requestToken(View):
                     )
                 except:
                     self.context.update({
-                        'key':'Error enviando correo al usuario'
+                        'key':_('Error enviando correo al usuario')
                     })
                     return render(request, self.template_name, self.context)
 
                 self.context.update({
-                    'key':'Se ha enviado el codigo de activacion al email'
+                    'key':_('Se ha enviado el codigo de activacion al email')
                 })
                 return render(request, self.template_name, self.context)
             else:
                 self.context.update({
-                    'key': 'El email no coincide con el usuario'
+                    'key': _('El email no coincide con el usuario')
                 })
                 return render(request, self.template_name, self.context)
         else:
             self.context.update({
-                'key':'Por favor rellena todos los campos correctamente.'
+                'key':_('Por favor rellena todos los campos correctamente.')
             })
             return render(request, self.template_name, self.context)

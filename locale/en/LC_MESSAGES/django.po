@@ -1,0 +1,621 @@
+# Mt2Web.py
+# This file is distributed under the Mit Licence
+# Luis Penagos <luispenagos91@gmail.com>, 2018.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-18 19:26-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: apps/account/templates/account/activar_cuenta.html:6
+msgid "Activacion de cuenta"
+msgstr ""
+
+#: apps/account/templates/account/activar_cuenta.html:10
+msgid "Activacion de Cuentas"
+msgstr ""
+
+#: apps/account/views.py:59
+msgid "Bienvenido a "
+msgstr ""
+
+#: apps/account/views.py:112 apps/account/views.py:134
+msgid "Nombre de usuario o password incorrecto"
+msgstr ""
+
+#: apps/account/views.py:127 apps/account/views.py:405
+#: apps/account/views.py:503
+msgid "Tu cuenta esta baneada"
+msgstr ""
+
+#: apps/account/views.py:141
+msgid "Rellene todos los campos correctamente"
+msgstr ""
+
+#: apps/account/views.py:153
+msgid "invalido"
+msgstr ""
+
+#: apps/account/views.py:182
+msgid "se ha cambiado el password exitosamente."
+msgstr ""
+
+#: apps/account/views.py:185
+msgid "El password no es correcto"
+msgstr ""
+
+#: apps/account/views.py:189 apps/account/views.py:375
+msgid "Los password no coinciden"
+msgstr ""
+
+#: apps/account/views.py:278
+msgid "No se encuentran registros en nuestra base de datos"
+msgstr ""
+
+#: apps/account/views.py:295
+msgid ""
+"se ha enviado un correo electronico con las instrucciones para recupear el "
+"password"
+msgstr ""
+
+#: apps/account/views.py:298
+msgid "Error enviando el correo"
+msgstr ""
+
+#: apps/account/views.py:301
+msgid "El usuario no concuerda con el correo electronico"
+msgstr ""
+
+#: apps/account/views.py:319
+msgid "El token que intentas usar no existe"
+msgstr ""
+
+#: apps/account/views.py:326
+msgid "El token que intentas usar esta vencido"
+msgstr ""
+
+#: apps/account/views.py:333
+msgid "ingresa tu nuevo password"
+msgstr ""
+
+#: apps/account/views.py:340 apps/account/views.py:408
+msgid "No has enviado ningun token"
+msgstr ""
+
+#: apps/account/views.py:353
+msgid "No se encuentra el usuario"
+msgstr ""
+
+#: apps/account/views.py:362
+msgid "Password actualizado correctamente"
+msgstr ""
+
+#: apps/account/views.py:368
+msgid "No existe la session temporal"
+msgstr ""
+
+#: apps/account/views.py:388
+msgid "El token que intentas usar no existe."
+msgstr ""
+
+#: apps/account/views.py:395 apps/account/views.py:497
+msgid "Tu cuenta ya esta activada"
+msgstr ""
+
+#: apps/account/views.py:402
+msgid "Tu cuenta se ha activado correctamente"
+msgstr ""
+
+#: apps/account/views.py:411
+msgid "Metodo no admitido"
+msgstr ""
+
+#: apps/account/views.py:436
+msgid ""
+"Se ha movido tu personaje correctamente debes esperar 30 min para iniciar "
+"con el."
+msgstr ""
+
+#: apps/account/views.py:442
+msgid "Error desbugueando."
+msgstr ""
+
+#: apps/account/views.py:447
+msgid "Ningun personaje coincide."
+msgstr ""
+
+#: apps/account/views.py:490
+msgid "Cuenta no existe."
+msgstr ""
+
+#: apps/account/views.py:513
+msgid "Activacion de cuentas "
+msgstr ""
+
+#: apps/account/views.py:521
+msgid "Error enviando correo al usuario"
+msgstr ""
+
+#: apps/account/views.py:526
+msgid "Se ha enviado el codigo de activacion al email"
+msgstr ""
+
+#: apps/account/views.py:531
+msgid "El email no coincide con el usuario"
+msgstr ""
+
+#: apps/account/views.py:536
+msgid "Por favor rellena todos los campos correctamente."
+msgstr ""
+
+#: core/views.py:22
+msgid "New messages"
+msgstr ""
+
+#: templates/admin/404.html:4 templates/admin/404.html:8
+msgid "Page not found"
+msgstr ""
+
+#: templates/admin/404.html:10
+msgid "We're sorry, but the requested page could not be found."
+msgstr ""
+
+#: templates/admin/500.html:6 templates/admin/app_index.html:9
+#: templates/admin/auth/user/change_password.html:13
+#: templates/admin/base.html:58 templates/admin/change_form.html:18
+#: templates/admin/change_list.html:40
+#: templates/admin/delete_confirmation.html:8
+#: templates/admin/delete_selected_confirmation.html:8
+#: templates/admin/invalid_setup.html:6 templates/admin/object_history.html:6
+msgid "Home"
+msgstr ""
+
+#: templates/admin/500.html:7
+msgid "Server error"
+msgstr ""
+
+#: templates/admin/500.html:11
+msgid "Server error (500)"
+msgstr ""
+
+#: templates/admin/500.html:14
+msgid "Server Error <em>(500)</em>"
+msgstr ""
+
+#: templates/admin/500.html:15
+msgid ""
+"There's been an error. It's been reported to the site administrators via "
+"email and should be fixed shortly. Thanks for your patience."
+msgstr ""
+
+#: templates/admin/actions.html:4
+msgid "Run the selected action"
+msgstr ""
+
+#: templates/admin/actions.html:4
+msgid "Go"
+msgstr ""
+
+#: templates/admin/actions.html:11
+msgid "Click here to select the objects across all pages"
+msgstr ""
+
+#: templates/admin/actions.html:11
+#, python-format
+msgid "Select all %(total_count)s %(module_name)s"
+msgstr ""
+
+#: templates/admin/actions.html:13
+msgid "Clear selection"
+msgstr ""
+
+#: templates/admin/auth/user/add_form.html:6
+msgid ""
+"First, enter a username and password. Then, you'll be able to edit more user "
+"options."
+msgstr ""
+
+#: templates/admin/auth/user/add_form.html:8
+msgid "Enter a username and password."
+msgstr ""
+
+#: templates/admin/auth/user/change_password.html:17
+#: templates/admin/auth/user/change_password.html:54
+#: templates/admin/base.html:46
+msgid "Change password"
+msgstr ""
+
+#: templates/admin/auth/user/change_password.html:27
+#: templates/admin/change_form.html:47 templates/admin/change_list.html:67
+#: templates/admin/login.html:19
+msgid "Please correct the error below."
+msgstr ""
+
+#: templates/admin/auth/user/change_password.html:27
+#: templates/admin/change_form.html:47 templates/admin/change_list.html:67
+#: templates/admin/login.html:19
+msgid "Please correct the errors below."
+msgstr ""
+
+#: templates/admin/auth/user/change_password.html:31
+#, python-format
+msgid "Enter a new password for the user <strong>%(username)s</strong>."
+msgstr ""
+
+#: templates/admin/base.html:32
+msgid "Welcome,"
+msgstr ""
+
+#: templates/admin/base.html:37
+msgid "View site"
+msgstr ""
+
+#: templates/admin/base.html:42
+msgid "Documentation"
+msgstr ""
+
+#: templates/admin/base.html:48
+msgid "Log out"
+msgstr ""
+
+#: templates/admin/base_site.html:3
+msgid "Django site admin"
+msgstr ""
+
+#: templates/admin/change_form.html:21 templates/admin/index.html:31
+#: templates/admin/related_widget_wrapper.html:18
+msgid "Add"
+msgstr ""
+
+#: templates/admin/change_form.html:33 templates/admin/object_history.html:10
+msgid "History"
+msgstr ""
+
+#: templates/admin/change_form.html:35
+#: templates/admin/edit_inline/stacked.html:10
+#: templates/admin/edit_inline/tabular.html:33
+msgid "View on site"
+msgstr ""
+
+#: templates/admin/change_list.html:58
+#, python-format
+msgid "Add %(name)s"
+msgstr ""
+
+#: templates/admin/change_list.html:78
+msgid "Filter"
+msgstr ""
+
+#: templates/admin/change_list_results.html:17
+msgid "Remove from sorting"
+msgstr ""
+
+#: templates/admin/change_list_results.html:18
+#, python-format
+msgid "Sorting priority: %(priority_number)s"
+msgstr ""
+
+#: templates/admin/change_list_results.html:19
+msgid "Toggle sorting"
+msgstr ""
+
+#: templates/admin/delete_confirmation.html:12
+#: templates/admin/related_widget_wrapper.html:26
+#: templates/admin/submit_line.html:6
+msgid "Delete"
+msgstr ""
+
+#: templates/admin/delete_confirmation.html:18
+#, python-format
+msgid ""
+"Deleting the %(object_name)s '%(escaped_object)s' would result in deleting "
+"related objects, but your account doesn't have permission to delete the "
+"following types of objects:"
+msgstr ""
+
+#: templates/admin/delete_confirmation.html:25
+#, python-format
+msgid ""
+"Deleting the %(object_name)s '%(escaped_object)s' would require deleting the "
+"following protected related objects:"
+msgstr ""
+
+#: templates/admin/delete_confirmation.html:32
+#, python-format
+msgid ""
+"Are you sure you want to delete the %(object_name)s \"%(escaped_object)s\"? "
+"All of the following related items will be deleted:"
+msgstr ""
+
+#: templates/admin/delete_confirmation.html:34
+#: templates/admin/delete_selected_confirmation.html:33
+msgid "Objects"
+msgstr ""
+
+#: templates/admin/delete_confirmation.html:41
+#: templates/admin/delete_selected_confirmation.html:44
+msgid "Yes, I'm sure"
+msgstr ""
+
+#: templates/admin/delete_confirmation.html:42
+#: templates/admin/delete_selected_confirmation.html:45
+msgid "No, take me back"
+msgstr ""
+
+#: templates/admin/delete_selected_confirmation.html:11
+msgid "Delete multiple objects"
+msgstr ""
+
+#: templates/admin/delete_selected_confirmation.html:17
+#, python-format
+msgid ""
+"Deleting the selected %(objects_name)s would result in deleting related "
+"objects, but your account doesn't have permission to delete the following "
+"types of objects:"
+msgstr ""
+
+#: templates/admin/delete_selected_confirmation.html:24
+#, python-format
+msgid ""
+"Deleting the selected %(objects_name)s would require deleting the following "
+"protected related objects:"
+msgstr ""
+
+#: templates/admin/delete_selected_confirmation.html:31
+#, python-format
+msgid ""
+"Are you sure you want to delete the selected %(objects_name)s? All of the "
+"following objects and their related items will be deleted:"
+msgstr ""
+
+#: templates/admin/edit_inline/stacked.html:8
+#: templates/admin/edit_inline/tabular.html:31 templates/admin/index.html:37
+#: templates/admin/related_widget_wrapper.html:10
+msgid "Change"
+msgstr ""
+
+#: templates/admin/edit_inline/stacked.html:27
+#: templates/admin/edit_inline/tabular.html:81
+msgid "Remove"
+msgstr ""
+
+#: templates/admin/edit_inline/stacked.html:28
+#: templates/admin/edit_inline/tabular.html:80
+#, python-format
+msgid "Add another %(verbose_name)s"
+msgstr ""
+
+#: templates/admin/edit_inline/tabular.html:17
+msgid "Delete?"
+msgstr ""
+
+#: templates/admin/filter.html:2
+#, python-format
+msgid " By %(filter_title)s "
+msgstr ""
+
+#: templates/admin/includes/object_delete_summary.html:2
+msgid "Summary"
+msgstr ""
+
+#: templates/admin/index.html:20
+#, python-format
+msgid "Models in the %(name)s application"
+msgstr ""
+
+#: templates/admin/index.html:47
+msgid "You don't have permission to edit anything."
+msgstr ""
+
+#: templates/admin/index.html:55
+msgid "Recent Actions"
+msgstr ""
+
+#: templates/admin/index.html:56
+msgid "My Actions"
+msgstr ""
+
+#: templates/admin/index.html:60
+msgid "None available"
+msgstr ""
+
+#: templates/admin/index.html:74
+msgid "Unknown content"
+msgstr ""
+
+#: templates/admin/invalid_setup.html:12
+msgid ""
+"Something's wrong with your database installation. Make sure the appropriate "
+"database tables have been created, and make sure the database is readable by "
+"the appropriate user."
+msgstr ""
+
+#: templates/admin/login.html:45
+msgid "Forgotten your password or username?"
+msgstr ""
+
+#: templates/admin/login.html:49
+msgid "Log in"
+msgstr ""
+
+#: templates/admin/object_history.html:22
+msgid "Date/time"
+msgstr ""
+
+#: templates/admin/object_history.html:23
+msgid "User"
+msgstr ""
+
+#: templates/admin/object_history.html:24
+msgid "Action"
+msgstr ""
+
+#: templates/admin/object_history.html:38
+msgid ""
+"This object doesn't have a change history. It probably wasn't added via this "
+"admin site."
+msgstr ""
+
+#: templates/admin/pagination.html:10 templates/admin/search_form.html:9
+msgid "Show all"
+msgstr ""
+
+#: templates/admin/pagination.html:11 templates/admin/submit_line.html:3
+msgid "Save"
+msgstr ""
+
+#: templates/admin/related_widget_wrapper.html:8
+#, python-format
+msgid "Change selected %(model)s"
+msgstr ""
+
+#: templates/admin/related_widget_wrapper.html:16
+#, python-format
+msgid "Add another %(model)s"
+msgstr ""
+
+#: templates/admin/related_widget_wrapper.html:24
+#, python-format
+msgid "Delete selected %(model)s"
+msgstr ""
+
+#: templates/admin/search_form.html:7
+msgid "Search"
+msgstr ""
+
+#: templates/admin/search_form.html:9
+#, python-format
+msgid "%(counter)s result"
+msgid_plural "%(counter)s results"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/admin/search_form.html:9
+#, python-format
+msgid "%(full_result_count)s total"
+msgstr ""
+
+#: templates/admin/submit_line.html:8
+msgid "Save as new"
+msgstr ""
+
+#: templates/admin/submit_line.html:9
+msgid "Save and add another"
+msgstr ""
+
+#: templates/admin/submit_line.html:10
+msgid "Save and continue editing"
+msgstr ""
+
+#: templates/index.html:9
+msgid "Comienza la nueva aventura"
+msgstr ""
+
+#: templates/index.html:92
+msgid "Informaci&oacute;n"
+msgstr ""
+
+#: templates/index.html:97
+msgid "Servidor online"
+msgstr ""
+
+#: templates/index.html:105
+msgid "Jugadores online."
+msgstr ""
+
+#: templates/index.html:109
+msgid "Jugadores ult. 24h"
+msgstr ""
+
+#: templates/index.html:113
+msgid "Registros:"
+msgstr ""
+
+#: templates/index.html:117
+msgid "Personajes:"
+msgstr ""
+
+#: templates/index.html:121
+msgid " Nivel Inicial: 120 "
+msgstr ""
+
+#: templates/index.html:125
+msgid " Nivel Maximo: 120"
+msgstr ""
+
+#: templates/index.html:129
+#, python-format
+msgid "PVP 100%% "
+msgstr ""
+
+#: templates/index.html:148
+msgid "Top Gremios"
+msgstr ""
+
+#: templates/index.html:163 templates/index.html:243
+msgid "Clasificacion Comp."
+msgstr ""
+
+#: templates/index.html:189
+msgid "Bienvenidos a"
+msgstr "Welcome to"
+
+#: templates/index.html:191
+msgid ""
+"Información Básica: Servidor Dedicado a las Guerras y Duelos. Todo Accesible "
+"en el Juego; Servidor de Alta Calidad y Estabilidad."
+msgstr ""
+"Basic information: Server Dedicated to Wars and Duels. All accessible in the "
+"game; Server of High Quality and Stability."
+
+#: templates/index.html:192
+msgid "El Yang es el objeto mas valioso en "
+msgstr ""
+
+#: templates/index.html:192
+msgid ""
+" Inevitablemente se deberá comerciar, no esperes mas, anímate y únete a esta "
+"gran aventura."
+msgstr ""
+
+#: templates/index.html:193
+msgid ""
+"Todo es adquirible en el juego, el jugador puede escoger entre conseguir su "
+"equipamiento mediante el PVM o batallando en contra otros jugadores PVP para "
+"ganar puntos de Gloria."
+msgstr ""
+
+#: templates/index.html:194
+msgid ""
+"Nuevos Jefes, Desafían a los Jugadores, Eventos de Jefes Semanales, "
+"Encontraras una gran variedad de mobs en"
+msgstr ""
+
+#: templates/index.html:207
+msgid "PRESENTACION DEL SERVIDOR"
+msgstr ""
+
+#: templates/index.html:228
+msgid "Top Jugadores"
+msgstr ""
+
+#: templates/index.html:261
+msgid "Inicio"
+msgstr ""
+
+#: templates/index.html:262
+msgid "Registro"
+msgstr ""
+
+#: templates/index.html:264
+msgid "Descarga"
+msgstr ""
