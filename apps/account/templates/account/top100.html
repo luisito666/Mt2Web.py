@@ -2,19 +2,19 @@
 {% load staticfiles %}
 {% load i18n %}
 
-{% block title %} {{ servername }} - {% trans'Ranking' %} {% endblock %}
+{% block title %} {{ servername }} - {% trans 'Ranking' %} {% endblock %}
 
 {% block contenido %}
-	<h1 class="metin">{% trans'Ranking' %}</h3>
+	<h1 class="metin">{% trans 'Ranking' %}</h3>
 	<hr>
-    <p class="metin">{% trans'El ranking sera actualizado cada 4 horas.' %} </p>
+    <p class="metin">{% trans 'El ranking sera actualizado cada 4 horas.' %} </p>
 	<div class="container container-custom center-block">
 		<table>
         	<tr>
-            	<td class="color-white">{% trans'Posición' %} </td>
-                <td class="color-white">{% trans'Nombre' %} </td>
-            	<td class="color-white">{% trans'Nivel' %} </td>
-                <td class="color-white">{% trans'Gremio' %} </td>
+            	<td class="color-white">{% trans 'Posición' %} </td>
+                <td class="color-white">{% trans 'Nombre' %} </td>
+            	<td class="color-white">{% trans 'Nivel' %} </td>
+                <td class="color-white">{% trans 'Gremio' %} </td>
             	<!--<td></td>-->
             </tr>
             {% for cosa in object_list %}
@@ -33,13 +33,13 @@
         <div class="pagination">
             <span class="page-links">
                 {% if page_obj.has_previous %}
-                    <a href="{% url 'account:top' %}?page={{ page_obj.previous_page_number }}#content">{% trans'anterior' %}</a>
+                    <a href="{% url 'account:top' %}?page={{ page_obj.previous_page_number }}#content">{% trans 'anterior' %}</a>
                 {% endif %}
                 <span class="page-current">
-                    {% trans'Pagina' %} {{ page_obj.number }} {% trans'de' %} {{ page_obj.paginator.num_pages }}.
+                    {% trans 'Pagina' %} {{ page_obj.number }} {% trans 'de' %} {{ page_obj.paginator.num_pages }}.
                 </span>
                 {% if page_obj.has_next %}
-                    <a href="{% url 'account:top' %}?page={{ page_obj.next_page_number }}#content">{% trans'siguiente' %}</a>
+                    <a href="{% url 'account:top' %}?page={{ page_obj.next_page_number }}#content">{% trans 'siguiente' %}</a>
                 {% endif %}
             </span>
         </div>

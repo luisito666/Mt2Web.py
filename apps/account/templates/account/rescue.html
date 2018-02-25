@@ -2,14 +2,14 @@
 {% load bootstrap %}
 {% load i18n %}
 
-{% block title %} {{ servername }} - {% trans'Cambiar Password' %} {% endblock %}
+{% block title %} {{ servername }} - {% trans 'Cambiar Password' %} {% endblock %}
 
 {% block contenido %}
-  <h1>{% trans'Restablecer Password' %}</h1>
+  <h1>{% trans 'Restablecer Password' %}</h1>
   <hr>
-  <p class="metin">{% trans'Usa el siguiente formulario para recuperar tu password' %}</p>
+  <p class="metin">{% trans 'Usa el siguiente formulario para recuperar tu password' %}</p>
   {% if key %}
-  <p>{% trans'Mensaje' %}: <strong> {{ key }} </strong> </p>
+  <p>{% trans 'Mensaje' %}: <strong> {{ key }} </strong> </p>
   {% endif %}
   <form action="" method="POST" class="form-horizontal metin">
       {% csrf_token %}

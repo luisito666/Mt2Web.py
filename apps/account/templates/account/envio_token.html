@@ -2,14 +2,14 @@
 {% load bootstrap %}
 {% load i18n %}
 
-{% block title %} {{ servername }} - {% trans'Re enviar correo de activacion' %}{% endblock %}
+{% block title %} {{ servername }} - {% trans 'Re enviar correo de activacion' %}{% endblock %}
 
 {% block contenido %}
-  <h1>{% trans'Re enviar correo de activacion' %}</h1>
+  <h1>{% trans 'Re enviar correo de activacion' %}</h1>
   <hr>
-  <p class="metin">{% trans'Usa el siguiente formulario si no te llego el correo de activacion' %}</p>
+  <p class="metin">{% trans 'Usa el siguiente formulario si no te llego el correo de activacion' %}</p>
   {% if key %}
-  <p>{% trans'Mensaje:' %}' <strong> {{ key }} </strong> </p>
+  <p>{% trans 'Mensaje:' %}' <strong> {{ key }} </strong> </p>
   {% endif %}
   <form action="" method="POST" class="form-horizontal metin">
       {% csrf_token %}

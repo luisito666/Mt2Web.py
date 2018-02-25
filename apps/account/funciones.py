@@ -9,6 +9,9 @@ from apps.player.models import Guild
 from apps.varios.models import Top
 from django.db.models import Q
 
+#importando clase usada para la traduccion
+from django.utils import translation
+
 #importando funciones del framework
 from django.db import connections
 from django.utils import timezone
@@ -115,3 +118,8 @@ def contexto():
 		'top_player': player_top(),
 		'guild_top': guild_top()
 	}
+
+#funcion usada para activar las traducciones 
+def lenguaje(request):
+	if request.session.has_key('lang'):
+		translation.activate(request.session['lang'])

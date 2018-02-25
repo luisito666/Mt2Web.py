@@ -3,23 +3,23 @@
 {% load i18n %}
 
 
-{% block title %} {{ servername }} - {% trans'Dashboard' %} {% endblock %}
+{% block title %} {{ servername }} - {% trans 'Dashboard' %} {% endblock %}
 
 {% block contenido %}
 
-    <h1>{% trans'Dashboard' %} </h3>
+    <h1>{% trans 'Dashboard' %} </h3>
     <hr>
-    <p>{% trans'Hola' %}. {{ session.real_name }} </p>
-    <p>{% trans'Cuenta' %}: {{ session.login }} </p>
-    <p>{% trans'Coins' %}: {{ session.coins }}
-    <p class="metin">{% trans'Personajes de la cuenta.' %} </p>
+    <p>{% trans 'Hola' %}. {{ session.real_name }} </p>
+    <p>{% trans 'Cuenta' %}: {{ session.login }} </p>
+    <p>{% trans 'Coins' %}: {{ session.coins }}
+    <p class="metin">{% trans 'Personajes de la cuenta.' %} </p>
     <div class="container container-custom ">
         {% if personajes %}
         <table class="table table-condensed">
             <tr>
-                <td class="color-white">{% trans'Nombre' %} </td>
-                <td class="color-white">{% trans'Nivel' %} </td>
-                <td class="color-white">{% trans'Gremio' %} </td>
+                <td class="color-white">{% trans 'Nombre' %} </td>
+                <td class="color-white">{% trans 'Nivel' %} </td>
+                <td class="color-white">{% trans 'Gremio' %} </td>
                 <!--<td></td>-->
             </tr>
             {% for cosa in personajes %}
@@ -34,12 +34,12 @@
 
         </table>
         {% else %}
-        <p> {% trans'No se encontraron personajes' %}
+        <p> {% trans 'No se encontraron personajes' %}
         {% endif %}
 
-        <p><a href="{% url 'account:password' %}#content"> {% trans'Cambiar Contraseña' %} </a></p>
-        {% if personajes %}<p><a href="{% url 'account:unlock' %}#content"> {% trans'Mover Personaje' %} </a></p> {% else %} <p> {% trans'Mover Personaje' %} </p> {% endif %}
-        <p><a href="{% url 'account:logout' %}#content"> {% trans'Salir' %} </a></p>
+        <p><a href="{% url 'account:password' %}#content"> {% trans 'Cambiar Contraseña' %} </a></p>
+        {% if personajes %}<p><a href="{% url 'account:unlock' %}#content"> {% trans 'Mover Personaje' %} </a></p> {% else %} <p> {% trans 'Mover Personaje' %} </p> {% endif %}
+        <p><a href="{% url 'account:logout' %}#content"> {% trans 'Salir' %} </a></p>
 
     </div>
 {% endblock %}

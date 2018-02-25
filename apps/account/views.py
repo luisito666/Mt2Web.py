@@ -2,7 +2,7 @@
 # Distribuido bajo la licencia MIT Software Licence
 # Mas informacion http://www.opensource.org/licenses/mit-license.php
 
-#import de python
+#import de datetime nativo de python
 import datetime
 
 #importaciones que realiza django por defecto
@@ -15,28 +15,41 @@ from apps.player.models import Guild
 from django.db.models import Q
 
 #importando los formularios a usar
-from apps.account.forms import  CreateUserForm, \
-                                CustomLoginForm, \
-                                CustomChangePassword,\
-                                ResPassword, \
-                                FormResetPassword,\
-                                CustomDesbugForm
+from apps.account.forms import (
+    CreateUserForm,
+    CustomLoginForm,
+    CustomChangePassword,
+    ResPassword,
+    FormResetPassword,
+    CustomDesbugForm
+)
 
 #importando funciones varias para el correcto funcionamiento de la web
-from apps.account.funciones import *
+from apps.account.funciones import (
+    aleatorio,
+    get_mail,
+    get_mail_register,
+    cambio_mapa,
+    contexto,
+    lenguaje
+)
 
 #importando libreria para enviar correo
 from django.core.mail import send_mail
 
 #importando funciones integradas en el framework
-from django.views.generic import CreateView, DetailView, ListView
+from django.views.generic import (
+    CreateView,
+    DetailView,
+    ListView
+)
 from django.views import View
 from django.http import HttpResponseRedirect , HttpResponse
 from django.core.urlresolvers import reverse_lazy
 from django.utils import timezone
 
 #importando clase usada para la traduccion
-from django.utils import translation
+#from django.utils import translation
 from django.utils.translation import ugettext as _
 
 #importando las configuracines de django
@@ -49,12 +62,19 @@ class Create(CreateView):
   model = Account
   form_class = CreateUserForm
 
-  def get(self, request, *args, **kwargs):
+  def get(self, request):
     #Cargando idioma definido
-    if request.session.has_key('lang'):
-      translation.activate(request.session['lang'])
-
+    #if request.session.has_key('lang'):
+    #  translation.activate(request.session['lang'])
+    lenguaje(request)
     return super(Create,self).get(request)
+
+  def post(self, request):
+    #Cargando idioma definido
+    #if request.session.has_key('lang'):
+    #  translation.activate(request.session['lang'])
+    lenguaje(request)
+    return super(Create,self).post(request)
 
   def form_valid(self,form):
     key = aleatorio(40)
@@ -82,7 +102,7 @@ class Create(CreateView):
 
 #funcion usada para el login
 #Refactorizando la funcion de login
-class login(View):
+class Login(View):
 
     template_name = 'account/login.html'
     template_name_login = 'account/logon.html'
@@ -91,13 +111,11 @@ class login(View):
     form = CustomLoginForm
 
     def __init__(self):
-        super(login,self).__init__()
+        super(Login,self).__init__()
         self.context = contexto()
 
     def get(self, request):
-        if request.session.has_key('lang'):
-            translation.activate(request.session['lang'])
-
+        lenguaje(request)
         form = self.form()
 
         if request.session.has_key('g1jwvO'):
@@ -117,9 +135,7 @@ class login(View):
         return render(request, self.template_name, self.context)
 
     def post(self, request):
-        if request.session.has_key('lang'):
-            translation.activate(request.session['lang'])
-
+        lenguaje(request)
         form = self.form(request.POST or None)
 
         if form.is_valid():
@@ -162,7 +178,9 @@ class login(View):
             return render(request, self.template_name, self.context)
 
 #funcion usada para cerra session
-def logout(request):
+def Logout(request):
+  lenguaje(request)
+
   try:
     a = Account.objects.get(id=request.session['g1jwvO'])
     del request.session['g1jwvO']
@@ -178,6 +196,7 @@ def logout(request):
 
 #funcion usada para cambiar password estando logeado
 def changepasswd(request):
+  lenguaje(request)
   """Declarando el formulario que usara esta funcion  """
   form = CustomChangePassword(request.POST or None)
   """Preparado el contexto usado por la funcion"""
@@ -214,6 +233,7 @@ def changepasswd(request):
 #Funcion usada para confirmar el registro exitoso
 #Esta funcion demuestra que aveces lo mas simple, es lo que mejor funciona.
 def exito(request):
+  lenguaje(request)
   return render(request, 'account/exito.html', contexto())
 
 #Clase que se uso para realizar comparacion entre una funcion y una Clase
@@ -232,9 +252,7 @@ class ClaseExito(View):
 
     #Se sobre escribe el methodo get, esto para atender este tipo de peticiones.
     def get(self,request):
-        if request.session.has_key('lang'):
-            translation.activate(request.session['lang'])
-
+        lenguaje(request)
         #Se renderiza el template con el contexto.
         return render(request,self.template_name, self.context)
 
@@ -248,6 +266,8 @@ class Descargas(View):
         self.context = contexto()
 
     def get(self, request):
+        lenguaje(request)
+
         self.context.update({
             'descarga': self.model.objects.publicado(),
         })
@@ -263,9 +283,7 @@ class ClasificacionPersonajes(ListView):
   paginate_by = 20
 
   def get(self, request):
-      if request.session.has_key('lang'):
-          translation.activate(request.session['lang'])
-
+      lenguaje(request)
       return super(ClasificacionPersonajes,self).get(request)
 
   def get_context_data(self, **kwargs):
@@ -281,9 +299,7 @@ class ClasificacionGremios(ListView):
   paginate_by = 20
 
   def get(self, request):
-      if request.session.has_key('lang'):
-          translation.activate(request.session['lang'])
-
+      lenguaje(request)
       return super(ClasificacionGremios,self).get(request)
 
   def get_context_data(self, **kwargs):
@@ -294,6 +310,7 @@ class ClasificacionGremios(ListView):
 #Funcion usada para recuperar password por correo
 """Realizar refactorin a esta funcion """
 def recuperar_password(request):
+    lenguaje(request)
     """Declarando el formulario"""
     form = ResPassword(request.POST or None)
     """Preparando el contexto que manajara la funcion"""
@@ -339,6 +356,7 @@ def recuperar_password(request):
 
 #Procesando el correo de recuperacion de password.
 def process_password(request,url):
+  lenguaje(request)
   """Declarando el formulario"""
   form = FormResetPassword(request.POST or None)
   """Preparando el contexto de la funcion"""
@@ -411,6 +429,7 @@ def process_password(request,url):
 
 #Aqui validamos los link's de activacion de la cuenta.
 def process_reg(request, url):
+  lenguaje(request)
   """Preparando el contexto usado por la funcion """
   context = contexto()
   if request.method == 'GET':
@@ -445,6 +464,7 @@ def process_reg(request, url):
     return render(request, 'account/activar_cuenta.html', context)
 
 def desbuguear(request):
+    lenguaje(request)
     """Declarando el formulario que usara la funcion """
     form = CustomDesbugForm(request.POST or None)
     """Preparando el contexto usado por la funcion """
@@ -506,6 +526,7 @@ class requestToken(View):
         self.context = contexto()
 
     def get(self, request):
+        lenguaje(request)
         form = self.form(request.POST or None)
         self.context.update({
             'form':form
@@ -513,6 +534,8 @@ class requestToken(View):
         return render(request, self.template_name, self.context)
 
     def post(self, request):
+        lenguaje(request)
+
         form = self.form(request.POST or None)
         self.context.update({'form':form})
         if form.is_valid():
