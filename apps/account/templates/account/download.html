@@ -1,20 +1,21 @@
 {% extends "account/registro.html" %}
 {% load staticfiles %}
+{% load i18n %}
 
-{% block title %} {{ servername }} - Descargas{% endblock %}
+{% block title %} {{ servername }} - {% trans 'Descargas' %}{% endblock %}
 
 {% block contenido %}
-	<h1>Pagina de Descargas </h3>
+	<h1>{% trans 'Pagina de Descargas' %}</h3>
 	<hr>
-    <p class="metin">En esta pagina encontraras la descarga del cliente oficial del juego </p>
+    <p class="metin">{% trans 'En esta pagina encontraras la descarga del cliente oficial del juego' %} </p>
 	<div class="container container-custom metin">
 		{% if descarga %}
 		<table border="1" style="border: 1px solid #fff;">
         	<tr>
-            	<td>Opciones </td>
-            	<td>Peso (MB)</td>
-            	<td>Fecha</td>
-            	<td>Link</td>
+            	<td>{% trans 'Opciones' %} </td>
+            	<td>{% trans 'Peso' %} (MB)</td>
+            	<td>{% trans 'Fecha' %}</td>
+            	<td>{% trans 'Link' %}</td>
             </tr>
             {% for cosa in descarga %}
             <tr>
@@ -25,31 +26,11 @@
 
             </tr>
             {% endfor %}
-            <!-- <tr>
-                <td>Media Fire</td>
-                <td>1380 GB</td>
-                <td>2016-11-16</td>
-                <td><a href="{{ key.download2 }}" target="blank">Link </a></td>
 
-            </tr> -->
         </table>
 				{% else %}
-				<p>Aun no se han publicado los links de descarga</p>
+				<p>{% trans 'Aun no se han publicado los links de descarga' %}</p>
 				{% endif %}
         <br><br>
-        <!--<table class="table table-hover">
-            <tr>
-                <td>Parche</td>
-                <td>Peso (MB)</td>
-                <td>Fecha</td>
-                <td>Link</td>
-            </tr>
-			<tr>
-                <td>Parche Oficial</td>
-                <td>4.17 MB</td>
-                <td>2016-11-16</td>
-                <td><a href="#" target="blank">Link </a></td>
-            </tr>
-        </table> -->
     </div>
 {% endblock %}

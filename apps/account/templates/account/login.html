@@ -1,7 +1,8 @@
 {% extends "account/registro.html" %}
 {% load bootstrap %}
+{% load i18n %}
 
-{% block title %}{{ servername }} - Login{% endblock %}
+{% block title %}{{ servername }} - {% trans 'Login' %}{% endblock %}
 
 
 {% block contenido %}
@@ -16,7 +17,7 @@
   {{ form.as_p }}
   <input type="submit" value="Login">
 </form> -->
-<h1>Iniciar sesión </h1>
+<h1>{% trans 'Iniciar sesión' %} </h1>
 <hr>
 <div class="container">
     <div class="row">
@@ -38,9 +39,9 @@
                     <p class="metin2"> {{ key }} </p>
                 {% endif %}
                 <div class="panel-footer">
-                    <p>No esta registrado? <a href="{% url 'account:create' %}#content">Registrese aqui</a></p>
-                    <p><a href="{% url 'account:request' %}#content"> Recuperar password</a></p>
-                    <p><a href="{% url 'email' %}#content"> Re enviar correo de activacion </a></p>
+                    <p>{% trans 'No esta registrado?' %} <a href="{% url 'account:create' %}#content">{% trans 'Registrese aqui' %}</a></p>
+                    <p><a href="{% url 'account:request' %}#content"> {% trans 'Recuperar password' %}</a></p>
+                    <p><a href="{% url 'email' %}#content"> {% trans 'Re enviar correo de activacion' %} </a></p>
                     </div>
             </div>
         </div>

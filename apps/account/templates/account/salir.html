@@ -1,5 +1,6 @@
 {% extends "account/registro.html" %}
 {% load bootstrap %}
+{% load i18n %}
 
 
 {% block title %} {{ servername }} - Bye {% endblock %}
@@ -7,14 +8,14 @@
 
 {% block contenido %}
 
-	<h1> Logout </h1>
+	<h1> {% trans'Logout' %} </h1>
 	<hr>
 	{% if datos.real_name %}
-	<p class="metin">el usuario {{ datos.real_name }} </p>
+	<p class="metin">{% trans'el usuario' %} {{ datos.real_name }} </p>
 	{% else %}
-	<p class="metin">el usuario {{ datos.login }} </p>
+	<p class="metin">{% trans'el usuario' %} {{ datos.login }} </p>
 	{% endif %}
-	<p class="metin"> se ha desconectado de forma correcta. </p>
-	<p><a class="metin" href="{% url 'account:login' %}"> Login </a></p>
+	<p class="metin"> {% trans'se ha desconectado de forma correcta.' %} </p>
+	<p><a class="metin" href="{% url 'account:login' %}"> {% trans'Login' %} </a></p>
 
 {% endblock %}

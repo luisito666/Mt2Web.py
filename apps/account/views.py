@@ -36,6 +36,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.utils import timezone
 
 #importando clase usada para la traduccion
+from django.utils import translation
 from django.utils.translation import ugettext as _
 
 #importando las configuracines de django
@@ -47,6 +48,14 @@ class Create(CreateView):
   template_name = 'account/registro.html'
   model = Account
   form_class = CreateUserForm
+
+  def get(self, request, *args, **kwargs):
+    #Cargando idioma definido
+    if request.session.has_key('lang'):
+      translation.activate(request.session['lang'])
+
+    return super(Create,self).get(request)
+
   def form_valid(self,form):
     key = aleatorio(40)
     self.object = form.save(commit=False)
@@ -65,10 +74,11 @@ class Create(CreateView):
     except:
       pass
     return HttpResponseRedirect( self.get_success_url() )
+
   def get_context_data(self, **kwargs):
-        context = super(Create, self).get_context_data(**kwargs)
-        context.update(contexto())
-        return context
+    context = super(Create, self).get_context_data(**kwargs)
+    context.update(contexto())
+    return context
 
 #funcion usada para el login
 #Refactorizando la funcion de login
@@ -85,7 +95,11 @@ class login(View):
         self.context = contexto()
 
     def get(self, request):
+        if request.session.has_key('lang'):
+            translation.activate(request.session['lang'])
+
         form = self.form()
+
         if request.session.has_key('g1jwvO'):
             userinfo = self.modelA.objects.get(id=request.session['g1jwvO'])
             pjinfo = self.modelB.objects.filter(account_id=userinfo.id)
@@ -103,7 +117,11 @@ class login(View):
         return render(request, self.template_name, self.context)
 
     def post(self, request):
+        if request.session.has_key('lang'):
+            translation.activate(request.session['lang'])
+
         form = self.form(request.POST or None)
+
         if form.is_valid():
             try:
                 a = self.modelA.objects.get(login=form.cleaned_data['login'])
@@ -201,19 +219,22 @@ def exito(request):
 #Clase que se uso para realizar comparacion entre una funcion y una Clase
 #Cuando hicimos los test el rendimiento de esta clase en comparacion con la funcion exito
 #El rendimiento de la funcion fue superior, aparte la funcion exito solo tenia una linea de codigo
-#Esto permitia que fuera procesada en menos tiempo en comparacion con lesta clase
-class ExitoRefine(View):
+#Esto permitia que fuera procesada en menos tiempo en comparacion con esta clase
+class ClaseExito(View):
     #primero definimos el template o skin que se usara en la pagina.
     template_name = 'account/exito.html'
 
     #Ahora vamos a crear un contexto personalizado, este contexto se usara para renderizarlo
     #en el template que se definio primero.
     def __init__(self):
-        super(ExitoRefine, self).__init__()
+        super(ClaseExito, self).__init__()
         self.context = contexto()
 
     #Se sobre escribe el methodo get, esto para atender este tipo de peticiones.
     def get(self,request):
+        if request.session.has_key('lang'):
+            translation.activate(request.session['lang'])
+
         #Se renderiza el template con el contexto.
         return render(request,self.template_name, self.context)
 
@@ -233,7 +254,7 @@ class Descargas(View):
         return render(request, self.template_name, self.context)
 
 #clase usada para la pagina del ranking del juego y paginarlo
-class top(ListView):
+class ClasificacionPersonajes(ListView):
   model = Top
   template_name = 'account/top100.html'
   #context_object_name = 'player'
@@ -241,20 +262,32 @@ class top(ListView):
   #queryset = Player.objects.filter(string__contains='[%]%')
   paginate_by = 20
 
+  def get(self, request):
+      if request.session.has_key('lang'):
+          translation.activate(request.session['lang'])
+
+      return super(ClasificacionPersonajes,self).get(request)
+
   def get_context_data(self, **kwargs):
-        context = super(top, self).get_context_data(**kwargs)
+        context = super(ClasificacionPersonajes, self).get_context_data(**kwargs)
         context.update(contexto())
         return context
 
 #clase usada para renderizar el top del juego y paginarlo
-class top_g(ListView):
+class ClasificacionGremios(ListView):
   model = Guild
   template_name = 'account/top_g.html'
   queryset = Guild.objects.all().order_by('-level','-exp','-win', '-ladder_point')
   paginate_by = 20
 
+  def get(self, request):
+      if request.session.has_key('lang'):
+          translation.activate(request.session['lang'])
+
+      return super(ClasificacionGremios,self).get(request)
+
   def get_context_data(self, **kwargs):
-        context = super(top_g, self).get_context_data(**kwargs)
+        context = super(ClasificacionGremios, self).get_context_data(**kwargs)
         context.update(contexto())
         return context
 

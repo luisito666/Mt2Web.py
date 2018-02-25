@@ -1,19 +1,20 @@
 {% extends "account/registro.html" %}
 {% load staticfiles %}
+{% load i18n %}
 
-{% block title %} {{ servername }} - Ranking{% endblock %}
+{% block title %} {{ servername }} - {% trans'Ranking' %} {% endblock %}
 
 {% block contenido %}
-	<h1 class="metin">Ranking</h3>
+	<h1 class="metin">{% trans'Ranking' %}</h3>
 	<hr>
-    <p class="metin">El ranking sera actualizado cada 4 horas. </p>
-	<div class="container container-custom center-block">	
+    <p class="metin">{% trans'El ranking sera actualizado cada 4 horas.' %} </p>
+	<div class="container container-custom center-block">
 		<table>
         	<tr>
-            	<td class="color-white">Posición </td>
-                <td class="color-white">Nombre </td>
-            	<td class="color-white">Nivel </td>
-                <td class="color-white">Gremio </td>
+            	<td class="color-white">{% trans'Posición' %} </td>
+                <td class="color-white">{% trans'Nombre' %} </td>
+            	<td class="color-white">{% trans'Nivel' %} </td>
+                <td class="color-white">{% trans'Gremio' %} </td>
             	<!--<td></td>-->
             </tr>
             {% for cosa in object_list %}
@@ -26,26 +27,19 @@
 
             </tr>
             {% endfor %}
-            <!-- <tr>
-                <td>Media Fire</td>
-                <td>1380 GB</td>
-                <td>2016-11-16</td>
-                <td><a href="{{ key.download2 }}" target="blank">Link </a></td>
-
-            </tr> -->
         </table>
-	
+
         {% if is_paginated %}
         <div class="pagination">
             <span class="page-links">
                 {% if page_obj.has_previous %}
-                    <a href="{% url 'account:top' %}?page={{ page_obj.previous_page_number }}#content">anterior</a>
+                    <a href="{% url 'account:top' %}?page={{ page_obj.previous_page_number }}#content">{% trans'anterior' %}</a>
                 {% endif %}
                 <span class="page-current">
-                    Pagina {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+                    {% trans'Pagina' %} {{ page_obj.number }} {% trans'de' %} {{ page_obj.paginator.num_pages }}.
                 </span>
                 {% if page_obj.has_next %}
-                    <a href="{% url 'account:top' %}?page={{ page_obj.next_page_number }}#content">siguiente</a>
+                    <a href="{% url 'account:top' %}?page={{ page_obj.next_page_number }}#content">{% trans'siguiente' %}</a>
                 {% endif %}
             </span>
         </div>

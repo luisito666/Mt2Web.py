@@ -1,10 +1,13 @@
 {% extends "account/registro.html" %}
-{% block title %} {{ servername }} - Registro Exitoso {% endblock %}
+{% load i18n %}
+
+{% block title %} {{ servername }} - {% trans 'Registro Exitoso' %} {% endblock %}
+
 
 {% block contenido %}
-	<h1>Registo Exitoso</h1>
+	<h1>{% trans 'Registo Exitoso' %}</h1>
 	<hr>
-	<p> Su registro se ha relizado correctamente. </p>
-	<p> Ahora puedes entrar al juego </p>
+	<p> {% trans 'Su registro se ha relizado correctamente.' %} </p>
+	<p>{% trans 'Ahora puedes entrar al juego' %} </p>
 
 {% endblock %}

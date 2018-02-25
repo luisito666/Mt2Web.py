@@ -54,21 +54,21 @@
               <ul>
 					     <li class="menu1"><a href="{% url 'index' %}" style="font-size: 10px;"><span class="chinese">INICIO</span><br>HOME</a></li>
 					     <li class="menu2">
-                <a href="{% url 'account:create' %}" style="font-size: 10px;"><span class="chinese">REGISTRO</span><br>REGISTER</a>
+                <a href="{% url 'account:create' %}" style="font-size: 10px;"><span class="chinese">REGISTRO</span><br>REGISTRY</a>
                </li>
 					     <li class="menu3">
-                <a href="{% url 'account:descarga' %}" style="font-size: 10px;"><span class="chinese">DESCARGAR</span><br>DOWNLOAD</a>
+                <a href="{% url 'account:descarga' %}" style="font-size: 10px;"><span class="chinese">DESCARGAS</span><br>DOWNLOADS</a>
                </li>
 					     <li class="menu4">
-                <a href="{% url 'account:top' %}" style="font-size: 10px;"><span class="chinese">TOP JUGADORES</span><br>PLAYER RANKING</a>
+                <a href="{% url 'account:top' %}" style="font-size: 10px;"><span class="chinese">CLASIFICACIÓN</span><br>PLAYER RANKING</a>
                </li>
                {% if request.session.g1jwvO %}
 					     <li class="menu8">
-                <a href="{% url 'account:login' %}" style="font-size: 10px;"><span class="chinese">USER PANEL</span><br>User CP</a>
+                <a href="{% url 'account:login' %}" style="font-size: 10px;"><span class="chinese">USUARIO CP</span><br>USER PANEL</a>
                </li>
                {% else %}
 					     <li class="menu8">
-                <a href="{% url 'account:login' %}" style="font-size: 10px;"><span class="chinese">Ingresar </span><br>login</a>
+                <a href="{% url 'account:login' %}" style="font-size: 10px;"><span class="chinese">INGRESAR </span><br>LOG IN</a>
                </li>
                {% endif %}
 				      </ul>
@@ -145,7 +145,7 @@
               </div>
               <div class="sbui sb-con">
               <center>
-                <h10>{% trans 'Top Gremios' %}</h10>
+                <h10>{% trans 'Clasificación Gremios' %}</h10>
               </center>
               <hr>
               <span  id="minirankcontent">
@@ -225,7 +225,7 @@
                     <div class="sbox">
                       <div class="sbui sb-con">
                         <center>
-                          <h10>{% trans 'Top Jugadores' %}</h10>
+                          <h10>{% trans 'Clasificación' %}</h10>
                         </center>
                         <hr>
                         <span  id="minirankcontent">

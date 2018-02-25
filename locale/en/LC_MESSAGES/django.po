@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-18 19:26-0500\n"
+"POT-Creation-Date: 2018-02-24 23:51-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,6 +15,78 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: apps/account/forms.py:31
+msgid "el nombre de usuario es requerido"
+msgstr ""
+
+#: apps/account/forms.py:32
+msgid "el nombre de usuario ya esta registrado"
+msgstr ""
+
+#: apps/account/forms.py:33
+msgid "ingrese un nombre de usuario valido"
+msgstr ""
+
+#: apps/account/forms.py:37
+msgid "este campo es requerido"
+msgstr ""
+
+#: apps/account/forms.py:41
+msgid "el password es requerido"
+msgstr ""
+
+#: apps/account/forms.py:45
+msgid "el email es requerido"
+msgstr ""
+
+#: apps/account/forms.py:46
+msgid "ingrese un correo valido"
+msgstr ""
+
+#: apps/account/forms.py:56
+msgid "El login no puede contener espacios en blanco"
+msgstr ""
+
+#: apps/account/forms.py:61
+msgid "el nombre de usuario debe contener mas de 4 caracteres"
+msgstr ""
+
+#: apps/account/forms.py:66
+msgid "el password debe contener por lo menos 5 caracteres"
+msgstr ""
+
+#: apps/account/forms.py:71
+msgid "el codigo debe ser un valor positivo."
+msgstr ""
+
+#: apps/account/forms.py:76
+msgid "el codigo debe tener 7 caracteres"
+msgstr ""
+
+#: apps/account/forms.py:81
+msgid "el codigo no puede contener mas de 7 caracteres"
+msgstr ""
+
+#: apps/account/forms.py:86
+msgid "El campo no puede contener espacios en blanco"
+msgstr ""
+
+#: apps/account/forms.py:93
+msgid "Nombre de Usuario"
+msgstr "Username"
+
+#: apps/account/forms.py:95
+msgid "Nombre real"
+msgstr "Real Name"
+
+#: apps/account/forms.py:97
+msgid "Codigo de borrado"
+msgstr "Errase Code"
+
+#: apps/account/forms.py:119 apps/account/forms.py:137
+msgid "Usuario"
+msgstr "User"
 
 #: apps/account/templates/account/activar_cuenta.html:6
 msgid "Activacion de cuenta"
@@ -24,140 +96,192 @@ msgstr ""
 msgid "Activacion de Cuentas"
 msgstr ""
 
-#: apps/account/views.py:59
+#: apps/account/templates/account/exito.html:4
+msgid "Registro Exitoso"
+msgstr ""
+
+#: apps/account/templates/account/exito.html:8
+msgid "Registo Exitoso"
+msgstr ""
+
+#: apps/account/templates/account/exito.html:10
+msgid "Su registro se ha relizado correctamente."
+msgstr ""
+
+#: apps/account/templates/account/exito.html:11
+msgid "Ahora puedes entrar al juego"
+msgstr ""
+
+#: apps/account/templates/account/login.html:5
+msgid "Login"
+msgstr ""
+
+#: apps/account/templates/account/login.html:20
+msgid "Iniciar sesión"
+msgstr "Log In"
+
+#: apps/account/templates/account/login.html:42
+msgid "No esta registrado?"
+msgstr ""
+
+#: apps/account/templates/account/login.html:42
+msgid "Registrese aqui"
+msgstr ""
+
+#: apps/account/templates/account/login.html:43
+msgid "Recuperar password"
+msgstr ""
+
+#: apps/account/templates/account/login.html:44
+msgid "Re enviar correo de activacion"
+msgstr ""
+
+#: apps/account/templates/account/registro.html:9 templates/index.html:262
+msgid "Registro"
+msgstr ""
+
+#: apps/account/templates/account/registro.html:13
+msgid "Registro de Cuenta"
+msgstr ""
+
+#: apps/account/templates/account/registro.html:15
+msgid "Al registrarse aceptas las condiciones de uso de"
+msgstr ""
+
+#: apps/account/views.py:68
 msgid "Bienvenido a "
 msgstr ""
 
-#: apps/account/views.py:112 apps/account/views.py:134
+#: apps/account/views.py:130 apps/account/views.py:152
 msgid "Nombre de usuario o password incorrecto"
-msgstr ""
+msgstr "Username or Password Incorrect"
 
-#: apps/account/views.py:127 apps/account/views.py:405
-#: apps/account/views.py:503
+#: apps/account/views.py:145 apps/account/views.py:438
+#: apps/account/views.py:536
 msgid "Tu cuenta esta baneada"
-msgstr ""
+msgstr "Your Account is Baned"
 
-#: apps/account/views.py:141
+#: apps/account/views.py:159
 msgid "Rellene todos los campos correctamente"
-msgstr ""
+msgstr "fill in all the fields"
 
-#: apps/account/views.py:153
+#: apps/account/views.py:171
 msgid "invalido"
-msgstr ""
+msgstr "Invalid"
 
-#: apps/account/views.py:182
+#: apps/account/views.py:200
 msgid "se ha cambiado el password exitosamente."
 msgstr ""
 
-#: apps/account/views.py:185
+#: apps/account/views.py:203
 msgid "El password no es correcto"
 msgstr ""
 
-#: apps/account/views.py:189 apps/account/views.py:375
+#: apps/account/views.py:207 apps/account/views.py:408
 msgid "Los password no coinciden"
 msgstr ""
 
-#: apps/account/views.py:278
+#: apps/account/views.py:311
 msgid "No se encuentran registros en nuestra base de datos"
 msgstr ""
 
-#: apps/account/views.py:295
+#: apps/account/views.py:328
 msgid ""
 "se ha enviado un correo electronico con las instrucciones para recupear el "
 "password"
 msgstr ""
 
-#: apps/account/views.py:298
+#: apps/account/views.py:331
 msgid "Error enviando el correo"
 msgstr ""
 
-#: apps/account/views.py:301
+#: apps/account/views.py:334
 msgid "El usuario no concuerda con el correo electronico"
 msgstr ""
 
-#: apps/account/views.py:319
+#: apps/account/views.py:352
 msgid "El token que intentas usar no existe"
 msgstr ""
 
-#: apps/account/views.py:326
+#: apps/account/views.py:359
 msgid "El token que intentas usar esta vencido"
 msgstr ""
 
-#: apps/account/views.py:333
+#: apps/account/views.py:366
 msgid "ingresa tu nuevo password"
 msgstr ""
 
-#: apps/account/views.py:340 apps/account/views.py:408
+#: apps/account/views.py:373 apps/account/views.py:441
 msgid "No has enviado ningun token"
 msgstr ""
 
-#: apps/account/views.py:353
+#: apps/account/views.py:386
 msgid "No se encuentra el usuario"
 msgstr ""
 
-#: apps/account/views.py:362
+#: apps/account/views.py:395
 msgid "Password actualizado correctamente"
 msgstr ""
 
-#: apps/account/views.py:368
+#: apps/account/views.py:401
 msgid "No existe la session temporal"
 msgstr ""
 
-#: apps/account/views.py:388
+#: apps/account/views.py:421
 msgid "El token que intentas usar no existe."
 msgstr ""
 
-#: apps/account/views.py:395 apps/account/views.py:497
+#: apps/account/views.py:428 apps/account/views.py:530
 msgid "Tu cuenta ya esta activada"
 msgstr ""
 
-#: apps/account/views.py:402
+#: apps/account/views.py:435
 msgid "Tu cuenta se ha activado correctamente"
 msgstr ""
 
-#: apps/account/views.py:411
+#: apps/account/views.py:444
 msgid "Metodo no admitido"
 msgstr ""
 
-#: apps/account/views.py:436
+#: apps/account/views.py:469
 msgid ""
 "Se ha movido tu personaje correctamente debes esperar 30 min para iniciar "
 "con el."
 msgstr ""
 
-#: apps/account/views.py:442
+#: apps/account/views.py:475
 msgid "Error desbugueando."
 msgstr ""
 
-#: apps/account/views.py:447
+#: apps/account/views.py:480
 msgid "Ningun personaje coincide."
 msgstr ""
 
-#: apps/account/views.py:490
+#: apps/account/views.py:523
 msgid "Cuenta no existe."
 msgstr ""
 
-#: apps/account/views.py:513
+#: apps/account/views.py:546
 msgid "Activacion de cuentas "
 msgstr ""
 
-#: apps/account/views.py:521
+#: apps/account/views.py:554
 msgid "Error enviando correo al usuario"
 msgstr ""
 
-#: apps/account/views.py:526
+#: apps/account/views.py:559
 msgid "Se ha enviado el codigo de activacion al email"
 msgstr ""
 
-#: apps/account/views.py:531
+#: apps/account/views.py:564
 msgid "El email no coincide con el usuario"
 msgstr ""
 
-#: apps/account/views.py:536
+#: apps/account/views.py:569
 msgid "Por favor rellena todos los campos correctamente."
 msgstr ""
 
-#: core/views.py:22
+#: core/views.py:34
 msgid "New messages"
 msgstr ""
 
@@ -610,10 +734,6 @@ msgstr ""
 
 #: templates/index.html:261
 msgid "Inicio"
-msgstr ""
-
-#: templates/index.html:262
-msgid "Registro"
 msgstr ""
 
 #: templates/index.html:264
