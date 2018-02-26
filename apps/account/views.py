@@ -26,6 +26,8 @@ from apps.account.forms import (
 
 #importando funciones varias para el correcto funcionamiento de la web
 from apps.account.funciones import (
+    guild_top,
+    player_top,
     aleatorio,
     get_mail,
     get_mail_register,
@@ -43,6 +45,7 @@ from django.views.generic import (
     DetailView,
     ListView
 )
+
 from django.views import View
 from django.http import HttpResponseRedirect , HttpResponse
 from django.core.urlresolvers import reverse_lazy
@@ -278,7 +281,7 @@ class ClasificacionPersonajes(ListView):
   model = Top
   template_name = 'account/top100.html'
   #context_object_name = 'player'
-  queryset = Top.objects.all().exclude(Q(name__contains='[')).order_by('-level','ranking')
+  queryset = player_top()
   #queryset = Player.objects.filter(string__contains='[%]%')
   paginate_by = 20
 
@@ -295,7 +298,7 @@ class ClasificacionPersonajes(ListView):
 class ClasificacionGremios(ListView):
   model = Guild
   template_name = 'account/top_g.html'
-  queryset = Guild.objects.all().order_by('-level','-exp','-win', '-ladder_point')
+  queryset = guild_top()
   paginate_by = 20
 
   def get(self, request):

@@ -19,13 +19,19 @@ from django.utils import timezone
 #importando configuraciones del proyecto
 from core import settings
 
-#Esta funcion se usa para ver un mini top en la web
-def guild_top():
-	return Guild.objects.all().order_by('-level','-exp','-win', '-ladder_point')[:5]
+#Esta funcion se usa para ver la clasificacion de gremios
+def guild_top(cantidad=None):
+	#Cantidad tiene que se un numero.
+	if cantidad:
+		return Guild.objects.all().order_by('-level','-exp','-win', '-ladder_point')[:cantidad]
+	return Guild.objects.all().order_by('-level','-exp','-win', '-ladder_point')
 
-#Esta funcion se usa para mostrar un mini top de gremios en la web
-def player_top():
-	return Top.objects.all().exclude(Q(name__contains='[')).order_by('-level','-ranking')[:5]
+#Esta funcion se usa para mostrar la clasificacion del jugadores
+def player_top(cantidad=None):
+	#Cantidad tiene que ser un numero.
+	if cantidad:
+		return Top.objects.all().exclude(Q(name__contains='[')).order_by('-level','-ranking')[:cantidad]
+	return Top.objects.all().exclude(Q(name__contains='[')).order_by('-level','-ranking')
 
 #Esta funcion es para ver cuantas cuentas tiene el server
 def total_us():
@@ -115,11 +121,11 @@ def contexto():
 		'account': total_us(),
 		'online': last_hour(),
 		'actualmente': last_min(),
-		'top_player': player_top(),
-		'guild_top': guild_top()
+		'top_player': player_top(5),
+		'guild_top': guild_top(5)
 	}
 
-#funcion usada para activar las traducciones 
+#funcion usada para activar las traducciones
 def lenguaje(request):
 	if request.session.has_key('lang'):
 		translation.activate(request.session['lang'])
