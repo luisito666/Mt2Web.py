@@ -432,7 +432,7 @@ body {
     background-position: center 6%;
     text-align: center;
     color: #bdbdbd;
-    background-size: 100%;
+    background-size: cover;
     font-family: Arial,"Times New Roman",Times,serif;
     font-size: 12px;
     font-weight: bold;
