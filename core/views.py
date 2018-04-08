@@ -22,9 +22,10 @@ def index(request):
 				request.session['lang'] = request.GET.get('lang')
 				break
 			elif request.GET.get('lang') == 'default':
-				del request.session['lang']
-				break
-				
+				if request.session.has_key('lang'):
+					del request.session['lang']
+					break
+
 	#Cargando idioma definido
 	if request.session.has_key('lang'):
 		translation.activate(request.session['lang'])

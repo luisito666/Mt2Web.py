@@ -262,6 +262,8 @@
               <a href="{% url 'account:create' %}">{% trans 'Registro' %}</a> &middot;
               <!-- <a href="#">Equipo</a> &middot;-->
               <a href="{% url 'account:descarga' %}">{% trans 'Descarga' %}</a> &middot;
+              <a href="{% url 'index' %}?lang=en"><img src="{% static 'flags/en.png' %}" alt="English"></a>
+              <a href="{% url 'index' %}?lang=default"><img src="{% static 'flags/es.png' %}" alt="English"></a>
             </div>
 				    <div class="clear"></div>
           </div>
