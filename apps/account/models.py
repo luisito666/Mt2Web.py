@@ -38,7 +38,7 @@ class Account(models.Model):
     fish_mind_expire = models.DateTimeField(default=settings.BUFFSTUF)
     marriage_fast_expire = models.DateTimeField(default=settings.BUFFSTUF)
     money_drop_rate_expire = models.DateTimeField(default=settings.BUFFSTUF)
-    token_expire = models.DateTimeField(blank=True, null=True) 
+    token_expire = models.DateTimeField(blank=True, null=True)
 
     class Meta:
         db_table = 'account'

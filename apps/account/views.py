@@ -338,7 +338,7 @@ def recuperar_password(request):
         usuario.save()
         try:
             send_mail(
-              'Recuperar password',
+              _('Recuperar password'),
               'Content',
               settings.EMAIL_HOST_USER ,
               [usuario.email],
@@ -495,7 +495,7 @@ def desbuguear(request):
                         return render(request,'account/unlock.html', context)
                     else:
                         context.update({
-                            'key':_('Error desbugueando.'),
+                            'key':_('Error moviendo personaje'),
                             'if_form': True
                         })
                         return render(request,'account/unlock.html', context)

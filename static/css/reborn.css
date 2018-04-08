@@ -2,6 +2,31 @@
 @import 'https://fonts.googleapis.com/css?family=Salsa';
 @import 'https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i';
 
+.download_requirements {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.system_category_name {
+    font-weight: 600;
+    color: white;
+    font-family: "Merriweather", serif;
+    font-size: 12px;
+    letter-spacing: 0.4;
+    text-align: right;
+    padding-right: 5px;
+}
+
+.system_category_value {
+    color: gray;
+    font-family: "Merriweather", serif;
+    font-size: 12px;
+    letter-spacing: 0.4;
+    text-align: left;
+    padding-left: 5px;
+}
+
 .center-block {
   text-align: center;
 }
