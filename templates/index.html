@@ -8,19 +8,21 @@
   <!--Titulo de la pagina-->
   <title> {% block title %} {{ servername }} - {% trans 'Comienza la nueva aventura' %} {% endblock %} </title>
 
+  <!-- author -->
+  <!-- luisito666 https://github.com/luisito666 -->
+  <!-- end author -->
+
   <!--Inicio bloque meta -->
   <meta name="Keywords" content="Pagina oficial de {{ servername }}" />
+  <!--Fin del bloque meta -->
 
-  <!-- Meta -->
-
-	<!-- Favicon -->
-	<!-- <link rel="shortcut icon" href="favicon.ico" />-->
-
+  <!-- Inicio bloque link -->
   <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,700,300,100' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Rajdhani:400,700,600,500,300' rel='stylesheet' type='text/css'>	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" media="screen" href='{% static "css/reborn.css" %}'/>
   {% block css %}
   {% endblock  %}
+  <!-- Fin del bloque link -->
 	<!--[if lte IE 7]><link rel="stylesheet" type="text/css" media="screen" href="css/ie7.css" /><![endif]-->
 
 	<!-- JS -->
@@ -85,7 +87,8 @@
         <div class="w940">
         <!-- sidebar -->
         <div id="sidebar">
-          <div class="left"><!-- User Panel -->
+          <div class="left">
+            <!-- User Panel -->
             <div class="sbox">
               <div class="sbui sb-con-nao">
                 <center>
@@ -255,7 +258,7 @@
           </div>
           <div id="footer">
             <div class="f-left">
-              <p>Copyright &copy; {{ servername }} 2017. All rights reserved. Edited Design by <a href="#">luisito666</a></p>
+              <p>Copyright &copy; {{ servername }} 2017. All rights reserved. Edited Design by <a target="_blank" href="https://github.com/luisito666/Mt2Web.py">luisito666</a></p>
 				    </div>
 				    <div class="f-right">
               <a href="{% url 'index' %}">{% trans 'Inicio' %}</a> &middot;
