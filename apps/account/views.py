@@ -32,7 +32,6 @@ from apps.account.funciones import (
     get_mail,
     get_mail_register,
     cambio_mapa,
-    contexto,
     lenguaje
 )
 
@@ -98,11 +97,6 @@ class Create(CreateView):
       pass
     return HttpResponseRedirect( self.get_success_url() )
 
-  def get_context_data(self, **kwargs):
-    context = super(Create, self).get_context_data(**kwargs)
-    context.update(contexto())
-    return context
-
 #funcion usada para el login
 #Refactorizando la funcion de login
 class Login(View):
@@ -113,10 +107,6 @@ class Login(View):
     modelB = Top
     form = CustomLoginForm
 
-    def __init__(self):
-        super(Login,self).__init__()
-        self.context = contexto()
-
     def get(self, request):
         lenguaje(request)
         form = self.form()
@@ -124,18 +114,18 @@ class Login(View):
         if request.session.has_key('g1jwvO'):
             userinfo = self.modelA.objects.get(id=request.session['g1jwvO'])
             pjinfo = self.modelB.objects.filter(account_id=userinfo.id)
-            self.context.update({
+            context = {
                 'session': userinfo,
                 'personajes': pjinfo
-            })
-            return render(request, self.template_name_login, self.context)
+            }
+            return render(request, self.template_name_login, context)
         else:
             pass
 
-        self.context.update({
+        context = {
             'form':form
-        })
-        return render(request, self.template_name, self.context)
+        }
+        return render(request, self.template_name, context)
 
     def post(self, request):
         lenguaje(request)
@@ -145,11 +135,11 @@ class Login(View):
             try:
                 a = self.modelA.objects.get(login=form.cleaned_data['login'])
             except Account.DoesNotExist:
-                self.context.update({
+                context = {
                     'key':_('Nombre de usuario o password incorrecto'),
                     'form':form
-                })
-                return render(request, self.template_name, self.context)
+                }
+                return render(request, self.template_name, context)
 
             b = a.micryp(form.cleaned_data['password'])
             #Validando que las contraseñas coincidan
@@ -160,25 +150,25 @@ class Login(View):
                     if request.session.has_key('g1jwvO'):
                         return redirect('account:login')
                 else:
-                    self.context.update({
+                    context = {
                         'key':_('Tu cuenta esta baneada'),
                         'form':form
-                    })
-                    return render(request, self.template_name, self.context)
+                    }
+                    return render(request, self.template_name, context)
 
             else:
-                self.context.update({
+                context = {
                     'key':_('Nombre de usuario o password incorrecto'),
                     'form':form
-                })
-                return render(request, self.template_name, self.context)
+                }
+                return render(request, self.template_name, context)
 
         else:
-            self.context.update({
+            context = {
                 'key':_('Rellene todos los campos correctamente'),
                 'form':form
-            })
-            return render(request, self.template_name, self.context)
+            }
+            return render(request, self.template_name, context)
 
 #funcion usada para cerra session
 def Logout(request):
@@ -191,10 +181,9 @@ def Logout(request):
   	a = {
         'real_name':_('invalido')
     }
-  context = contexto()
-  context.update({
+  context = {
     'datos': a
-  })
+  }
   return render(request, 'account/salir.html',  context  )
 
 #funcion usada para cambiar password estando logeado
@@ -203,10 +192,9 @@ def changepasswd(request):
   """Declarando el formulario que usara esta funcion  """
   form = CustomChangePassword(request.POST or None)
   """Preparado el contexto usado por la funcion"""
-  context = contexto()
-  context.update({
+  context = {
     'form':form
-  })
+  }
   if request.session.has_key('g1jwvO'):
     try:
       a = Account.objects.get(id=request.session['g1jwvO'])
@@ -237,7 +225,7 @@ def changepasswd(request):
 #Esta funcion demuestra que aveces lo mas simple, es lo que mejor funciona.
 def exito(request):
   lenguaje(request)
-  return render(request, 'account/exito.html', contexto())
+  return render(request, 'account/exito.html')
 
 #Clase que se uso para realizar comparacion entre una funcion y una Clase
 #Cuando hicimos los test el rendimiento de esta clase en comparacion con la funcion exito
@@ -247,52 +235,36 @@ class ClaseExito(View):
     #primero definimos el template o skin que se usara en la pagina.
     template_name = 'account/exito.html'
 
-    #Ahora vamos a crear un contexto personalizado, este contexto se usara para renderizarlo
-    #en el template que se definio primero.
-    def __init__(self):
-        super(ClaseExito, self).__init__()
-        self.context = contexto()
-
     #Se sobre escribe el methodo get, esto para atender este tipo de peticiones.
     def get(self,request):
         lenguaje(request)
         #Se renderiza el template con el contexto.
-        return render(request,self.template_name, self.context)
+        return render(request,self.template_name)
 
 #clase usada para la pagina de descargas.
 class Descargas(View):
     model = Descarga
     template_name = 'account/download.html'
 
-    def __init__(self):
-        super(Descargas,self).__init__()
-        self.context = contexto()
-
     def get(self, request):
         lenguaje(request)
 
-        self.context.update({
+        context = {
             'descarga': self.model.objects.publicado(),
-        })
-        return render(request, self.template_name, self.context)
+        }
+        return render(request, self.template_name, context)
 
 #clase usada para la pagina del ranking del juego y paginarlo
 class ClasificacionPersonajes(ListView):
   model = Top
   template_name = 'account/top100.html'
-  #context_object_name = 'player'
   queryset = player_top()
-  #queryset = Player.objects.filter(string__contains='[%]%')
   paginate_by = 20
 
   def get(self, request):
       lenguaje(request)
       return super(ClasificacionPersonajes,self).get(request)
 
-  def get_context_data(self, **kwargs):
-        context = super(ClasificacionPersonajes, self).get_context_data(**kwargs)
-        context.update(contexto())
-        return context
 
 #clase usada para renderizar el top del juego y paginarlo
 class ClasificacionGremios(ListView):
@@ -305,11 +277,6 @@ class ClasificacionGremios(ListView):
       lenguaje(request)
       return super(ClasificacionGremios,self).get(request)
 
-  def get_context_data(self, **kwargs):
-        context = super(ClasificacionGremios, self).get_context_data(**kwargs)
-        context.update(contexto())
-        return context
-
 #Funcion usada para recuperar password por correo
 """Realizar refactorin a esta funcion """
 def recuperar_password(request):
@@ -317,10 +284,9 @@ def recuperar_password(request):
     """Declarando el formulario"""
     form = ResPassword(request.POST or None)
     """Preparando el contexto que manajara la funcion"""
-    context = contexto()
-    context.update({
+    context = {
         'form': form
-    })
+    }
     #validando los datos que se envian por post
     if request.method == 'POST' and form.is_valid():
       a = request.POST['login']
@@ -363,7 +329,7 @@ def process_password(request,url):
   """Declarando el formulario"""
   form = FormResetPassword(request.POST or None)
   """Preparando el contexto de la funcion"""
-  context = contexto()
+  context = {}
   if request.method == 'GET':
     if url:
       try:
@@ -434,7 +400,7 @@ def process_password(request,url):
 def process_reg(request, url):
   lenguaje(request)
   """Preparando el contexto usado por la funcion """
-  context = contexto()
+  context = {}
   if request.method == 'GET':
     if url:
       try:
@@ -471,10 +437,9 @@ def desbuguear(request):
     """Declarando el formulario que usara la funcion """
     form = CustomDesbugForm(request.POST or None)
     """Preparando el contexto usado por la funcion """
-    context = contexto()
-    context.update({
+    context = {
         'form': form,
-    })
+    }
     if request.session.has_key('g1jwvO'):
         try:
             a = Account.objects.get(id=request.session['g1jwvO'])
@@ -524,44 +489,42 @@ class requestToken(View):
     model = Account
     form = ResPassword
 
-    def __init__(self):
-        super(requestToken,self).__init__()
-        self.context = contexto()
-
     def get(self, request):
         lenguaje(request)
         form = self.form(request.POST or None)
-        self.context.update({
+        context = {
             'form':form
-        })
-        return render(request, self.template_name, self.context)
+        }
+        return render(request, self.template_name, context)
 
     def post(self, request):
         lenguaje(request)
 
         form = self.form(request.POST or None)
-        self.context.update({'form':form})
+        context = {
+            'form':form
+        }
         if form.is_valid():
             try:
                 a = self.model.objects.get(login=form.cleaned_data['login'])
             except Account.DoesNotExist:
-                self.context.update({
+                context.update({
                     'key':_('Cuenta no existe.')
                 })
-                return render(request, self.template_name, self.context)
+                return render(request, self.template_name, context)
 
             b = datetime.datetime(2009, 1, 1, 0, 0,)
             if a.availdt.year == b.year and a.availdt.month == b.month:
-                self.context.update({
+                context.update({
                     'key': _('Tu cuenta ya esta activada'),
                 })
-                return render(request, self.template_name, self.context)
+                return render(request, self.template_name, context)
 
             if a.status != 'OK':
-                self.context.update({
+                context.update({
                     'key':_('Tu cuenta esta baneada')
                 })
-                return render(request, self.template_name, self.context)
+                return render(request, self.template_name, context)
 
             if form.cleaned_data['email'] == a.email:
                 key = aleatorio(40)
@@ -576,22 +539,22 @@ class requestToken(View):
                         html_message=get_mail_register(a.login,key)
                     )
                 except:
-                    self.context.update({
+                    context.update({
                         'key':_('Error enviando correo al usuario')
                     })
-                    return render(request, self.template_name, self.context)
+                    return render(request, self.template_name, context)
 
-                self.context.update({
+                context.update({
                     'key':_('Se ha enviado el codigo de activacion al email')
                 })
-                return render(request, self.template_name, self.context)
+                return render(request, self.template_name, context)
             else:
-                self.context.update({
+                context.update({
                     'key': _('El email no coincide con el usuario')
                 })
-                return render(request, self.template_name, self.context)
+                return render(request, self.template_name, context)
         else:
-            self.context.update({
+            context.update({
                 'key':_('Por favor rellena todos los campos correctamente.')
             })
-            return render(request, self.template_name, self.context)
+            return render(request, self.template_name, context)

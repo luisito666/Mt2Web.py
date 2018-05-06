@@ -9,7 +9,6 @@ from django.shortcuts import render, redirect
 from django.utils import translation
 from django.utils.translation import ugettext as _
 
-from apps.account.funciones import *
 from apps.account.payview import PayWidget
 from core import settings
 from apps.account import models
@@ -29,11 +28,7 @@ def index(request):
 	if request.session.has_key('lang'):
 		translation.activate(request.session['lang'])
 
-	context = contexto()
-	context.update({
-		'key':_('New messages')
-	})
-	return render(request, 'index.html', contexto())
+	return render(request, 'index.html')
 
 def donaciones(request):
 	if request.session.has_key('g1jwvO'):
@@ -43,11 +38,10 @@ def donaciones(request):
 			pass
 
 		widget = PayWidget(a.login,a.email)
-		context = contexto()
-		context.update({
+		context = {
 				'widget':widget,
 				'session': a ,
-		})
+		}
 		return render(request, 'donaciones.html', context)
 	else:
 		return redirect('account:login')

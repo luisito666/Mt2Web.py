@@ -114,7 +114,7 @@ def cambio_mapa(cuenta, personaje):
 	return a
 
 #Funcion usada para manejar el contexto del proyecto
-def contexto():
+def contexto(request):
 	return {
 		'servername': settings.SERVERNAME,
 		'player': total_pl(),
