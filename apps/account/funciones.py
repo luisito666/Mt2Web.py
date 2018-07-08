@@ -24,16 +24,16 @@ from core import settings
 def guild_top(cantidad=None):
     # Cantidad tiene que se un numero.
     if cantidad:
-        return Guild.objects.all().order_by('-level','-exp','-win', '-ladder_point')[:cantidad]
-    return Guild.objects.all().order_by('-level','-exp','-win', '-ladder_point')
+        return Guild.objects.all().order_by('-level', '-exp', '-win', '-ladder_point')[:cantidad]
+    return Guild.objects.all().order_by('-level', '-exp', '-win', '-ladder_point')
 
 
 # Esta funcion se usa para mostrar la clasificacion del jugadores
 def player_top(cantidad=None):
     # Cantidad tiene que ser un numero.
     if cantidad:
-        return Top.objects.all().exclude(Q(name__contains='[')).order_by('-level','-ranking')[:cantidad]
-    return Top.objects.all().exclude(Q(name__contains='[')).order_by('-level','-ranking')
+        return Top.objects.all().exclude(Q(name__contains='[')).order_by('-level', '-ranking')[:cantidad]
+    return Top.objects.all().exclude(Q(name__contains='[')).order_by('-level', '-ranking')
 
 
 # Esta funcion es para ver cuantas cuentas tiene el server
@@ -140,5 +140,5 @@ def contexto(request):
 
 # funcion usada para activar las traducciones
 def lenguaje(request):
-    if request.session.has_key('lang'):
+    if 'lang' in request.session:
         translation.activate(request.session['lang'])

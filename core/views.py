@@ -7,11 +7,12 @@ from django.shortcuts import render, redirect
 
 # Importaciones para el soporte multi idioma
 from django.utils import translation
+from apps.account.funciones import lenguaje
 # from django.utils.translation import ugettext as _
 
 from apps.account.payview import PayWidget
 from core import settings
-from apps.account import models
+from apps.account.models import Account
 
 
 def index(request):
@@ -26,16 +27,17 @@ def index(request):
                 break
 
     # Cargando idioma definido
-    if request.session.has_key('lang'):
+    if 'lang' in request.session:
         translation.activate(request.session['lang'])
 
     return render(request, 'index.html')
 
 
 def donaciones(request):
-    if request.session.has_key('g1jwvO'):
+    lenguaje(request)
+    if 'g1jwvO' in request.session:
         try:
-            a = models.Account.objects.get(id=request.session['g1jwvO'])
+            a = Account.objects.get(id=request.session['g1jwvO'])
         except Account.DoesNotExist:
             pass
 
