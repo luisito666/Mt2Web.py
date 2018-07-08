@@ -68,18 +68,12 @@ class Create(CreateView):
     form_class = CreateUserForm
 
     def get(self, request):
-        # Cargando idioma definido
-        # if request.session.has_key('lang'):
-        #  translation.activate(request.session['lang'])
         lenguaje(request)
         return super(Create, self).get(request)
 
     def post(self, request):
-        # Cargando idioma definido
-        # if request.session.has_key('lang'):
-        #  translation.activate(request.session['lang'])
         lenguaje(request)
-        return super(Create,self).post(request)
+        return super(Create, self).post(request)
 
     def form_valid(self, form):
         key = aleatorio(40)
@@ -115,7 +109,7 @@ class Login(View):
         lenguaje(request)
         form = self.form()
 
-        if request.session.has_key('g1jwvO'):
+        if 'g1jwvO' in request.session:
             userinfo = self.modelA.objects.get(id=request.session['g1jwvO'])
             pjinfo = self.modelB.objects.filter(account_id=userinfo.id)
             context = {
@@ -151,7 +145,7 @@ class Login(View):
                 # Validando que la cuenta no este baneada
                 if a.status == 'OK':
                     request.session['g1jwvO'] = a.id
-                    if request.session.has_key('g1jwvO'):
+                    if 'g1jwvO' in request.session:
                         return redirect('account:login')
                 else:
                     context = {
@@ -201,7 +195,7 @@ def changepasswd(request):
     context = {
         'form': form
     }
-    if request.session.has_key('g1jwvO'):
+    if 'g1jwvO' in request.session:
         try:
             a = Account.objects.get(id=request.session['g1jwvO'])
         except Account.DoesNotExist:
@@ -382,7 +376,7 @@ def process_password(request, url):
         password = request.POST['password']
         password_again = request.POST['password_again']
         if password == password_again and form.is_valid():
-            if request.session.has_key('tmp_id'):
+            if 'tmp_id' in request.session:
                 try:
                     a = Account.objects.get(id=request.session['tmp_id'])
                 except:
@@ -459,7 +453,7 @@ def desbuguear(request):
     context = {
         'form': form,
     }
-    if request.session.has_key('g1jwvO'):
+    if 'g1jwvO' in request.session:
         try:
             a = Account.objects.get(id=request.session['g1jwvO'])
         except Account.DoesNotExist:
@@ -474,10 +468,10 @@ def desbuguear(request):
                     if resultado:
                         context.update({
                             'key': _('Se ha movido tu personaje correctamente debes esperar '
-                                    '30 min para iniciar con el.'),
+                                     '30 min para iniciar con el.'),
                             'if_form': True
                         })
-                        return render(request,'account/unlock.html', context)
+                        return render(request, 'account/unlock.html', context)
                     else:
                         context.update({
                             'key': _('Error moviendo personaje'),
@@ -503,7 +497,7 @@ def desbuguear(request):
         return redirect('account:login')
 
 
-# Clase usada para re enviar el correo de activacion , en caso de que no llegue.
+# Clase usada para re enviar el correo de activacion, en caso de que no llegue.
 class RequestToken(View):
 
     template_name = 'account/envio_token.html'
