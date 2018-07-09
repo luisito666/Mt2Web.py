@@ -2,24 +2,25 @@
 # Distribuido bajo la licencia MIT Software Licence
 # Mas informacion http://www.opensource.org/licenses/mit-license.php
 
-#Importaciones por default.
+# Importaciones por default.
 from __future__ import unicode_literals
 from django.db import models
 
-#Importando timezone
+# Importando timezone
 from django.utils import timezone
 
-#Importando el archivo de configuracion
+# Importando el archivo de configuracion
 from core import settings
 
-#Importando el libería de encriptación
+# Importando el libería de encriptación
 from hashlib import sha1
 
-#modelo generico compatible con todas las bases de datos
+
+# modelo generico compatible con todas las bases de datos
 class Account(models.Model):
     STATUS_ACCOUNT = (
-        ('OK','Disponible'),
-        ('BLOCK','Baneado'),
+        ('OK', 'Disponible'),
+        ('BLOCK', 'Baneado'),
     )
     login = models.CharField(unique=True, max_length=30)
     password = models.CharField(max_length=45)
@@ -38,7 +39,7 @@ class Account(models.Model):
     fish_mind_expire = models.DateTimeField(default=settings.BUFFSTUF)
     marriage_fast_expire = models.DateTimeField(default=settings.BUFFSTUF)
     money_drop_rate_expire = models.DateTimeField(default=settings.BUFFSTUF)
-    token_expire = models.DateTimeField(blank=True, null=True) 
+    token_expire = models.DateTimeField(blank=True, null=True)
 
     class Meta:
         db_table = 'account'
@@ -48,8 +49,9 @@ class Account(models.Model):
     def __str__(self):
         return self.login
 
-    #Funcion para encryptar password
-    def micryp(self,password):
-        mysql_hash = '*'+sha1(sha1(password.encode()).digest()).hexdigest() #Generando el hash
-        mysql_hash = mysql_hash.upper()                                 #Convirtiendo el hash a mayusculas
-        return mysql_hash                                               #Retornando el hash
+    # Funcion para encryptar password
+    @staticmethod
+    def micryp(password):
+        mysql_hash = '*'+sha1(sha1(password.encode()).digest()).hexdigest()  # Generando el hash
+        mysql_hash = mysql_hash.upper()                                      # Convirtiendo el hash a mayusculas
+        return mysql_hash                                                    # Retornando el hash
