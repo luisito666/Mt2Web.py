@@ -59,7 +59,6 @@ from core import querys
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
@@ -71,7 +70,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'localhost']
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -81,14 +79,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #librerias de Terceros
+    # librerias de Terceros
     'captcha',
     'bootstrapform',
     'corsheaders',
-    #aplicaciones
+    # aplicaciones
     'apps.account',
     'apps.player',
     'apps.varios',
+    'apps.administracion.estadisticas',
 ]
 
 MIDDLEWARE = [
@@ -116,7 +115,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'apps.account.funciones.contexto',
+				'core.applist.applist',
+				'apps.account.funciones.contexto',
             ],
         },
     },
@@ -167,8 +167,7 @@ DATABASE_ROUTERS = {
                     'apps.player.router.playerRouter',
                     'apps.account.router.AccountRouter',
                     }
-
-
+					
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
@@ -187,7 +186,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
@@ -201,18 +199,9 @@ USE_L10N = True
 
 USE_TZ = True
 
-#Configurando directorio que contiene las traducciones
-#Por favor no tocar
-LOCALE_PATHS = [
-    os.path.join(BASE_DIR, 'locale')
-]
-
-LANG_AVILABLE = ['en','pt','it']
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 #Nombre del servidor.
 SERVERNAME = 'Metin2 XxX'
@@ -235,6 +224,13 @@ PAYMENTWALL_PRIVATE_KEY = ''
 
 #Configuracion del recapcha no tocar
 NOCAPTCHA = True
+
+#Configurando directorio que contiene las traducciones
+#Por favor no tocar
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale')
+]
+LANG_AVILABLE = ['en','pt','it']
 
 #Configuracion files entorno de desarrollo no tocar
 STATICFILES_DIRS = [
