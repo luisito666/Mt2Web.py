@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-07 20:00-0500\n"
+"POT-Creation-Date: 2018-07-08 21:39-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,77 +16,77 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: apps/account/forms.py:31
+#: apps/account/forms.py:24
 msgid "el nombre de usuario es requerido"
 msgstr "the username is required"
 
-#: apps/account/forms.py:32
+#: apps/account/forms.py:25
 msgid "el nombre de usuario ya esta registrado"
 msgstr "the username is already registered"
 
-#: apps/account/forms.py:33
+#: apps/account/forms.py:26
 msgid "ingrese un nombre de usuario valido"
 msgstr "enter a valid username"
 
-#: apps/account/forms.py:37
+#: apps/account/forms.py:30
 msgid "este campo es requerido"
 msgstr "This field is required"
 
-#: apps/account/forms.py:41
+#: apps/account/forms.py:34
 msgid "el password es requerido"
 msgstr "the password is required"
 
-#: apps/account/forms.py:45
+#: apps/account/forms.py:38
 msgid "el email es requerido"
 msgstr "the email is required"
 
-#: apps/account/forms.py:46
+#: apps/account/forms.py:39
 msgid "ingrese un correo valido"
 msgstr "enter a valid email"
 
-#: apps/account/forms.py:56
+#: apps/account/forms.py:49
 msgid "El login no puede contener espacios en blanco"
 msgstr "The login can not contain whitespace"
 
-#: apps/account/forms.py:61
+#: apps/account/forms.py:55
 msgid "el nombre de usuario debe contener mas de 4 caracteres"
 msgstr "the username must contain more than 4 characters"
 
-#: apps/account/forms.py:66
+#: apps/account/forms.py:61
 msgid "el password debe contener por lo menos 5 caracteres"
 msgstr "the password must contain at least 5 characters"
 
-#: apps/account/forms.py:71
+#: apps/account/forms.py:67
 #, fuzzy
 #| msgid "el codigo debe ser un valor positivo"
 msgid "el codigo debe ser un valor positivo."
 msgstr "the code must be a positive value"
 
-#: apps/account/forms.py:76
+#: apps/account/forms.py:73
 msgid "el codigo debe tener 7 caracteres"
 msgstr "the code must have 7 characters"
 
-#: apps/account/forms.py:81
+#: apps/account/forms.py:79
 msgid "el codigo no puede contener mas de 7 caracteres"
 msgstr "the code can not contain more than 7 characters"
 
-#: apps/account/forms.py:86
+#: apps/account/forms.py:85
 msgid "El campo no puede contener espacios en blanco"
 msgstr "The field can not contain whitespace"
 
-#: apps/account/forms.py:93
+#: apps/account/forms.py:94
 msgid "Nombre de Usuario"
 msgstr "Username"
 
-#: apps/account/forms.py:95
+#: apps/account/forms.py:102
 msgid "Nombre real"
 msgstr "Real Name"
 
-#: apps/account/forms.py:97
+#: apps/account/forms.py:107
 msgid "Codigo de borrado"
 msgstr "Errase Code"
 
-#: apps/account/forms.py:119 apps/account/forms.py:137
+#: apps/account/forms.py:130 apps/account/forms.py:163
 msgid "Usuario"
 msgstr "User"
 
@@ -100,7 +100,7 @@ msgstr "Activation of accounts"
 
 #: apps/account/templates/account/cambio_passwd.html:5
 #: apps/account/templates/account/cambio_passwd.html:9
-#: apps/account/templates/account/login.html:43 apps/account/views.py:341
+#: apps/account/templates/account/login.html:43 apps/account/views.py:316
 msgid "Recuperar password"
 msgstr "Recover password"
 
@@ -257,7 +257,7 @@ msgstr "Dashboard"
 msgid "Hola"
 msgstr "Hello"
 
-#: apps/account/templates/account/logon.html:13
+#: apps/account/templates/account/logon.html:13 templates/donaciones.html:16
 msgid "Cuenta"
 msgstr "Account"
 
@@ -317,7 +317,7 @@ msgstr "Back"
 msgid "Cambiar"
 msgstr "Change"
 
-#: apps/account/templates/account/registro.html:9 templates/index.html:262
+#: apps/account/templates/account/registro.html:9 templates/index.html:265
 msgid "Registro"
 msgstr "Registry"
 
@@ -429,7 +429,7 @@ msgstr "Experience"
 msgid "Mover Personajes"
 msgstr "Move Players"
 
-#: apps/account/templates/account/unlock.html:12
+#: apps/account/templates/account/unlock.html:12 templates/donaciones.html:19
 msgid "Regresar"
 msgstr "Back"
 
@@ -441,143 +441,139 @@ msgstr "Diligence the form."
 msgid "Introduce el nombre del personaje que quieres mover."
 msgstr "Enter the name of the character you want to move."
 
-#: apps/account/views.py:91
+#: apps/account/views.py:87
 msgid "Bienvenido a "
 msgstr "Welcome to"
 
-#: apps/account/views.py:149 apps/account/views.py:171
+#: apps/account/views.py:137 apps/account/views.py:159
 msgid "Nombre de usuario o password incorrecto"
 msgstr "Username or Password Incorrect"
 
-#: apps/account/views.py:164 apps/account/views.py:460
-#: apps/account/views.py:562
+#: apps/account/views.py:152 apps/account/views.py:438
+#: apps/account/views.py:540
 msgid "Tu cuenta esta baneada"
 msgstr "Your Account is Baned"
 
-#: apps/account/views.py:178
+#: apps/account/views.py:166
 msgid "Rellene todos los campos correctamente"
 msgstr "fill in all the fields"
 
-#: apps/account/views.py:192
+#: apps/account/views.py:181
 msgid "invalido"
 msgstr "Invalid"
 
-#: apps/account/views.py:222
+#: apps/account/views.py:210
 msgid "se ha cambiado el password exitosamente."
 msgstr "The password has been changed successfully."
 
-#: apps/account/views.py:225
+#: apps/account/views.py:213
 msgid "El password no es correcto"
 msgstr "The password is not correct"
 
-#: apps/account/views.py:229 apps/account/views.py:429
+#: apps/account/views.py:217 apps/account/views.py:406
 msgid "Los password no coinciden"
 msgstr "The password does not match"
 
-#: apps/account/views.py:331
+#: apps/account/views.py:306
 msgid "No se encuentran registros en nuestra base de datos"
 msgstr "No records found in our database"
 
-#: apps/account/views.py:348
+#: apps/account/views.py:323
 msgid ""
 "se ha enviado un correo electronico con las instrucciones para recupear el "
 "password"
 msgstr "an email has been sent with the instructions to recover the password"
 
-#: apps/account/views.py:351
+#: apps/account/views.py:327
 msgid "Error enviando el correo"
 msgstr "Error sending mail"
 
-#: apps/account/views.py:354
+#: apps/account/views.py:330
 msgid "El usuario no concuerda con el correo electronico"
 msgstr "The user does not agree with the email"
 
-#: apps/account/views.py:373
+#: apps/account/views.py:350
 msgid "El token que intentas usar no existe"
 msgstr "The token you are trying to use does not exist"
 
-#: apps/account/views.py:380
+#: apps/account/views.py:357
 msgid "El token que intentas usar esta vencido"
 msgstr "The token you are trying to use is expired"
 
-#: apps/account/views.py:387
+#: apps/account/views.py:364
 msgid "ingresa tu nuevo password"
 msgstr "enter your new password"
 
-#: apps/account/views.py:394 apps/account/views.py:463
+#: apps/account/views.py:371 apps/account/views.py:441
 msgid "No has enviado ningun token"
 msgstr "You have not sent any token"
 
-#: apps/account/views.py:407
+#: apps/account/views.py:384
 msgid "No se encuentra el usuario"
 msgstr "The user is not found"
 
-#: apps/account/views.py:416
+#: apps/account/views.py:393
 msgid "Password actualizado correctamente"
 msgstr "Password updated correctly"
 
-#: apps/account/views.py:422
+#: apps/account/views.py:399
 msgid "No existe la session temporal"
 msgstr "There is no temporary session"
 
-#: apps/account/views.py:443
+#: apps/account/views.py:421
 msgid "El token que intentas usar no existe."
 msgstr "The token you are trying to use does not exist."
 
-#: apps/account/views.py:450 apps/account/views.py:556
+#: apps/account/views.py:428 apps/account/views.py:534
 msgid "Tu cuenta ya esta activada"
 msgstr "Your account is already activated"
 
-#: apps/account/views.py:457
+#: apps/account/views.py:435
 msgid "Tu cuenta se ha activado correctamente"
 msgstr "Your account has been activated successfully"
 
-#: apps/account/views.py:466
+#: apps/account/views.py:444
 msgid "Metodo no admitido"
 msgstr "Unsupported method"
 
-#: apps/account/views.py:492
+#: apps/account/views.py:470
 msgid ""
 "Se ha movido tu personaje correctamente debes esperar 30 min para iniciar "
 "con el."
 msgstr ""
 "Your character has been moved correctly you must wait 30 min to startwith th"
 
-#: apps/account/views.py:498
+#: apps/account/views.py:477
 msgid "Error moviendo personaje"
 msgstr "Error sending mail"
 
-#: apps/account/views.py:503
+#: apps/account/views.py:482
 msgid "Ningun personaje coincide."
 msgstr "No character matches."
 
-#: apps/account/views.py:549
+#: apps/account/views.py:527
 msgid "Cuenta no existe."
 msgstr "Account does not exist."
 
-#: apps/account/views.py:572
+#: apps/account/views.py:550
 msgid "Activacion de cuentas "
 msgstr "Activation of accounts "
 
-#: apps/account/views.py:580
+#: apps/account/views.py:558
 msgid "Error enviando correo al usuario"
 msgstr "Error sending mail to the user"
 
-#: apps/account/views.py:585
+#: apps/account/views.py:563
 msgid "Se ha enviado el codigo de activacion al email"
 msgstr "The activation code has been sent to the email"
 
-#: apps/account/views.py:590
+#: apps/account/views.py:568
 msgid "El email no coincide con el usuario"
 msgstr "The email does not match the user"
 
-#: apps/account/views.py:595
+#: apps/account/views.py:573
 msgid "Por favor rellena todos los campos correctamente."
 msgstr "Please fill in all the fields correctly."
-
-#: core/views.py:34
-msgid "New messages"
-msgstr ""
 
 #: templates/admin/404.html:4 templates/admin/404.html:8
 msgid "Page not found"
@@ -934,60 +930,81 @@ msgstr ""
 msgid "Save and continue editing"
 msgstr ""
 
+#: templates/donaciones.html:4 templates/donaciones.html:7
+msgid "Donaciones"
+msgstr "Donations"
+
+#: templates/donaciones.html:10
+msgid ""
+"Las donaciones son usadas para el mantenimiento del servidor, el pago del "
+"hosting web y otros gastos relacionados con el servidor"
+msgstr ""
+"Donations are used for server maintenance, payment of the"
+"web hosting and other expenses related to the server"
+
+
+#: templates/donaciones.html:13
+msgid ""
+"Dependiendo de la cantidad de dinero que donas asi mismo seras recompenzado "
+"con MDS que sirven para comprar items especiales en el juego."
+msgstr ""
+"Depending on the amount of money you donate, you will be rewarded"
+"with MDS that are used to buy special items in the game."
+
 #: templates/index.html:9
 msgid "Comienza la nueva aventura"
 msgstr "The new adventure begins"
 
-#: templates/index.html:92
+#: templates/index.html:95
 msgid "Informaci&oacute;n"
 msgstr "Information"
 
-#: templates/index.html:97
+#: templates/index.html:100
 msgid "Servidor online"
 msgstr "Online server"
 
-#: templates/index.html:105
+#: templates/index.html:108
 msgid "Jugadores online."
 msgstr "Online players"
 
-#: templates/index.html:109
+#: templates/index.html:112
 msgid "Jugadores ult. 24h"
 msgstr "Players last. 24h"
 
-#: templates/index.html:113
+#: templates/index.html:116
 msgid "Registros:"
 msgstr "Records:"
 
-#: templates/index.html:117
+#: templates/index.html:120
 msgid "Personajes:"
 msgstr "Characters:"
 
-#: templates/index.html:121
+#: templates/index.html:124
 msgid " Nivel Inicial: 120 "
 msgstr " Initial Level: 120 "
 
-#: templates/index.html:125
+#: templates/index.html:128
 msgid " Nivel Maximo: 120"
 msgstr " Maximum level: 120"
 
-#: templates/index.html:129
+#: templates/index.html:132
 #, python-format
 msgid "PVP 100%% "
 msgstr "PVP 100%%"
 
-#: templates/index.html:148
+#: templates/index.html:151
 msgid "Clasificación Gremios"
 msgstr "Classification Guilds"
 
-#: templates/index.html:163 templates/index.html:243
+#: templates/index.html:166 templates/index.html:246
 msgid "Clasificacion Comp."
 msgstr "Full Classification"
 
-#: templates/index.html:189
+#: templates/index.html:192
 msgid "Bienvenidos a"
 msgstr "Welcome to"
 
-#: templates/index.html:191
+#: templates/index.html:194
 msgid ""
 "Información Básica: Servidor Dedicado a las Guerras y Duelos. Todo Accesible "
 "en el Juego; Servidor de Alta Calidad y Estabilidad."
@@ -995,11 +1012,11 @@ msgstr ""
 "Basic information: Server Dedicated to Wars and Duels. All accessible in the "
 "game; Server of High Quality and Stability."
 
-#: templates/index.html:192
+#: templates/index.html:195
 msgid "El Yang es el objeto mas valioso en "
 msgstr "Yang is the most valuable object in"
 
-#: templates/index.html:192
+#: templates/index.html:195
 msgid ""
 " Inevitablemente se deberá comerciar, no esperes mas, anímate y únete a esta "
 "gran aventura."
@@ -1007,7 +1024,7 @@ msgstr ""
 " Inevitably you should trade, do not wait any longer, cheer up and join "
 "thisgreat adventure."
 
-#: templates/index.html:193
+#: templates/index.html:196
 msgid ""
 "Todo es adquirible en el juego, el jugador puede escoger entre conseguir su "
 "equipamiento mediante el PVM o batallando en contra otros jugadores PVP para "
@@ -1017,7 +1034,7 @@ msgstr ""
 "hisequipment through PVM or battling against other players PVP forearn glory "
 "points."
 
-#: templates/index.html:194
+#: templates/index.html:197
 msgid ""
 "Nuevos Jefes, Desafían a los Jugadores, Eventos de Jefes Semanales, "
 "Encontraras una gran variedad de mobs en"
@@ -1025,19 +1042,19 @@ msgstr ""
 "New Bosses, Challenge Players, Weekly Boss Events, You will find a great "
 "variety of mobs in"
 
-#: templates/index.html:207
+#: templates/index.html:210
 msgid "PRESENTACION DEL SERVIDOR"
 msgstr "PRESENTATION OF THE SERVER"
 
-#: templates/index.html:228
+#: templates/index.html:231
 msgid "Clasificación"
 msgstr "Classification"
 
-#: templates/index.html:261
+#: templates/index.html:264
 msgid "Inicio"
 msgstr "Home"
 
-#: templates/index.html:264
+#: templates/index.html:267
 msgid "Descarga"
 msgstr "Download"
 
