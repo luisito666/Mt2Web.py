@@ -3,5 +3,6 @@
 # Mas informacion http://www.opensource.org/licenses/mit-license.php
 from django.apps import AppConfig
 
+
 class AccountConfig(AppConfig):
     name = 'account'

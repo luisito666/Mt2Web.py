@@ -1,22 +1,23 @@
 {% extends "account/registro.html" %}
 {% load bootstrap %}
+{% load i18n %}
 
-{% block title %} {{ servername }} - Recuperar password {% endblock %}
+{% block title %} {{ servername }} - {% trans 'Recuperar password' %} {% endblock %}
 
 
 {% block contenido %}
-    <h1>Recuperar password </h3>
+    <h1>{% trans 'Recuperar password' %} </h3>
     <hr>
     {% if if_form %}
-    <p>Diligencia el formulario</p>
+    <p>{% trans 'Diligencia el formulario' %}</p>
     {% if key %}
-        <p> Mensaje: <strong>{{ key }}</strong> </p>
+        <p> {% trans 'Mensaje:' %} <strong>{{ key }}</strong> </p>
     {% endif %}
       <form action="" method="POST" class="form-horizontal metin">
       {% csrf_token %}
         {{ form|bootstrap_horizontal }}
         <div class="form-group">
-          <button type="submit" class="btn btn-primary">Enviar</button>
+          <input type="submit" class="btn login lime" value="{% trans 'Enviar' %}">
         </div>
       </form>
     {% else %}

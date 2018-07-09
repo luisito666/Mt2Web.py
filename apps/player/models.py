@@ -178,6 +178,7 @@ class PlayerDeleted(models.Model):
         managed = False
         db_table = 'player_deleted'
 
+
 class Guild(models.Model):
     name = models.CharField(max_length=12)
     sp = models.SmallIntegerField()

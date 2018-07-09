@@ -1,55 +1,59 @@
 {% extends "account/registro.html" %}
 {% load staticfiles %}
+{% load i18n %}
 
-{% block title %} {{ servername }} - Descargas{% endblock %}
+{% block title %} {{ servername }} - {% trans 'Descargas' %}{% endblock %}
 
 {% block contenido %}
-	<h1>Pagina de Descargas </h3>
+	<h1>{% trans 'Pagina de Descargas' %}</h3>
 	<hr>
-    <p class="metin">En esta pagina encontraras la descarga del cliente oficial del juego </p>
+  <p class="metin">{% trans 'En esta pagina encontraras la descarga del cliente oficial del juego' %} </p>
+	<h3>{% trans 'Requisitos mínimos del sistema' %}</h3>
+	<p>{% trans 'Si no cumple con las siguientes especificaciones, el juego puede' %}</p>
+	<p>{% trans 'tener una mala calidad o no puede funcionar' %}</p>
+	<table>
+		<tr>
+			<td class="system_category_name">{% trans 'Sistema operativo' %}</td>
+			<td class="system_category_value">{% trans 'Windows XP SP3 o más reciente' %}</td>
+		</tr>
+		<tr>
+			<td class="system_category_name">{% trans 'CPU' %}</td>
+			<td class="system_category_value">{% trans 'Pentium 4 1.5 GHz' %}</td>
+		</tr>
+		<tr>
+			<td class="system_category_name">{% trans 'Memoria' %}</td>
+			<td class="system_category_value">{% trans '1 GB RAM' %}</td>
+		</tr>
+		<tr>
+			<td class="system_category_name">{% trans 'Espacio HDD/SSD' %}</td>
+			<td class="system_category_value">{% trans '2 GB' %}</td>
+		</tr>
+		<tr>
+			<td class="system_category_name">{% trans 'Placa video' %}</td>
+			<td class="system_category_value">{% trans '128 MB o más' %}</td>
+		</tr>
+	</table>
+
 	<div class="container container-custom metin">
 		{% if descarga %}
-		<table border="1" style="border: 1px solid #fff;">
-        	<tr>
-            	<td>Opciones </td>
-            	<td>Peso (MB)</td>
-            	<td>Fecha</td>
-            	<td>Link</td>
-            </tr>
-            {% for cosa in descarga %}
-            <tr>
-                <td>{{ cosa.provedor }}</td>
-                <td>{{ cosa.peso}} MB</td>
-                <td>{{ cosa.fecha }} </td>
-                <td><a href="{{ cosa.link }}" target="blank">Link </a></td>
-
-            </tr>
-            {% endfor %}
-            <!-- <tr>
-                <td>Media Fire</td>
-                <td>1380 GB</td>
-                <td>2016-11-16</td>
-                <td><a href="{{ key.download2 }}" target="blank">Link </a></td>
-
-            </tr> -->
-        </table>
-				{% else %}
-				<p>Aun no se han publicado los links de descarga</p>
-				{% endif %}
-        <br><br>
-        <!--<table class="table table-hover">
-            <tr>
-                <td>Parche</td>
-                <td>Peso (MB)</td>
-                <td>Fecha</td>
-                <td>Link</td>
-            </tr>
+		<table class="download_requirements">
 			<tr>
-                <td>Parche Oficial</td>
-                <td>4.17 MB</td>
-                <td>2016-11-16</td>
-                <td><a href="#" target="blank">Link </a></td>
-            </tr>
-        </table> -->
-    </div>
+				<td>{% trans 'Opciones' %} </td>
+        <td>{% trans 'Peso' %} (MB)</td>
+        <td>{% trans 'Fecha' %}</td>
+      </tr>
+      {% for cosa in descarga %}
+      <tr>
+				<td><a href="{{ cosa.link }}" target="blank"> {{ cosa.provedor }} </a></td>
+        <td>{{ cosa.peso}} MB</td>
+        <td>{{ cosa.fecha }} </td>
+      </tr>
+      {% endfor %}
+    </table>
+		{% else %}
+		<p>{% trans 'Aun no se han publicado los links de descarga' %}</p>
+		{% endif %}
+		</br>
+		</br>
+  </div>
 {% endblock %}

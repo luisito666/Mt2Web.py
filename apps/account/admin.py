@@ -6,11 +6,12 @@ from django.contrib import admin
 #importando modelos a visualar en interface administrativa
 from apps.account import models
 
-#creando el modelo a registar
+
+# creando el modelo a registar
 class AccountDisplay(admin.ModelAdmin):
-	list_display = ('id', 'login', 'real_name', 'email', 'status', 'availdt')
-	search_fields = ['login' , 'email']
+    list_display = ('id', 'login', 'real_name', 'email', 'status', 'availdt')
+    search_fields = ['login', 'email']
 
 
-#Registrando modelos en interface administrativa
+# Registrando modelos en interface administrativa
 admin.site.register(models.Account, AccountDisplay)

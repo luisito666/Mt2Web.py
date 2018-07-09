@@ -1,23 +1,24 @@
 {% extends "index.html" %}
 {% load bootstrap %}
+{% load i18n %}
 
 {% block ext %}
   <script src='https://www.google.com/recaptcha/api.js'></script>
 {% endblock  %}
 
-{% block title %} {{ servername }} - Registro {% endblock %}
+{% block title %} {{ servername }} - {% trans 'Registro' %} {% endblock %}
 
 
 {% block contenido %}
-		<h1 class="metin"> Registro de Cuenta </h3>
+		<h1 class="metin"> {% trans 'Registro de Cuenta' %} </h3>
 		<hr>
-		<p class="metin">Al registrarse aceptas las condiciones de uso de {{ servername }} </p>
+		<p class="metin">{% trans 'Al registrarse aceptas las condiciones de uso de' %} {{ servername }} </p>
 			<form action="" method="POST" class="form-horizontal metin">
 			{% csrf_token %}
 		    {{ form|bootstrap_horizontal }}
 		    <br>
 		    <div class="form-group">
-		      <input type="submit" class="btn login lime" value="Registrar">
+		      <input type="submit" class="btn login lime" value="{% trans 'Registrar' %}">
 		    </div>
 			</form>
 			<br><br>
