@@ -6,7 +6,8 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from .views import index, donaciones
 from apps.account.views import process_password, process_reg, RequestToken
-
+from django.contrib.admin.views.decorators import staff_member_required
+from apps.administracion.estadisticas.views import getRegistroOn
 
 # Url principales.
 # Descomectar checkout si tiene implementado paymentwall
@@ -15,6 +16,8 @@ urlpatterns = [
     url(r'^donaciones$', donaciones, name="donaciones"),
     # url(r'^checkout/$', PaymentwallCallbackView.as_view(), name="checkout"),
     url(r'^account/', include('apps.account.urls', namespace='account')),
+    #superponer estadisticas en index
+    url(r'^admin/$', staff_member_required(getRegistroOn.as_view()), name='index'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^password/(?P<url>\w{0,40})$', process_password, name='recuperar_p'),
     url(r'^activar/(?P<url>\w{0,40})$', process_reg, name='activar_cuenta'),
