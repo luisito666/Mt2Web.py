@@ -3,7 +3,7 @@
 {% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
 
 {% block branding %}
-<h1 id="site-name"><a href="{% url 'admin:index' %}"> Metin2 Administración</a></h1>
+ <a id="site-name" class="navbar-brand" href="{% url 'admin:index' %}"> Metin2 Administración</a>
+
 {% endblock %}
 
-{% block nav-global %}{% endblock %}
