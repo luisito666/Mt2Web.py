@@ -1,7 +1,9 @@
 # Copyright (c) 2017-2018 ferchoafta@gmail.com
 # Distribuido bajo la licencia MIT Software Licence
 # Mas informacion http://www.opensource.org/licenses/mit-license.php
-event_top="""CREATE event IF NOT EXISTS actualizar_top ON schedule every 1 hour starts "2018-01-01 00:00:00" do 
+event_top="""
+DROP EVENT IF EXISTS `actualizar_top`;
+CREATE event IF NOT EXISTS actualizar_top ON schedule every 1 hour starts "2018-01-01 00:00:00" do 
 BEGIN 
 	INSERT INTO estadisticas_registroconectados 
 				(TIME, 

@@ -39,7 +39,7 @@ class getRegistroOn(ListView):
     title='Estadisticas'
     model = registroConectados
     template_name = 'inicio.html'
-    queryset = model.objects.all()
+    queryset = model.objects.filter().order_by('-id')[:24]
 
 
 
