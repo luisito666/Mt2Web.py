@@ -36,11 +36,12 @@
 
 {% if not is_popup %}
 {% block breadcrumbs %}
-
-<a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
-&rsaquo; {% trans opts.app_label  %}
-&rsaquo; {{ cl.opts.verbose_name_plural|capfirst }}
-
+	<ol class="breadcrumb">
+		<i class="fa fa-dashboard"></i>
+		<a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+		&rsaquo; {% trans opts.app_label  %}
+		&rsaquo; {{ cl.opts.verbose_name_plural|capfirst }}
+	</ol>
 {% endblock %}
 {% endif %}
 

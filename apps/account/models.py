@@ -43,8 +43,8 @@ class Account(models.Model):
 
     class Meta:
         db_table = 'account'
-        verbose_name = 'Cuenta'
-        verbose_name_plural = 'Cuentas'
+        verbose_name = 'cuenta'
+        verbose_name_plural = 'cuentas'
 
     def __str__(self):
         return self.login

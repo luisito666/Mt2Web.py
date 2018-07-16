@@ -60,6 +60,14 @@
 	{% block usertools %}
 			
             <ul class="nav navbar-right top-nav">
+				{% if site_url %}
+				 <li>
+				
+                    <a target="_blank" href="{{ site_url }}">{% trans 'View site' %}</a>
+                
+				 </li>
+				 {% endif %}
+				 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {% firstof user.get_short_name user.get_username %} <b class="caret"></b></a>
 					{% block userlinks %}
@@ -88,7 +96,7 @@
 
 						{% for app in adm_app_list %}
 
-							 <li {% if opts.app_label == app.name %} class="active" {% endif %}>
+							 <li>
 							<a href="javascript:;" data-toggle="collapse" data-target="#demo{{ app.name }}"><i class="fa fa-fw fa-dashboard"></i> {% trans  app.name  %} <i class="fa fa-fw fa-caret-down"></i></a>
 								<ul id="demo{{ app.name }}" class="collapse">
 								{% for apps in app.models %}
@@ -156,7 +164,7 @@
 						
 						<div class="col-lg-12">
 							
-						{% block content_title %}{% if title %}<h1 class="page-header">{{ title }}</h1>{% endif %}{% endblock %}
+						{% block content_title %}{% if title %}<h1 class="page-header">{% trans  cl.opts.verbose_name_plural|capfirst  %} <small>{{ title }}</small></h1>{% endif %}{% endblock %}
 							
 						{% block breadcrumbs %}
 						<ol class="breadcrumb">
@@ -170,14 +178,14 @@
 						</ol>
 						{% endblock %}
 							
-						</div>
+						
 						{% block content %}
 						{% block object-tools %}{% endblock %}
 						{{ content }}
 						{% endblock %}
 						{% block sidebar %}{% endblock %}
-
-						
+		
+						</div>
 						<br class="clear" />
 					</div>
                 </div>

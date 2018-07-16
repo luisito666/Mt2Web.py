@@ -2,10 +2,11 @@
 {% load i18n %}
 
 {% block breadcrumbs %}
-<div class="breadcrumbs">
+<ol  class="breadcrumbs">
+<i class="fa fa-dashboard"></i>
 <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
 &rsaquo; {% trans 'Server error' %}
-</div>
+</ol>
 {% endblock %}
 
 {% block title %}{% trans 'Server error (500)' %}{% endblock %}
@@ -15,3 +16,9 @@
 <p>{% trans "There's been an error. It's been reported to the site administrators via email and should be fixed shortly. Thanks for your patience." %}</p>
 
 {% endblock %}
+
+
+
+	
+	
+

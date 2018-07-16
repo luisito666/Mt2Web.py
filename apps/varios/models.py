@@ -40,8 +40,8 @@ class Top(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = 'Personaje'
-        verbose_name_plural = 'Personajes'
+        verbose_name = 'top de personaje'
+        verbose_name_plural = 'top de personajes'
 
 
 class RegistroCompras(models.Model):
