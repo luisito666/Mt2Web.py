@@ -25,7 +25,7 @@
 		data: [
 			{% for lista in object_list %}
 
-				{ hours: '{{ lista.time|date:"Y-m-d h:00" }}', value: {{ lista.count}} },
+				{ hours: '{{ lista.time|date:"Y-m-d H:00" }}', value: {{ lista.count}} },
 
 			{% endfor %}
 		],
