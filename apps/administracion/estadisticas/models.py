@@ -17,5 +17,5 @@ class registroConectados(models.Model):
 		return "Fecha"
 
 	class Meta:
-		verbose_name = 'Conectados por fecha'
-		verbose_name_plural = 'Conectados por fecha'
+		verbose_name = 'registro de conexión'
+		verbose_name_plural = 'registro de conexiones'
