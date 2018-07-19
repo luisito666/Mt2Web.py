@@ -2,16 +2,14 @@
 {% load bootstrap %}
 {% load i18n %}
 
-{% block title %} {{ servername }} - {% trans 'Mover Personajes' %} {% endblock %}
+{% block title %} {{ servername }} - {% trans 'Solicitar Usuarios' %} {% endblock %}
 
 
 {% block contenido %}
-    <h1>{% trans 'Mover Personajes' %}  </h3>
+    <h1>{% trans 'Solicitar Usuarios' %}  </h3>
     <hr>
-    {% if if_form %}
-    <a href="{% url 'account:login' %}#content">{% trans 'Regresar' %}</a>
     <p>{% trans 'Diligencia el formulario.' %}</p>
-    <p>{% trans 'Introduce el nombre del personaje que quieres mover.' %}</p>
+    <p>{% trans 'Introduce el email para enviarte un correo con las cuentas asociadas a este' %}</p>
     {% if key %}
         <p> Mensaje: <strong>{{ key }}</strong> </p>
     {% endif %}
@@ -22,10 +20,6 @@
           <button type="submit" class="btn boton-personalizado">{% trans 'Enviar' %}</button>
         </div>
       </form>
-    {% else %}
-      {% if key %}
-        <p> {% trans 'Mensaje' %}: <strong>{{ key }}</strong> </p>
-      {% endif %}
-    {% endif %}
+
 
 {% endblock %}

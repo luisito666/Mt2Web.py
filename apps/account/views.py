@@ -20,7 +20,8 @@ from apps.account.forms import (
     CustomChangePassword,
     ResPassword,
     FormResetPassword,
-    CustomDesbugForm
+    CustomDesbugForm,
+    FormRequestPassword
 )
 
 # importando funciones varias para el correcto funcionamiento de la web
@@ -30,6 +31,7 @@ from apps.account.funciones import (
     aleatorio,
     get_mail,
     get_mail_register,
+    get_mail_username,
     cambio_mapa,
     lenguaje
 )
@@ -514,7 +516,6 @@ class RequestToken(View):
 
     def post(self, request):
         lenguaje(request)
-
         form = self.form(request.POST or None)
         context = {
             'form': form
@@ -572,4 +573,52 @@ class RequestToken(View):
             context.update({
                 'key': _('Por favor rellena todos los campos correctamente.')
             })
+            return render(request, self.template_name, context)
+
+
+class RequestUsername(View):
+    template_name = 'account/usernames.html'
+    model = Account
+    form = FormRequestPassword
+
+    def get(self, request):
+        lenguaje(request)
+        form = self.form(request.POST or None)
+        context = {
+            'form': form
+        }
+        return render(request, self.template_name, context)
+
+    def post(self, request):
+        lenguaje(request)
+        form = self.form(request.POST or None)
+        context = {
+            'form': form
+        }
+        if form.is_valid():
+            try:
+                accounts = Account.objects.filter(email=form.cleaned_data['email'])
+                len(accounts) < 0
+            except Account.DoesNotExist:
+                context.update({
+                    'key': _('No se encontraron cuentas asociadas al email')
+                })
+                return render(request, self.template_name, context)
+            try:
+                send_mail(
+                    _('Cuentas asociadas al correo ') + settings.SERVERNAME,
+                    'content',
+                    settings.EMAIL_HOST_USER,
+                    [form.cleaned_data['email']],
+                    html_message=get_mail_username(accounts)
+                )
+            except Exception as err:
+                context.update({'err': err})
+                return render(request, self.template_name, context)
+            context.update({
+                'key': _('Correo enviado exitosamente')
+            })
+            return render(request, self.template_name, context)
+
+        else:
             return render(request, self.template_name, context)

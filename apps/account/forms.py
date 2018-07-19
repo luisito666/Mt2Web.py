@@ -103,7 +103,7 @@ class CreateUserForm(forms.ModelForm):
                                 max_length=50,
                                 error_messages=ERROR_MESSAGES_GENERAL)
     email = forms.EmailField(max_length=30,
-                             error_messages=ERROR_MESSAGES_EMAIL )
+                             error_messages=ERROR_MESSAGES_EMAIL)
     social_id = forms.IntegerField(label=_('Codigo de borrado'),
                                    error_messages=ERROR_MESSAGES_GENERAL,
                                    validators=[valida_2, valida_3, valida_4])
@@ -176,3 +176,10 @@ class FormResetPassword(forms.Form):
                                      widget=forms.PasswordInput(),
                                      validators=[must_be_gt],
                                      error_messages=ERROR_MESSAGES_PASSWORD)
+
+
+class FormRequestPassword(forms.Form):
+    email = forms.EmailField(max_length=30,
+                             error_messages=ERROR_MESSAGES_EMAIL)
+    if settings.RECAPTCHA:
+        capcha = ReCaptchaField()

@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'^top_g/$', views.ClasificacionGremios.as_view(), name='top_g'),
     url(r'^request_password/$', views.recuperar_password, name='request'),
     url(r'^unlock/$', views.desbuguear , name='unlock'),
+    url(r'^request_username/$', views.RequestUsername.as_view(), name='request_username'),
 ]

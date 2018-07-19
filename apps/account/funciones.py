@@ -95,6 +95,18 @@ def get_mail(nombre, key):
     return mensaje
 
 
+# Funcion usada para retornar el texto del correo de recuperacion de cuentas
+def get_mail_username(cuentas):
+    mensaje = '<h3> Hola Usuario </h3>'
+    mensaje += '<p>has solicitado un email para recordar tus cuentas asociadas al correo </p>'
+    mensaje += '<p>tu cuentas son: </p>'
+    for login in cuentas:
+        mensaje += '<p> %s </p>' % login
+    mensaje += '<p>Gracias por usar los servicios de la pagina web. </p>'
+    mensaje += '<p> Att: Staff <strong>' + settings.SERVERNAME + '</strong> </p>'
+    return mensaje
+
+
 # Funcion usada para retornar el texto de correo de bienvenida al juego
 def get_mail_register(cuenta, key):
     mensaje = '<h3> Bienvenido a ' + settings.SERVERNAME + '. </h3>'
