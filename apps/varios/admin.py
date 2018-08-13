@@ -14,8 +14,8 @@ class DescargaDisplay(admin.ModelAdmin):
 
 
 class TopDisplay(admin.ModelAdmin):
-    list_display = ('account_id', 'name', 'level', 'exp', 'ranking')
-    search_fields = ['name']
+    list_display = ('account_id', 'name', 'level', 'exp', 'ranking', 'ip')
+    search_fields = ['name', 'account_id', 'ip']
 
 
 class RegistroComprasDisplay(admin.ModelAdmin):
