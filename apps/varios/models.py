@@ -35,13 +35,14 @@ class Top(models.Model):
     level = models.IntegerField()
     exp = models.IntegerField()
     ranking = models.SmallIntegerField(blank=True, null=True)
+    ip = models.CharField(max_length=15, blank=True, null=True)
 
     def __str__(self):
         return self.name
 
     class Meta:
-        verbose_name = 'top de personaje'
-        verbose_name_plural = 'top de personajes'
+        verbose_name = 'Personaje'
+        verbose_name_plural = 'Personajes'
 
 
 class RegistroCompras(models.Model):

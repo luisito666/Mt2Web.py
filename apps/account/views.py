@@ -596,10 +596,8 @@ class RequestUsername(View):
             'form': form
         }
         if form.is_valid():
-            try:
-                accounts = Account.objects.filter(email=form.cleaned_data['email'])
-                len(accounts) < 0
-            except Account.DoesNotExist:
+            accounts = Account.objects.filter(email=form.cleaned_data['email'])
+            if len(accounts) == 0:
                 context.update({
                     'key': _('No se encontraron cuentas asociadas al email')
                 })

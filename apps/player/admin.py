@@ -4,11 +4,12 @@
 
 from django.contrib import admin
 
-from apps.player import models
+from apps.varios.models import Top
 
 
 class PlayerDisplay(admin.ModelAdmin):
-    list_display = ('name', 'master', 'level', 'exp', 'gold', 'win')
-    search_fields = ['name']
+    list_display = ('account_id', 'name', 'level', 'exp', 'ranking', 'ip')
+    search_fields = ['name', 'account_id', 'ip']
 
-# admin.site.register(models.Guild, PlayerDisplay)
+
+# admin.site.register(Top, PlayerDisplay)

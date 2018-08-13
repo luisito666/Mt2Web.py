@@ -19,13 +19,15 @@ BEGIN
                           NAME, 
                           exp, 
                           level, 
-                          ranking 
+                          ranking,
+                          ip 
               ) 
   SELECT id, 
          account_id, 
          NAME, 
          exp, 
-         0,0 
+         0,0,
+         ip
   FROM   player.player 
   WHERE  id> 
          ( 
