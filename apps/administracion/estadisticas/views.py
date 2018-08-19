@@ -2,26 +2,21 @@
 # Distribuido bajo la licencia MIT Software Licence
 # Mas informacion http://www.opensource.org/licenses/mit-license.php
 
-#import de python
+# import de python
 
 from apps.administracion.estadisticas.models import registroConectados
-
-
-from django.views.generic import  ListView
+from django.views.generic import ListView
 
 
 class getRegistroOn(ListView):
-    title='Estadisticas'
+    title = 'Estadisticas'
     model = registroConectados
-    verbose_name_plural=model._meta.verbose_name_plural
-
+    verbose_name_plural = model._meta.verbose_name_plural
     template_name = 'inicio.html'
     queryset = model.objects.filter().order_by('-id')[:24]
 
-
-
-
-    def has_permission(self, request):
+    @staticmethod
+    def has_permission(request):
         """
         Returns True if the given HttpRequest has permission to view
         *at least one* page in the admin site.
@@ -30,16 +25,12 @@ class getRegistroOn(ListView):
 
     def get_context_data(self, **kwargs):
         context = {
-                'site_title': "Inicio",
-                'title': self.title,
-                'has_permission': self.has_permission(self.request),
-                'opts': {'app_label': self.title,
-			
-                         }
-            }
+            'site_title': "Inicio",
+            'title': self.title,
+            'has_permission': self.has_permission(self.request),
+            'opts': {'app_label': self.title}
+        }
 
         context.update(super(getRegistroOn, self).get_context_data(**kwargs))
-
-
         return context
 

@@ -9,13 +9,12 @@ from django.utils import timezone
 
 
 class registroConectados(models.Model):
-	time = models.DateTimeField()
-	count = models.IntegerField()
-	 
+    time = models.DateTimeField()
+    count = models.IntegerField()
 
-	def __str__(self):
-		return "Fecha"
+    def __str__(self):
+        return "Fecha"
 
-	class Meta:
-		verbose_name = 'registro de conexión'
-		verbose_name_plural = 'registro de conexiones'
+    class Meta:
+        verbose_name = 'registro de conexión'
+        verbose_name_plural = 'registro de conexiones'

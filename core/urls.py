@@ -8,6 +8,7 @@ from .views import index, donaciones
 from apps.account.views import process_password, process_reg, RequestToken
 from django.contrib.admin.views.decorators import staff_member_required
 from apps.administracion.estadisticas.views import getRegistroOn
+from core import schedule2
 
 # Url principales.
 # Descomectar checkout si tiene implementado paymentwall
@@ -27,3 +28,30 @@ urlpatterns = [
 """if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 """
+
+
+def ha():
+    from apps.administracion.estadisticas.models import registroConectados
+    from apps.player.models import Player
+    from django.utils import timezone
+    from datetime import timedelta
+    from apps.varios.models import Top
+
+    now = timezone.now()
+    count = Player.objects.all().filter(last_play__range=[now - timedelta(minutes=55), now]).count()
+    registroConectados(time=now, count=count).save()
+
+    def getLastIdTop():
+        try:
+            last_id = Top.objects.values('id').last()['id']
+            return last_id
+        except:
+            return 0
+
+    b = Player.objects.values('id', 'name', 'job', 'level', 'exp').filter(id__gt=getLastIdTop())
+    for i in b:
+        Top.objects.create(**i)
+
+
+schedule2.every(1).hours.at(0).do(ha)
+schedule2.run_continuously()
