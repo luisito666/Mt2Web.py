@@ -19,6 +19,8 @@ from django.utils import timezone
 #importando configuraciones del proyecto
 from core import settings
 
+from datetime import timedelta
+
 
 # Esta funcion se usa para ver la clasificacion de gremios
 def guild_top(cantidad=None):
@@ -32,39 +34,31 @@ def guild_top(cantidad=None):
 def player_top(cantidad=None):
     # Cantidad tiene que ser un numero.
     if cantidad:
-        return Top.objects.all().exclude(Q(name__contains='[')).order_by('-level', '-ranking')[:cantidad]
-    return Top.objects.all().exclude(Q(name__contains='[')).order_by('-level', '-ranking')
-
+        return Top.objects.all().exclude(Q(name__contains='[')).order_by('-level')[:cantidad]
+    return Top.objects.all().exclude(Q(name__contains='[')).order_by('-level')
 
 # Esta funcion es para ver cuantas cuentas tiene el server
 def total_us():
     a = Account.objects.all().count()
     return a
 
-
 # Esta funcion es para ver cuantos player hay en el server
 def total_pl():
     a = Player.objects.all().count()
     return a
 
-
-# Esta funcion es para ver cuantas personas hay online
+# Esta funcion es para ver cuantos player hay en el server
 def last_min():
-    cursor = connections['player'].cursor()
-    cursor.execute("SELECT COUNT(*) as count FROM player WHERE DATE_SUB(NOW(), INTERVAL 5 MINUTE) < last_play")
-    a = cursor.fetchall()
-    b = a[0][0]
-    return b
+	now=timezone.now()
+	Count = Player.objects.all().filter(last_play__range=[now-timedelta(minutes=10),now ]).count()
+	return Count
 
 
 # Esta funcion es para ver cuantos jugadores en promedio hay en las ultimas 24 horas
 def last_hour():
-    cursor = connections['player'].cursor()
-    cursor.execute("SELECT COUNT(*) as count FROM player WHERE DATE_SUB(NOW(), INTERVAL 24 HOUR) < last_play")
-    a = cursor.fetchall()
-    b = a[0][0]
-    return b
-
+	now=timezone.now()
+	Count = Player.objects.all().filter(last_play__range=[now-timedelta(hours=24),now ]).count()
+	return Count 
 
 # Esta funcion genera password aleatorios
 def aleatorio(longitud):
