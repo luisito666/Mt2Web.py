@@ -26,17 +26,17 @@ def ha():
     Top.objects.all().delete()
     b = Player.objects.all().values('id', 'account_id', 'name', 'job', 'level', 'exp', 'ranking', 'ip')
     for i in b:
-        try:
-            b = Guild.objects.get(id=i['id'])
-        except Guild.DoesNotExist:
-            pass
         a = Top()
         a.account_id = i['account_id']
         a.name = i['name']
         a.job = i['job']
         a.level = i['level']
         a.exp = i['exp']
-        a.guild_name = b.name
+        try:
+            b = Guild.objects.get(id=i['id'])
+            a.guild_name = b.name
+        except Guild.DoesNotExist:
+            pass
         a.ranking = i['ranking']
         a.ip = i['ip']
         a.save()
