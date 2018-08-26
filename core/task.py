@@ -24,7 +24,7 @@ def ha():
             return 0 """
 
     Top.objects.all().delete()
-    b = Player.objects.all().values('id', 'account_id', 'name', 'job', 'level', 'exp', 'ranking')
+    b = Player.objects.all().values('id', 'account_id', 'name', 'job', 'level', 'exp', 'ranking', 'ip')
     for i in b:
         try:
             b = Guild.objects.get(id=i['id'])
@@ -38,11 +38,12 @@ def ha():
         a.exp = i['exp']
         a.guild_name = b.name
         a.ranking = i['ranking']
+        a.ip = i['ip']
         a.save()
 
 
 def run_task(funcion_principal, funcion_secundaria):
-    funcion_principal.every(1).hours.at(0).do(funcion_secundaria)
+    funcion_principal.every(1).minutes.do(funcion_secundaria)
     funcion_principal.run_continuously()
 
 

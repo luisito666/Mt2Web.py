@@ -36,6 +36,7 @@ class Top(models.Model):
     level = models.IntegerField()
     exp = models.IntegerField()
     ranking = models.SmallIntegerField(blank=True, null=True)
+    ip = models.CharField(max_length=15, blank=True, null=True)
 
     def __str__(self):
         return self.name
