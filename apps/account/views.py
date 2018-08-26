@@ -325,7 +325,7 @@ def recuperar_password(request):
                 context.update({'key': _('se ha enviado un correo electronico con las instrucciones '
                                          'para recupear el password')})
                 return render(request, 'account/rescue.html', context)
-            except:
+            except SendMailException:
                 context.update({'key': _('Error enviando el correo')})
                 return render(request, 'account/rescue.html', context)
         else:
@@ -347,7 +347,7 @@ def process_password(request, url):
         if url:
             try:
                 a = Account.objects.get(address=url)
-            except:
+            except Account.DoesNotExist:
                 context.update({
                     'key': _('El token que intentas usar no existe'),
                     'if_form': False
@@ -381,7 +381,7 @@ def process_password(request, url):
             if 'tmp_id' in request.session:
                 try:
                     a = Account.objects.get(id=request.session['tmp_id'])
-                except:
+                except Account.DoesNotExist:
                     context.update({
                         'key': _('No se encuentra el usuario'),
                         'if_form': False
@@ -419,7 +419,7 @@ def process_reg(request, url):
         if url:
             try:
                 a = Account.objects.get(address=url)
-            except:
+            except Account.DoesNotExist:
                 context.update({'key': _('El token que intentas usar no existe.')})
                 return render(request, 'account/activar_cuenta.html', context)
             if a.status == 'OK':
@@ -554,7 +554,7 @@ class RequestToken(View):
                         [a.email],
                         html_message=get_mail_register(a.login, key)
                     )
-                except:
+                except SendMailException:
                     context.update({
                         'key': _('Error enviando correo al usuario')
                     })
@@ -610,7 +610,7 @@ class RequestUsername(View):
                     [form.cleaned_data['email']],
                     html_message=get_mail_username(accounts)
                 )
-            except Exception as err:
+            except SendMailException as err:
                 context.update({'err': err})
                 return render(request, self.template_name, context)
             context.update({

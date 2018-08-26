@@ -29,10 +29,13 @@ class Descarga(models.Model):
 
 
 class Top(models.Model):
+    account_id = models.IntegerField()
     name = models.CharField(max_length=26)
     job = models.IntegerField()
+    guild_name = models.CharField(max_length=26, null=True)
     level = models.IntegerField()
     exp = models.IntegerField()
+    ranking = models.SmallIntegerField(blank=True, null=True)
 
     def __str__(self):
         return self.name
