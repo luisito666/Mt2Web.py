@@ -43,7 +43,7 @@ def ha():
 
 
 def run_task(funcion_principal, funcion_secundaria):
-    funcion_principal.every(1).minutes.do(funcion_secundaria)
+    funcion_principal.every(1).hours.at(0).do(funcion_secundaria)
     funcion_principal.run_continuously()
 
 
