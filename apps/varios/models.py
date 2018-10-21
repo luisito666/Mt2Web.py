@@ -60,3 +60,4 @@ class RegistroCompras(models.Model):
     class Meta:
         verbose_name = 'Registro Compra'
         verbose_name_plural = 'Registro Compras'
+
