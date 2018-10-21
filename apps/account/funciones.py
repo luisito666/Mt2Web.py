@@ -49,14 +49,16 @@ def total_pl():
 
 # Esta funcion es para ver cuantos player hay en el server
 def last_min():
-	now=timezone.now()
-	Count = Player.objects.all().filter(last_play__range=[now-timedelta(minutes=10),now ]).count()
-	return Count
+    cursor = connections['player'].cursor()
+    cursor.execute("SELECT COUNT(*) as count FROM player WHERE DATE_SUB(NOW(), INTERVAL 5 MINUTE) < last_play")
+    a = cursor.fetchall()
+    b = a[0][0]
+    return b
 
 
 # Esta funcion es para ver cuantos jugadores en promedio hay en las ultimas 24 horas
 def last_hour():
-	now=timezone.now()
+	now = timezone.now()
 	Count = Player.objects.all().filter(last_play__range=[now-timedelta(hours=24),now ]).count()
 	return Count 
 
