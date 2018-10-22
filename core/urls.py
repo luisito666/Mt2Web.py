@@ -22,12 +22,15 @@ urlpatterns = [
     url(r'^donaciones$', donaciones, name="donaciones"),
     # url(r'^checkout/$', PaymentwallCallbackView.as_view(), name="checkout"),
     url(r'^account/', include('apps.account.urls', namespace='account')),
+    
     # superponer estadisticas en index
     url(r'^admin/$', staff_member_required(getRegistroOn.as_view()), name='admin'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^password/(?P<url>\w{0,40})$', process_password, name='recuperar_p'),
     url(r'^activar/(?P<url>\w{0,40})$', process_reg, name='activar_cuenta'),
     url(r'^reenviaremail/$', RequestToken.as_view(), name='email'),
+    url(r'^markdownx/', include('markdownx.urls')),
+    url(r'^', include('apps.paginas.urls', namespace='pages')),
 ]
 
 """if settings.DEBUG:

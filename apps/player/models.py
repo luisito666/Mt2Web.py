@@ -21,6 +21,7 @@ class Player(models.Model):
     level = models.IntegerField()
     exp = models.IntegerField()
     ip = models.CharField(max_length=15, blank=True, null=True)
+    ranking = models.IntegerField()
     last_play = models.DateTimeField()
 
     class Meta:

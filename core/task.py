@@ -2,10 +2,6 @@
 # Distribuido bajo la licencia MIT Software Licence
 # Mas informacion http://www.opensource.org/licenses/mit-license.php
 
-# Copyright (c) 2017-2018 luispenagos91@gmail.com
-# Distribuido bajo la licencia MIT Software Licence
-# Mas informacion http://www.opensource.org/licenses/mit-license.php
-
 from core import schedule2
 from apps.administracion.estadisticas.models import registroConectados
 from apps.player.models import Player, Guild
@@ -17,19 +13,8 @@ from django.db import connections
 def ha():
 
     now = timezone.now()
-    #count = Player.objects.all().filter(last_play__range=[now - timedelta(minutes=55), now]).count()
-    cursor = connections['player'].cursor()
-    cursor.execute("SELECT COUNT(*) as count FROM player WHERE DATE_SUB(NOW(), INTERVAL 55 MINUTE) < last_play")
-    a = cursor.fetchall()
-    b = a[0][0]
-    registroConectados(time=now, count=b).save()
-
-    """def getLastIdTop():
-        try:
-            last_id = Top.objects.values('id').last()['id']
-            return last_id
-        except Top.DoesNotExist:
-            return 0 """
+    count = Player.objects.all().filter(last_play__range=[now - timedelta(hours=1), now]).count()
+    registroConectados(time=now, count=count).save()
 
     Top.objects.all().delete()
     b = Player.objects.all().values('id', 'account_id', 'name', 'job', 'level', 'exp', 'ranking', 'ip')

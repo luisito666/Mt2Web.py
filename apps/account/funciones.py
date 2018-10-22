@@ -51,10 +51,8 @@ def total_pl():
 def last_min():
     cursor = connections['player'].cursor()
     cursor.execute("SELECT COUNT(*) as count FROM player WHERE DATE_SUB(NOW(), INTERVAL 5 MINUTE) < last_play")
-    a = cursor.fetchall()
-    b = a[0][0]
-    return b
-
+    count = cursor.fetchall()[0][0]
+    return count
 
 # Esta funcion es para ver cuantos jugadores en promedio hay en las ultimas 24 horas
 def last_hour():
