@@ -4,3 +4,6 @@
 .venv
 static_env
 settings.py
+env3
+env3/
+.DS_Store
