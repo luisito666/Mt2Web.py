@@ -1,0 +1,22 @@
+database:
+  user: tu_usuario
+  password: tu_password
+  host: 0.0.0.0
+  port: 3306
+server:
+  name: 'Metin2 XxX'
+  url: 'https://www.mt2unlimited.com'
+  domain: 'example.com'
+  timezone: 'America/Bogota'
+paymentwall:
+  public_key: ''
+  private_key: ''
+captcha:
+  public_key: ''
+  private_key: ''
+mail:
+  host: 0.0.0.0
+  port: 25
+  password: 'tu_pasword'
+  user: 'tu_usuario@example.com'
+
