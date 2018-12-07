@@ -87,6 +87,7 @@ INSTALLED_APPS = [
     'apps.account',
     'apps.player',
     'apps.varios',
+    'apps.paginas',
     'apps.administracion.estadisticas',
 ]
 
