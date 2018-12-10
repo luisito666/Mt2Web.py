@@ -77,12 +77,20 @@ class Create(CreateView):
         lenguaje(request)
         return super(Create, self).post(request)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if 'refer' in self.request.GET:
+            context['refer_id'] = self.request.GET.get('refer')
+        return context
+
     def form_valid(self, form):
         key = aleatorio(40)
         self.object = form.save(commit=False)
-        new_password = self.object.micryp(self.object.password )
+        new_password = self.object.micryp(self.object.password)
         self.object.password = new_password
         self.object.address = key
+        if 'refer_id' in self.request.POST:
+            self.object.refer_id = self.request.POST['refer_id']
         self.object.save()
         try:
             send_mail(
