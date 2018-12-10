@@ -17,7 +17,7 @@ def ha():
     registroConectados(time=now, count=count).save()
 
     Top.objects.all().delete()
-    b = Player.objects.all().values('id', 'account_id', 'name', 'job', 'level', 'exp', 'ranking', 'ip')
+    b = Player.objects.all().values('id', 'account_id', 'name', 'job', 'level', 'exp', 'ip')
     for i in b:
         a = Top()
         a.account_id = i['account_id']
@@ -30,7 +30,6 @@ def ha():
             a.guild_name = b.name
         except Guild.DoesNotExist:
             pass
-        a.ranking = i['ranking']
         a.ip = i['ip']
         a.save()
 

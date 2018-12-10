@@ -36,6 +36,7 @@ class Migration(migrations.Migration):
                 ('marriage_fast_expire', models.DateTimeField(default='2020-01-01T00:00:00')),
                 ('money_drop_rate_expire', models.DateTimeField(default='2020-01-01T00:00:00')),
                 ('token_expire', models.DateTimeField(blank=True, null=True)),
+                ('refer_id', models.IntegerField(blank=True, null=True)),
             ],
             options={
                 'verbose_name': 'cuenta',

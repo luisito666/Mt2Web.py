@@ -140,7 +140,10 @@ def contexto(request):
         'online': last_hour(),
         'actualmente': last_min(),
         'top_player': player_top(5),
-        'guild_top': guild_top(5)
+        'guild_top': guild_top(5),
+        'server': {
+            'url': settings.SERVERURL
+        }
     }
 
 

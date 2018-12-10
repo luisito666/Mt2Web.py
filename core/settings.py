@@ -161,7 +161,7 @@ SERVERNAME = CONFIG['server']['name']
 SERVERURL = CONFIG['server']['url']
 
 # habilitar y deshabilitar Recapcha
-RECAPTCHA = True
+RECAPTCHA = CONFIG['captcha']['enable']
 
 # Llaves del recapcha
 RECAPTCHA_PUBLIC_KEY = CONFIG['captcha']['public_key']
@@ -209,6 +209,9 @@ FINALSTUFF = '2020-01-01T00:00:00'
 # de tener activado el email de activacion.
 # 2. Atrazarlo un año en caso de no usar email de actiacion y la cuenta quede
 # activada al momento del registro
-ACTIVATE = '2020-01-01T00:00:00'
+if CONFIG['register']['mail_activate_account']:
+    ACTIVATE = '2025-01-01T00:00:00'
+else:
+    ACTIVATE = '2009-01-01T00:00:00'
 
 

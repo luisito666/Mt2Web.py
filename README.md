@@ -275,7 +275,8 @@ Continuamos agregando un campo extra a la base de datos, esto para que el aplica
 Ejecutar desde el navicat el siguiente query
 
 ```
-alter table account.account add column token_expire DATETIME null
+alter table account.account add column token_expire DATETIME null;
+alter table account.account add column refer_id INT null;
 
 ```
 
