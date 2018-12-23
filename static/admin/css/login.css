@@ -7,6 +7,12 @@ body.login {
 .login #header {
     height: auto;
     padding: 5px 16px;
+    width: auto;
+    background-color: #343a40;
+    border-color: #080808;
+    line-height: 40px;
+    color: #ffc;
+    overflow: hidden;
 }
 
 .login #header h1 {

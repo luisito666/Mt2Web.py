@@ -5,14 +5,23 @@
 
 {% if not is_popup %}
 {% block breadcrumbs %}
-<div class="breadcrumbs">
+<ol class="breadcrumb">
+<i class="fa fa-dashboard"></i>
 <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
 &rsaquo;
 {% for app in app_list %}
 {{ app.name }}
 {% endfor %}
-</div>
+</ol>
 {% endblock %}
 {% endif %}
 
 {% block sidebar %}{% endblock %}
+						
+										
+
+				
+										
+										
+
+						

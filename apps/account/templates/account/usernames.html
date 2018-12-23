@@ -1,0 +1,25 @@
+{% extends "account/registro.html" %}
+{% load bootstrap %}
+{% load i18n %}
+
+{% block title %} {{ servername }} - {% trans 'Solicitar Usuarios' %} {% endblock %}
+
+
+{% block contenido %}
+    <h1>{% trans 'Solicitar Usuarios' %}  </h3>
+    <hr>
+    <p>{% trans 'Diligencia el formulario.' %}</p>
+    <p>{% trans 'Introduce el email para enviarte un correo con las cuentas asociadas a este' %}</p>
+    {% if key %}
+        <p> Mensaje: <strong>{{ key }}</strong> </p>
+    {% endif %}
+      <form action="" method="POST" class="form-horizontal metin">
+      {% csrf_token %}
+        {{ form|bootstrap_horizontal }}
+        <div class="form-group">
+          <button type="submit" class="btn boton-personalizado">{% trans 'Enviar' %}</button>
+        </div>
+      </form>
+
+
+{% endblock %}

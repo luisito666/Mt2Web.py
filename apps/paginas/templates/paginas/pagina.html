@@ -1,0 +1,16 @@
+{% extends "account/registro.html" %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block ext %}
+{% endblock  %}
+
+{% block title %} {{ servername }} - {{ object.titulo}} {% endblock %}
+
+{% block contenido %}
+    <h1>
+        {{ object.titulo }}
+    </h1>
+    <hr>
+    <p> {{object.formatted_markdown|safe}}</p>
+{% endblock %}

@@ -11,7 +11,9 @@
     <hr>
     <p>{% trans 'Hola' %}. {{ session.real_name }} </p>
     <p>{% trans 'Cuenta' %}: {{ session.login }} </p>
-    <p>{% trans 'Coins' %}: {{ session.coins }}
+    <p>{% trans 'Coins' %}: {{ session.coins }}</p>
+    <p> Refer: <input type="text" value="{{ server.url }}{% url 'account:create' %}?refer={{ session.id }}" id="URLinput"> 
+               <button class="boton-madera" onclick="CopiarTexto()">Copiar URL</button></p>
     <p class="metin">{% trans 'Personajes de la cuenta.' %} </p>
     <div class="container container-custom ">
         {% if personajes %}
@@ -22,11 +24,11 @@
                 <td class="color-white">{% trans 'Gremio' %} </td>
                 <!--<td></td>-->
             </tr>
-            {% for cosa in personajes %}
+            {% for personaje in personajes %}
             <tr>
-                <td class="color-white"> {{ cosa.name }} </td>
-                <td class="color-white"> {{ cosa.level}} </td>
-                <td class="color-white"> {{ cosa.guild_name}} </td>
+                <td class="color-white"> {{ personaje.name }} </td>
+                <td class="color-white"> {{ personaje.level}} </td>
+                <td class="color-white"> {{ personaje.guild_name}} </td>
                 <!--<td></td>-->
 
             </tr>
@@ -42,4 +44,21 @@
         <p><a href="{% url 'account:logout' %}#content"> {% trans 'Salir' %} </a></p>
 
     </div>
+    <script>
+    
+    function CopiarTexto() {
+        /* Get the text field */
+        var copyText = document.getElementById("URLinput");
+
+        /* Select the text field */
+        copyText.select();
+
+        /* Copy the text inside the text field */
+        document.execCommand("copy");
+
+        /* Alert the copied text */
+        alert("Url Copiada: " + copyText.value);
+    }
+    
+    </script>
 {% endblock %}

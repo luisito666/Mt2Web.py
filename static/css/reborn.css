@@ -141,6 +141,21 @@ h3 {
     font-size: 12px;
 }
 
+
+.boton-madera {
+  width: 125px;
+  height: 30px;
+  background: #5c5c5c url('../images/boton.png');
+  color: #f2ebd7 !important;
+  border: none;
+  font-size: 12px;
+  padding-bottom: 2px;
+  font-family: 'Playfair Display', serif;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+
 .boton-personalizado {
     width: 125px;
     height: 30px;
@@ -316,6 +331,10 @@ ol#controls {
     line-height: 14px;
 }
 
+.con-wrap a {
+  text-decoration: none;
+}
+
 .post-title {
     height: 55px;
     line-height: 2.4;
@@ -464,6 +483,10 @@ body {
 
 a {
   text-decoration:none;
+}
+
+a:visited {
+  text-decoration: none;
 }
 
 a:focus {

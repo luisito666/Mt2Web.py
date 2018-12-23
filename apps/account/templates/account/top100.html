@@ -33,13 +33,13 @@
         <div class="pagination">
             <span class="page-links">
                 {% if page_obj.has_previous %}
-                    <a href="{% url 'account:top' %}?page={{ page_obj.previous_page_number }}#content">{% trans 'anterior' %}</a>
+                    <a href="{% url 'account:top' %}?page={{ page_obj.previous_page_number }}#content"><button class="boton-madera"> {% trans 'anterior' %} </button></a>
                 {% endif %}
                 <span class="page-current">
                     {% trans 'Pagina' %} {{ page_obj.number }} {% trans 'de' %} {{ page_obj.paginator.num_pages }}.
                 </span>
                 {% if page_obj.has_next %}
-                    <a href="{% url 'account:top' %}?page={{ page_obj.next_page_number }}#content">{% trans 'siguiente' %}</a>
+                    <a href="{% url 'account:top' %}?page={{ page_obj.next_page_number }}#content"> <button class="boton-madera"> {% trans 'siguiente' %} </button> </a>
                 {% endif %}
             </span>
         </div>

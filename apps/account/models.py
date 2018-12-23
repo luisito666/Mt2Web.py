@@ -40,11 +40,12 @@ class Account(models.Model):
     marriage_fast_expire = models.DateTimeField(default=settings.BUFFSTUF)
     money_drop_rate_expire = models.DateTimeField(default=settings.BUFFSTUF)
     token_expire = models.DateTimeField(blank=True, null=True)
+    refer_id = models.IntegerField(blank=True, null=True)
 
     class Meta:
         db_table = 'account'
-        verbose_name = 'Cuenta'
-        verbose_name_plural = 'Cuentas'
+        verbose_name = 'cuenta'
+        verbose_name_plural = 'cuentas'
 
     def __str__(self):
         return self.login

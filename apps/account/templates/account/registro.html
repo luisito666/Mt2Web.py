@@ -15,6 +15,11 @@
 		<p class="metin">{% trans 'Al registrarse aceptas las condiciones de uso de' %} {{ servername }} </p>
 			<form action="" method="POST" class="form-horizontal metin">
 			{% csrf_token %}
+			{% if refer_id %}
+			<input type="hidden" name="refer_id" value="{{ refer_id }}">
+			{% else %}
+			<!-- <input type="hidden" name="refer_id" value="{{ refer_id }}"> -->
+			{% endif %}	
 		    {{ form|bootstrap_horizontal }}
 		    <br>
 		    <div class="form-group">

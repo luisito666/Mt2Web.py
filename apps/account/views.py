@@ -20,7 +20,8 @@ from apps.account.forms import (
     CustomChangePassword,
     ResPassword,
     FormResetPassword,
-    CustomDesbugForm
+    CustomDesbugForm,
+    FormRequestPassword
 )
 
 # importando funciones varias para el correcto funcionamiento de la web
@@ -30,6 +31,7 @@ from apps.account.funciones import (
     aleatorio,
     get_mail,
     get_mail_register,
+    get_mail_username,
     cambio_mapa,
     lenguaje
 )
@@ -75,12 +77,20 @@ class Create(CreateView):
         lenguaje(request)
         return super(Create, self).post(request)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if 'refer' in self.request.GET:
+            context['refer_id'] = self.request.GET.get('refer')
+        return context
+
     def form_valid(self, form):
         key = aleatorio(40)
         self.object = form.save(commit=False)
-        new_password = self.object.micryp(self.object.password )
+        new_password = self.object.micryp(self.object.password)
         self.object.password = new_password
         self.object.address = key
+        if 'refer_id' in self.request.POST:
+            self.object.refer_id = self.request.POST['refer_id']
         self.object.save()
         try:
             send_mail(
@@ -323,7 +333,7 @@ def recuperar_password(request):
                 context.update({'key': _('se ha enviado un correo electronico con las instrucciones '
                                          'para recupear el password')})
                 return render(request, 'account/rescue.html', context)
-            except:
+            except SendMailException:
                 context.update({'key': _('Error enviando el correo')})
                 return render(request, 'account/rescue.html', context)
         else:
@@ -345,7 +355,7 @@ def process_password(request, url):
         if url:
             try:
                 a = Account.objects.get(address=url)
-            except:
+            except Account.DoesNotExist:
                 context.update({
                     'key': _('El token que intentas usar no existe'),
                     'if_form': False
@@ -379,7 +389,7 @@ def process_password(request, url):
             if 'tmp_id' in request.session:
                 try:
                     a = Account.objects.get(id=request.session['tmp_id'])
-                except:
+                except Account.DoesNotExist:
                     context.update({
                         'key': _('No se encuentra el usuario'),
                         'if_form': False
@@ -417,7 +427,7 @@ def process_reg(request, url):
         if url:
             try:
                 a = Account.objects.get(address=url)
-            except:
+            except Account.DoesNotExist:
                 context.update({'key': _('El token que intentas usar no existe.')})
                 return render(request, 'account/activar_cuenta.html', context)
             if a.status == 'OK':
@@ -514,7 +524,6 @@ class RequestToken(View):
 
     def post(self, request):
         lenguaje(request)
-
         form = self.form(request.POST or None)
         context = {
             'form': form
@@ -553,7 +562,7 @@ class RequestToken(View):
                         [a.email],
                         html_message=get_mail_register(a.login, key)
                     )
-                except:
+                except SendMailException:
                     context.update({
                         'key': _('Error enviando correo al usuario')
                     })
@@ -572,4 +581,50 @@ class RequestToken(View):
             context.update({
                 'key': _('Por favor rellena todos los campos correctamente.')
             })
+            return render(request, self.template_name, context)
+
+
+class RequestUsername(View):
+    template_name = 'account/usernames.html'
+    model = Account
+    form = FormRequestPassword
+
+    def get(self, request):
+        lenguaje(request)
+        form = self.form(request.POST or None)
+        context = {
+            'form': form
+        }
+        return render(request, self.template_name, context)
+
+    def post(self, request):
+        lenguaje(request)
+        form = self.form(request.POST or None)
+        context = {
+            'form': form
+        }
+        if form.is_valid():
+            accounts = Account.objects.filter(email=form.cleaned_data['email'])
+            if len(accounts) == 0:
+                context.update({
+                    'key': _('No se encontraron cuentas asociadas al email')
+                })
+                return render(request, self.template_name, context)
+            try:
+                send_mail(
+                    _('Cuentas asociadas al correo ') + settings.SERVERNAME,
+                    'content',
+                    settings.EMAIL_HOST_USER,
+                    [form.cleaned_data['email']],
+                    html_message=get_mail_username(accounts)
+                )
+            except SendMailException as err:
+                context.update({'err': err})
+                return render(request, self.template_name, context)
+            context.update({
+                'key': _('Correo enviado exitosamente')
+            })
+            return render(request, self.template_name, context)
+
+        else:
             return render(request, self.template_name, context)
