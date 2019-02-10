@@ -14,7 +14,7 @@ from apps.account.funciones import guild_top, lenguaje
 # Clase usada para renderizar el top del juego y paginarlo
 class RankingGuilds(ListView):
     model = Guild
-    template_name = 'account/top_g.html'
+    template_name = 'account/ranking_guilds.html'
     queryset = guild_top()
     paginate_by = 20
 

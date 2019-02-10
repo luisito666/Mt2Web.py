@@ -21,7 +21,7 @@ from apps.account.funciones import lenguaje
 # Clase usada para re enviar el correo de activacion, en caso de que no llegue.
 class RequestToken(View):
 
-    template_name = 'account/envio_token.html'
+    template_name = 'account/request_token.html'
     model = Account
     form = ResPassword
 

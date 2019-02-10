@@ -5,10 +5,8 @@
 # imporacion por defecto
 from django.urls import path
 
-# Importando vistas para el correcto funcionamiento de las urls
-from apps.paginas import views
+from .views import SignUpApi
 
-# urls del proyecto
 urlpatterns = [
-    path('<slug:slug>', views.PageDetail.as_view(), name='page_details'),
+    path('signup/', SignUpApi.as_view(), name='signup_api' )
 ]

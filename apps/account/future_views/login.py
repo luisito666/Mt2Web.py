@@ -4,7 +4,7 @@
 
 # Django Imports
 from django.views import View
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # importando forms
 from apps.account.forms import CustomLoginForm

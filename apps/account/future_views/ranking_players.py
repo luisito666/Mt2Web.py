@@ -14,7 +14,7 @@ from apps.account.funciones import player_top, lenguaje
 # clase usada para la pagina del ranking del juego y paginarlo
 class RankingPlayers(ListView):
     model = Top
-    template_name = 'account/top100.html'
+    template_name = 'account/ranking_players.html'
     queryset = player_top()
     paginate_by = 20
 

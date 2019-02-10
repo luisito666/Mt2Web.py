@@ -1,7 +1,7 @@
 database:
-  user: 
-  password: 
-  host: 
+  user: root
+  password: M3t1n2.2019$
+  host: 192.168.1.9
   port: 3306
 server:
   name: 'Metin2 XxX'
@@ -21,4 +21,4 @@ mail:
   password: 'tu_pasword'
   user: 'tu_usuario@example.com'
 register:
-  mail_activate_account: False
+  mail_activate_account: True

@@ -51,7 +51,7 @@ from apps.account.excepciones import InternalServerError, SendMailException
 # Importaciones adicionales de django
 from django.views import View
 from django.http import HttpResponseRedirect
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 from django.utils import timezone
 
 # importando clase usada para la traduccion

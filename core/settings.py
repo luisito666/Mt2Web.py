@@ -34,11 +34,13 @@ INSTALLED_APPS = [
     'captcha',
     'bootstrapform',
     'corsheaders',
+    'rest_framework',
     # aplicaciones
     'apps.account',
     'apps.player',
     'apps.varios',
     'apps.paginas',
+    'apps.api',
     'apps.administracion.estadisticas',
 ]
 

@@ -16,7 +16,7 @@ from apps.account.models import Account
 from apps.account.forms import FormRequestPassword
 
 # importando funciones
-from apps.account.funciones import lenguaje
+from apps.account.funciones import lenguaje, get_mail_username
 
 # importando excepciones
 from apps.account.excepciones import SendMailException
@@ -27,9 +27,11 @@ from django.core.mail import send_mail
 # importando las configuracines de django
 from core import settings
 
+# traducciones
+from django.utils.translation import ugettext as _
 
 class RequestUsername(View):
-    template_name = 'account/usernames.html'
+    template_name = 'account/request_username.html'
     model = Account
     form = FormRequestPassword
 

@@ -4,7 +4,7 @@
 
 # Django Imports
 from django.views.generic import CreateView
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 
 # importando forms
@@ -31,7 +31,7 @@ from core import settings
 
 class SignUp(CreateView):
     success_url = reverse_lazy('account:exito')
-    template_name = 'account/registro.html'
+    template_name = 'account/signup.html'
     model = Account
     form_class = CreateUserForm
 
@@ -49,22 +49,9 @@ class SignUp(CreateView):
             context['refer_id'] = self.request.GET.get('refer')
         return context
 
-    def form_valid(self, form):
-        key = aleatorio(40)
+    def form_valid(self, form):        
         self.object = form.save(commit=False)
-        self.object.update_password(self.object.password)
-        self.object.address = key
         if 'refer_id' in self.request.POST:
             self.object.refer_id = self.request.POST['refer_id']
         self.object.save()
-        try:
-            send_mail(
-                _('Bienvenido a ') + settings.SERVERNAME,
-                'Content',
-                settings.EMAIL_HOST_USER,
-                [self.object.email],
-                html_message=get_mail_register(self.object.login, key),
-                )
-        except Exception as err:
-            raise SendMailException(err)
         return HttpResponseRedirect(self.get_success_url())

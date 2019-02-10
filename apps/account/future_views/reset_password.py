@@ -3,7 +3,7 @@
 # Mas informacion http://www.opensource.org/licenses/mit-license.php
 
 # Django Imports
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 
 # importando forms
@@ -20,7 +20,7 @@ from apps.account.funciones import lenguaje
 from django.utils.translation import ugettext as _
 
 class ResetPassword(View):
-    template_name = 'account/password.html'
+    template_name = 'account/reset_password.html'
     form = CustomChangePassword
     model = Account
 
