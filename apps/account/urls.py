@@ -20,6 +20,6 @@ urlpatterns = [
     path('top/', views.RankingPlayers.as_view(), name='top'),
     path('top_g/', views.RankingGuilds.as_view(), name='top_g'),
     path('request_password/', views.recuperar_password, name='request'),
-    path('unlock/', views.desbuguear , name='unlock'),
+    path('unlock/', views.UnlockPlayer.as_view() , name='unlock'),
     path('request_username/', views.RequestUsername.as_view(), name='request_username'),
 ]

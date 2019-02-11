@@ -69,7 +69,8 @@ from .future_views import (
     RankingPlayers,
     RankingGuilds,
     RequestToken,
-    RequestUsername
+    RequestUsername,
+    UnlockPlayer
 ) 
 
 # funcion usada para cerra session
@@ -308,57 +309,5 @@ def process_reg(request, url):
     else:
         context.update({'key': _('Metodo no admitido')})
         return render(request, 'account/activar_cuenta.html', context)
-
-
-def desbuguear(request):
-    lenguaje(request)
-    # Declarando el formulario que usara la funcion
-    form = CustomDesbugForm(request.POST or None)
-    # Preparando el contexto usado por la funcion
-    context = {
-        'form': form,
-    }
-    if 'g1jwvO' in request.session:
-        try:
-            a = Account.objects.get(id=request.session['g1jwvO'])
-        except Account.DoesNotExist:
-            pass
-
-        if request.method == 'POST' and form.is_valid():
-            b = form.cleaned_data['nombre']
-            c = Top.objects.filter(account_id=a.id)
-            for personaje in c:
-                if str.lower(personaje.name) == str.lower(b):
-                    resultado = cambio_mapa(a.id, personaje.name)
-                    if resultado:
-                        context.update({
-                            'key': _('Se ha movido tu personaje correctamente debes esperar '
-                                     '30 min para iniciar con el.'),
-                            'if_form': True
-                        })
-                        return render(request, 'account/unlock.html', context)
-                    else:
-                        context.update({
-                            'key': _('Error moviendo personaje'),
-                            'if_form': True
-                        })
-                        return render(request, 'account/unlock.html', context)
-            context.update({
-                'key': _('Ningun personaje coincide.'),
-                'if_form': True
-            })
-            return render(request, 'account/unlock.html', context)
-
-        if request.method == 'GET':
-            pj = Top.objects.filter(account_id=request.session['g1jwvO'])
-            if pj.count() == 0:
-                return redirect('account:login')
-            context.update({
-                'if_form': True,
-                'form': form
-            })
-            return render(request,'account/unlock.html', context)
-    else:
-        return redirect('account:login')
 
 
