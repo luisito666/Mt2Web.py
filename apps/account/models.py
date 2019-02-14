@@ -2,18 +2,25 @@
 # Distribuido bajo la licencia MIT Software Licence
 # Mas informacion http://www.opensource.org/licenses/mit-license.php
 
-# Importaciones por default.
-from __future__ import unicode_literals
-from django.db import models
+# libs
+import jwt
 
-# Importando timezone
+# rest framework
+from rest_framework import exceptions
+
+# Importaciones por default.
+from django.db import models
 from django.utils import timezone
+from django.utils.translation import ugettext_lazy as _
 
 # Importando el archivo de configuracion
 from core import settings
 
 # Importando el libería de encriptación
 from hashlib import sha1
+
+# Importando timezone
+from datetime import datetime, timedelta
 
 
 # modelo generico compatible con todas las bases de datos
@@ -53,6 +60,9 @@ class Account(models.Model):
     # Funcion para encryptar password
     @staticmethod
     def password_hash(password):
+        """ generate a MySQL Password 
+            is required for default in dbs of metin2
+        """
         mysql_hash = '*'+sha1(sha1(password.encode()).digest()).hexdigest()  # Generando el hash
         mysql_hash = mysql_hash.upper()                                      # Convirtiendo el hash a mayusculas
         return mysql_hash                                                    # Retornando el hash
@@ -63,4 +73,37 @@ class Account(models.Model):
     def validate_password(self, password):
         validate = self.password_hash(password)
         return self.password == validate
-                                                    
+    
+    def is_active(self):
+        """ Verifica que el usuario no este baneado.
+        """
+        if self.status == 'OK':
+            return True
+        return False
+    
+    @staticmethod
+    def generate_auth_token(self):
+        """
+        :param user:
+        :return: Token JWT
+        """
+        payload = {
+            "sub": str(self.id),
+            "iat": datetime.utcnow(),
+            "exp": datetime.utcnow() + timedelta(days=1),
+        }
+        token = jwt.encode(payload, settings.SECRET_KEY, algorithm="HS256")
+        return token
+    
+    @staticmethod
+    def verify_auth_token(token):
+        try:
+            validate_token = jwt.decode(token, settings.SECRET_KEY, algorithms=["HS256"])
+            user = Account.objects.get(id=validate_token['sub'])
+            return user
+        except jwt.PyJWTError:
+            raise exceptions.AuthenticationFailed(_('Invalid Token error'))
+        except Account.DoesNotExist:
+            raise exceptions.AuthenticationFailed(_('Invalid User validation'))
+        return None
+

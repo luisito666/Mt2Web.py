@@ -218,3 +218,16 @@ else:
     ACTIVATE = '2009-01-01T00:00:00'
 
 
+CORS_ORIGIN_WHITELIST = (
+    'google.com',
+    'hostname.example.com',
+    'localhost:8000',
+    '127.0.0.1:9000',
+    '*'
+)
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'apps.api.authentication.TokenAuthentication',
+    )
+}
