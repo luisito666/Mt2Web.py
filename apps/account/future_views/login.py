@@ -10,7 +10,8 @@ from django.shortcuts import render, redirect
 from apps.account.forms import CustomLoginForm
 
 # importando models
-from apps.account.models import Account
+#from apps.account.models import Account
+from apps.authentication.models import Account
 from apps.varios.models import Top
 
 # importando funciones
@@ -63,7 +64,7 @@ class Login(View):
                 return render(request, self.template_name, context)
 
             # Validando que las contraseñas coincidan
-            if a.validate_password(form.cleaned_data['password']):
+            if a.check_password(form.cleaned_data['password']):
                 # Validando que la cuenta no este baneada
                 if a.status == 'OK':
                     request.session['g1jwvO'] = a.id

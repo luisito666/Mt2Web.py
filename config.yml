@@ -1,7 +1,7 @@
 database:
   user: root
   password: M3t1n2.2019$
-  host: 192.168.1.9
+  host: 37.187.109.95
   port: 3306
 server:
   name: 'Metin2 XxX'

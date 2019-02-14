@@ -8,7 +8,7 @@ from rest_framework.authentication import BaseAuthentication, get_authorization_
 from rest_framework import exceptions
 
 # local models
-from apps.account.models import Account
+from apps.authentication.models import Account
 
 class TokenAuthentication(BaseAuthentication):
     """ Clients should authenticate by passing the token key in the "Authorization"
@@ -32,7 +32,7 @@ class TokenAuthentication(BaseAuthentication):
         user = Account.verify_auth_token(token)
         if user is None:
             raise exceptions.AuthenticationFailed(_('Invalid User validation'))
-        return ( user )
+        return user, None 
     
     def authenticate_header(self, request):
         return self.keyword

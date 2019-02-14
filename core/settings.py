@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     # aplicaciones
+    'apps.authentication',
     'apps.account',
     'apps.player',
     'apps.varios',
@@ -54,7 +55,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'apps.account.middleware.AccountMiddleware'
+    'apps.authentication.middleware.AuthenticationMiddleware'
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -119,6 +120,7 @@ DATABASES = {
 DATABASE_ROUTERS = {
     'apps.player.router.playerRouter',
     'apps.account.router.AccountRouter',
+    'apps.authentication.router.AuthenticationRouter',
 }
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
