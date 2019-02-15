@@ -8,7 +8,6 @@ from django.core.mail import send_mail
 
 # importando lo modelos que se usaran en los formularios
 from apps.authentication.models import Account
-from apps.authentication.hashers import make_password
 
 # importando ugettext_lazy
 from django.utils.translation import ugettext_lazy as _
@@ -123,18 +122,15 @@ class CreateUserForm(forms.ModelForm):
             'email',
             'social_id',
         ]
-
-    def clean_password(self):
-        password = self.cleaned_data['password']
-        data = make_password(password)
-        return data
     
-    def create(self, data):
+    def save(self, commit=True):
         instance = super(CreateUserForm, self).save(commit=False)    
-        # generando key de email        
-        instance.address = aleatorio(40)
-        instance.save()
+        instance.set_password(self.cleaned_data['password'])      
+        instance.set_key()
+        if commit:
+            instance.save()
         self.send_confirmation_email(instance.address)
+        return instance
 
     def send_confirmation_email(self, key):
         try:

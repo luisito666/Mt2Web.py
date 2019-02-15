@@ -4,6 +4,7 @@
 from django.conf import settings
 from django.test.signals import setting_changed
 from django.utils.translation import ugettext_lazy as _
+from datetime import timedelta
 
 # Rest framework
 from rest_framework.settings import APISettings as _APISettings

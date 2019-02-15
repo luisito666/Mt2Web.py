@@ -8,7 +8,7 @@ from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 
 # importando forms
-from apps.account.forms import CreateUserForm
+from apps.authentication.forms import AccountCreationForm
 
 # importando models
 from apps.account.models import Account
@@ -33,7 +33,7 @@ class SignUp(CreateView):
     success_url = reverse_lazy('account:exito')
     template_name = 'account/signup.html'
     model = Account
-    form_class = CreateUserForm
+    form_class = AccountCreationForm
 
     def get(self, request):
         lenguaje(request)

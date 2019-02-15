@@ -13,7 +13,7 @@ CONFIG = yaml.load(open(BASE_DIR + '/config.yml').read())
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = get_random_secret_key()
+SECRET_KEY = '+s123dsd234adsassd8p8793783c2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -230,6 +230,11 @@ CORS_ORIGIN_WHITELIST = (
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'apps.api.authentication.TokenAuthentication',
+        #'apps.api.authentication.TokenAuthentication',
     )
 }
+
+
+CUSTOM_AUTH_USER_MODEL = 'authentication.Account'
+
+CUSTOM_AUTHENTICATION_BACKENDS = ['apps.authentication.backends.ModelBackend']

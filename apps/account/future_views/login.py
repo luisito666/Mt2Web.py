@@ -33,7 +33,7 @@ class Login(View):
         lenguaje(request)
         form = self.form()
 
-        if 'g1jwvO' in request.session:
+        if request.account.is_authenticated:
             userinfo = self.modelA.objects.get(id=request.session['g1jwvO'])
             pjinfo = self.modelB.objects.filter(account_id=userinfo.id)
             context = {
@@ -68,7 +68,7 @@ class Login(View):
                 # Validando que la cuenta no este baneada
                 if a.status == 'OK':
                     request.session['g1jwvO'] = a.id
-                    if 'g1jwvO' in request.session:
+                    if request.account.is_authenticated:
                         return redirect('account:login')
                 else:
                     context = {

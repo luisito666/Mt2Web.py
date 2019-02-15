@@ -21,6 +21,7 @@ from datetime import datetime, timedelta
 
 from apps.authentication.base_account import AbstractBaseAccount
 
+from apps.account.funciones import aleatorio
 
 class NewAbstractAccount(AbstractBaseAccount):
     login = models.CharField(unique=True, max_length=30)
@@ -75,6 +76,9 @@ class NewAbstractAccount(AbstractBaseAccount):
     kim_banlamis = models.CharField(max_length=855, default='')
     token_expire = models.DateTimeField(null=True)
 
+    USERNAME_FIELD = 'login'
+    REQUIRED_FIELDS = ['real_name', 'social_id', 'email']
+
     class Meta:
         db_table = 'account'
         verbose_name = 'cuenta'
@@ -84,7 +88,6 @@ class NewAbstractAccount(AbstractBaseAccount):
     def __str__(self):
         return self.login
 
-    @staticmethod
     def generate_auth_token(self):
         """
         :param user:
@@ -104,8 +107,8 @@ class NewAbstractAccount(AbstractBaseAccount):
             validate_token = jwt.decode(token, settings.SECRET_KEY, algorithms=["HS256"])
             user = Account.objects.get(id=validate_token['sub'])
             return user
-        except jwt.PyJWTError:
-            raise exceptions.AuthenticationFailed(_('Invalid Token error'))
+        except jwt.PyJWTError as e:
+            raise exceptions.AuthenticationFailed(str(e.args[0]))
         except Account.DoesNotExist:
             raise exceptions.AuthenticationFailed(_('Invalid User validation'))
         return None
@@ -131,6 +134,9 @@ class AbstractAccount(AbstractBaseAccount):
     token_expire = models.DateTimeField(blank=True, null=True)
     refer_id = models.IntegerField(blank=True, null=True)
 
+    USERNAME_FIELD = 'login'
+    REQUIRED_FIELDS = ['real_name', 'social_id', 'email']
+
     class Meta:
         db_table = 'account'
         verbose_name = 'cuenta'
@@ -140,8 +146,6 @@ class AbstractAccount(AbstractBaseAccount):
     def __str__(self):
         return self.login
 
-    
-    @staticmethod
     def generate_auth_token(self):
         """
         :param user:
@@ -169,4 +173,5 @@ class AbstractAccount(AbstractBaseAccount):
 
 
 class Account(NewAbstractAccount):
-    pass
+    def set_key(self):
+        self.address = aleatorio(40)

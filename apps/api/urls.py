@@ -5,10 +5,11 @@
 # imporacion por defecto
 from django.urls import path
 
-from .views import SignUpApi, RankingPlayers, RankingGuilds
+from .views import SignUpApi, RankingPlayers, RankingGuilds, TokenObtainView
 
 urlpatterns = [
     path('signup/', SignUpApi.as_view(), name='signup_api' ),
     path('players_ranking/', RankingPlayers.as_view(), name='players_ranking'),
-    path('guilds_ranking/', RankingGuilds.as_view(), name='guilds_ranking')
+    path('guilds_ranking/', RankingGuilds.as_view(), name='guilds_ranking'),
+    path('token/', TokenObtainView.as_view(), name='login')
 ]
