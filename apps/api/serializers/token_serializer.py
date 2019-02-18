@@ -56,11 +56,10 @@ class TokenObtainSerializer(TokenObtainBaseSerializer):
         return AccessToken.for_user(user)
     
     def validate(self, attrs):
-        # data = super(TokenObtainSerializer, self).validate(attrs)
         data = super(TokenObtainSerializer, self).validate(attrs)
+
         token = self.get_token(self.user)
 
-        # data['token'] = text_type(token)
-        data['login'] = text_type(token)
-
+        data['token'] = text_type(token)
+        
         return data

@@ -1,3 +1,4 @@
+from __future__ import unicode_literals
 
 from rest_framework import generics, status
 from rest_framework.response import Response
@@ -29,7 +30,7 @@ class TokenViewBase(generics.GenericAPIView):
         except exceptions.TokenError as e:
             raise exceptions.InvalidToken(e.args[0])
         
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.validated_data, status=status.HTTP_200_OK)
 
 
 
@@ -40,4 +41,4 @@ class TokenObtainView(TokenViewBase):
 
 
 
-token_obtain_pair = TokenObtainView.as_view()
+# token_obtain_pair = TokenObtainView.as_view()

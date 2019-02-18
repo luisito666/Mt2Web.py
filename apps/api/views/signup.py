@@ -7,13 +7,12 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 # local serializers
-from apps.api.serializers import RegisterSerializer
+from apps.api.serializers import RegisterSerializer, SigupSerializer
 
 class SignUpApi(APIView):
 
 	def post(self, request, format=None):
-		serializer = RegisterSerializer(data = request.data)
-		if serializer.is_valid():
-			serializer.save()
-			return Response(serializer.data)
+		serializer = SigupSerializer(data = request.data)
+		if serializer.is_valid(raise_exception=True):
+			return Response(serializer.validated_data)
 		return Response(serializer.errors)

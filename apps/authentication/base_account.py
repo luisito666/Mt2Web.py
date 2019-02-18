@@ -1,8 +1,35 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+from django.utils.crypto import get_random_string, salted_hmac  
+
 # import hashers
 from apps.authentication.hashers import make_password, validate_password, is_password_usable
+
+
+class BaseAccountManager(models.Manager):
+    @classmethod
+    def normalize_email(cls, email):
+        """
+        Normalize the email address by lowercasing the domain part of it.
+        """
+        email = email or ''
+        try:
+            email_name, domain_part = email.strip().rsplit('@', 1)
+        except ValueError:
+            pass
+        else:
+            email = email_name + '@' + domain_part.lower()
+        return email
+    
+    def make_random_password(self, length=10,
+                             allowed_chars='abcdefghjkmnpqrstuvwxyz'
+                                           'ABCDEFGHJKLMNPQRSTUVWXYZ'
+                                            '23456789'):
+        return get_random_string(length, allowed_chars)
+    
+    def get_by_natural_key(self, username):
+        return self.get(**{self.model.USERNAME_FIELD: username})
 
 
 class AbstractBaseAccount(models.Model):
@@ -42,5 +69,12 @@ class AbstractBaseAccount(models.Model):
     
     def has_usable_password(self):
         return is_password_usable(self.password)
+
+    def get_session_auth_hash(self):
+        """
+        Return an HMAC of the password field.
+        """
+        key_salt = "apps.authentication.base_account.AbstractBaseAccount.get_session_auth_hash"
+        return salted_hmac(key_salt, self.password).hexdigest()
 
 

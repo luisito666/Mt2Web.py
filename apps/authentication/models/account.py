@@ -19,10 +19,30 @@ from core import settings
 # Importando timezone
 from datetime import datetime, timedelta
 
-from apps.authentication.base_account import AbstractBaseAccount
+from apps.authentication.base_account import AbstractBaseAccount, BaseAccountManager
 
 from apps.account.funciones import aleatorio
 
+
+
+class AccountManager(BaseAccountManager):
+
+    def _create_account(self, login, password, email, real_name, social_id):
+        if not login:
+            raise ValueError('The given login must be set')
+    
+        email = self.normalize_email(email)
+        user = self.model(login=login, email=email, real_name=real_name, social_id=social_id)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    
+    def create_account(self, login, password=None, email=None, real_name=None, social_id=None):
+        return self._create_account(login,password,email,real_name,social_id)
+
+
+# modelo usado en el proyecto que trabajo actualmente
 class NewAbstractAccount(AbstractBaseAccount):
     login = models.CharField(unique=True, max_length=30)
     real_name = models.CharField(max_length=16, null=True)
@@ -75,6 +95,8 @@ class NewAbstractAccount(AbstractBaseAccount):
     ban_time = models.CharField(max_length=855, default='')
     kim_banlamis = models.CharField(max_length=855, default='')
     token_expire = models.DateTimeField(null=True)
+
+    objects = AccountManager()
 
     USERNAME_FIELD = 'login'
     REQUIRED_FIELDS = ['real_name', 'social_id', 'email']
@@ -134,6 +156,8 @@ class AbstractAccount(AbstractBaseAccount):
     token_expire = models.DateTimeField(blank=True, null=True)
     refer_id = models.IntegerField(blank=True, null=True)
 
+    objects = AccountManager()
+
     USERNAME_FIELD = 'login'
     REQUIRED_FIELDS = ['real_name', 'social_id', 'email']
 
@@ -163,7 +187,7 @@ class AbstractAccount(AbstractBaseAccount):
     def verify_auth_token(token):
         try:
             validate_token = jwt.decode(token, settings.SECRET_KEY, algorithms=["HS256"])
-            user = Account.objects.get(id=validate_token['sub'])
+            user = Account.objects.get(id=validate_token['user_id'])
             return user
         except jwt.PyJWTError:
             raise exceptions.AuthenticationFailed(_('Invalid Token error'))
@@ -172,6 +196,6 @@ class AbstractAccount(AbstractBaseAccount):
         return None
 
 
-class Account(NewAbstractAccount):
+class Account(AbstractAccount):
     def set_key(self):
         self.address = aleatorio(40)

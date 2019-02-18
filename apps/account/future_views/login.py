@@ -33,7 +33,8 @@ class Login(View):
         lenguaje(request)
         form = self.form()
 
-        if request.account.is_authenticated:
+        if 'g1jwvO' in request.session:
+        #if request.account.is_authenticated:
             userinfo = self.modelA.objects.get(id=request.session['g1jwvO'])
             pjinfo = self.modelB.objects.filter(account_id=userinfo.id)
             context = {
@@ -54,35 +55,8 @@ class Login(View):
         form = self.form(request.POST or None)
 
         if form.is_valid():
-            try:
-                a = self.modelA.objects.get(login=form.cleaned_data['login'])
-            except Account.DoesNotExist:
-                context = {
-                    'key': _('Nombre de usuario o password incorrecto'),
-                    'form': form
-                }
-                return render(request, self.template_name, context)
-
-            # Validando que las contraseñas coincidan
-            if a.check_password(form.cleaned_data['password']):
-                # Validando que la cuenta no este baneada
-                if a.status == 'OK':
-                    request.session['g1jwvO'] = a.id
-                    if request.account.is_authenticated:
-                        return redirect('account:login')
-                else:
-                    context = {
-                        'key': _('Tu cuenta esta baneada'),
-                        'form': form
-                    }
-                    return render(request, self.template_name, context)
-
-            else:
-                context = {
-                    'key': _('Nombre de usuario o password incorrecto'),
-                    'form': form
-                }
-                return render(request, self.template_name, context)
+            from apps.authentication import login
+            login(request, )
 
         else:
             context = {

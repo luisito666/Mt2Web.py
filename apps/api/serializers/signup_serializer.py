@@ -4,6 +4,7 @@
 
 # Django
 from django.core.mail import send_mail
+from django.utils.translation import gettext_lazy as _
 
 # Rest Framework 
 from rest_framework import serializers
@@ -13,9 +14,69 @@ from apps.account.models import Account
 
 
 from apps.account.funciones import get_mail_register, aleatorio
+from apps.api.state import User
+from .token_serializer import PasswordField
 
 # load settings
 from core import settings
+
+
+class SignupBaseSerializer(serializers.Serializer):
+    username_field = User.USERNAME_FIELD
+
+    def __init__(self, *args, **kwargs):
+        super(SignupBaseSerializer, self).__init__(*args, **kwargs)
+
+        self.fields[self.username_field] = serializers.CharField()
+        self.fields['password'] = PasswordField()
+        self.fields['email'] = serializers.EmailField()
+        self.fields['real_name'] = serializers.CharField()
+        self.fields['social_id'] = serializers.IntegerField()
+
+
+    def validate(self, attrs):        
+        self.user = User.objects.create_account(**{
+            self.username_field: attrs[self.username_field],
+            'password': attrs['password'],
+            'email': attrs['email'],
+            'real_name': attrs['real_name'],
+            'social_id': attrs['social_id']
+        })
+
+        if self.user is None:
+            raise serializers.ValidationError(
+                _('Error in create user')
+            )
+
+        return {
+            'username': self.user.login,
+            'email': self.user.email,
+            'real_name': self.user.real_name,
+            'social_id': self.user.social_id
+        }
+
+
+class SigupSerializer(SignupBaseSerializer):
+    
+    def validate(self, attrs):
+        data = super(SigupSerializer, self).validate(attrs)
+
+        self.send_confirmation_email('mikey')
+
+        return data
+
+
+    def send_confirmation_email(self, key):
+        try:
+            send_mail(
+                _('Bienvenido a ') + settings.SERVERNAME,
+                settings.EMAIL_HOST_USER,
+                [self.user.email],
+                html_message=get_mail_register(self.user.login, key ),
+            )
+        except Exception as err:
+            print(err)
+
 
 class RegisterSerializer(serializers.ModelSerializer):
     
