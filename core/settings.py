@@ -13,7 +13,7 @@ CONFIG = yaml.load(open(BASE_DIR + '/config.yml').read())
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = get_random_secret_key()
+SECRET_KEY = '+s123dsd234adsassd8p8793783c2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -34,11 +34,14 @@ INSTALLED_APPS = [
     'captcha',
     'bootstrapform',
     'corsheaders',
+    'rest_framework',
     # aplicaciones
+    'apps.authentication',
     'apps.account',
     'apps.player',
     'apps.varios',
     'apps.paginas',
+    'apps.api',
     'apps.administracion.estadisticas',
 ]
 
@@ -52,6 +55,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'apps.authentication.middleware.AuthenticationMiddleware'
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -116,6 +120,7 @@ DATABASES = {
 DATABASE_ROUTERS = {
     'apps.player.router.playerRouter',
     'apps.account.router.AccountRouter',
+    'apps.authentication.router.AuthenticationRouter',
 }
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -215,3 +220,21 @@ else:
     ACTIVATE = '2009-01-01T00:00:00'
 
 
+CORS_ORIGIN_WHITELIST = (
+    'google.com',
+    'hostname.example.com',
+    'localhost:8000',
+    '127.0.0.1:9000',
+    '*'
+)
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        #'apps.api.authentication.TokenAuthentication',
+    )
+}
+
+
+CUSTOM_AUTH_USER_MODEL = 'authentication.Account'
+
+CUSTOM_AUTHENTICATION_BACKENDS = ['apps.authentication.backends.ModelBackend']

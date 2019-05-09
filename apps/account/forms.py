@@ -4,15 +4,18 @@
 
 # importaciones que se realizan por defecto
 from django import forms
+from django.core.mail import send_mail
 
 # importando lo modelos que se usaran en los formularios
-from apps.account.models import Account
+from apps.authentication.models import Account
 
 # importando ugettext_lazy
 from django.utils.translation import ugettext_lazy as _
 
 # importando el capcha de los formularios
 from captcha.fields import ReCaptchaField
+
+from apps.account.funciones import aleatorio, get_mail_register
 
 from core import settings
 # impoortanfo re - es usado para validar el login
@@ -119,6 +122,26 @@ class CreateUserForm(forms.ModelForm):
             'email',
             'social_id',
         ]
+    
+    def save(self, commit=True):
+        instance = super(CreateUserForm, self).save(commit=False)    
+        instance.set_password(self.cleaned_data['password'])      
+        instance.set_key()
+        if commit:
+            instance.save()
+        self.send_confirmation_email(instance.address)
+        return instance
+
+    def send_confirmation_email(self, key):
+        try:
+            send_mail(
+                _('Bienvenido a ') + settings.SERVERNAME,
+                settings.EMAIL_HOST_USER,
+                [self.email],
+                html_message=get_mail_register(self.login, key ),
+            )
+        except Exception as err:
+            print(err)
 
 
 """Los siguiente formularios heredan de la clase forms.Form por lo que no necesitan

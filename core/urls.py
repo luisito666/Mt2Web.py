@@ -3,7 +3,8 @@
 # Mas informacion http://www.opensource.org/licenses/mit-license.php
 
 # cargando modulos de django
-from django.conf.urls import include, url
+# from django.conf.urls import include, url
+from django.urls import path, include
 from django.contrib import admin
 from django.contrib.admin.views.decorators import staff_member_required
 
@@ -18,23 +19,22 @@ from core import task
 # Url principales.
 # Descomectar checkout si tiene implementado paymentwall
 urlpatterns = [
-    url(r'^$', index, name="index"),
-    url(r'^donaciones$', donaciones, name="donaciones"),
-    # url(r'^checkout/$', PaymentwallCallbackView.as_view(), name="checkout"),
-    url(r'^account/', include('apps.account.urls', namespace='account')),
+    path('', index, name="index"),
+    path('donaciones/', donaciones, name="donaciones"),
+    # path('checkout/', PaymentwallCallbackView.as_view(), name="checkout"),
+    path('account/', include(('apps.account.urls', 'account'), namespace='account')),
     
     # superponer estadisticas en index
-    url(r'^admin/$', staff_member_required(getRegistroOn.as_view()), name='admin'),
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^password/(?P<url>\w{0,40})$', process_password, name='recuperar_p'),
-    url(r'^activar/(?P<url>\w{0,40})$', process_reg, name='activar_cuenta'),
-    url(r'^reenviaremail/$', RequestToken.as_view(), name='email'),
-    url(r'^markdownx/', include('markdownx.urls')),
-    url(r'^', include('apps.paginas.urls', namespace='pages')),
+    path('admin/', staff_member_required(getRegistroOn.as_view()), name='admin'),
+    path('admin/', admin.site.urls),
+    path('password/<str:url>/', process_password, name='recuperar_p'),
+    path('activar/<str:url>', process_reg, name='activar_cuenta'),
+    path('reenviaremail/', RequestToken.as_view(), name='email'),
+    path('markdownx/', include('markdownx.urls')),
+    path('', include(('apps.paginas.urls', 'paginas'), namespace='pages')),
+    path('api/v1/', include(('apps.api.urls', 'api'), namespace='api'))
 ]
 
 """if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 """
-
-

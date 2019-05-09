@@ -3,7 +3,7 @@
 # Mas informacion http://www.opensource.org/licenses/mit-license.php
 
 from django.db import models
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 from markdownx.models import MarkdownxField
 from markdownx.utils import markdownify
