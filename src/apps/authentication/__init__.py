@@ -117,7 +117,7 @@ def authenticate(request=None, **credentials):
     user_login_failed.send(sender=__name__, credentials=_clean_credentials(credentials), request=request)
 
 
-def login(request, account, backend=None):
+def login(request, account=None, backend=None):
     session_auth_hash = ''
     if account is None:
         account = request.account

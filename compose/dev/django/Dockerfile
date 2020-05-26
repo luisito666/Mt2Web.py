@@ -13,14 +13,14 @@ mkdir -p /home/data/www
 
 ADD ./src/requirements.txt /var/www/html/Mt2Web.py/
 
+COPY ./compose/dev/django/start /
+RUN chmod +x /start
+
 WORKDIR /var/www/html/Mt2Web.py
 
 RUN pip install -r requirements.txt
 
 RUN apt-get remove -y build-essential
-
-COPY ./compose/dev/django/start /
-RUN chmod +x /start
 
 # CMD gunicorn --bind 0.0.0.0:8000 -w 1 --threads 4 core.wsgi:application
 

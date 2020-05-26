@@ -10,5 +10,5 @@ from apps.paginas import views
 
 # urls del proyecto
 urlpatterns = [
-    url('(?P<slug>[-\w]+)$', views.PageDetail.as_view(), name='page_details'),
+    url(r'(?P<slug>[-\w]+)$', views.PageDetail.as_view(), name='page_details'),
 ]

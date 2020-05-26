@@ -19,20 +19,19 @@ from core import task
 # Url principales.
 # Descomectar checkout si tiene implementado paymentwall
 urlpatterns = [
-    url('', index, name="index"),
-    url('donaciones/', donaciones, name="donaciones"),
-    # url('checkout/', PaymentwallCallbackView.as_view(), name="checkout"),
-    url('account/', include('apps.account.urls', namespace='account')),
-    
+    url(r'donaciones/$', donaciones, name="donaciones"),
+    # url(r'checkout/', PaymentwallCallbackView.as_view(), name="checkout"),
+    url(r'account/', include('apps.account.urls', namespace='account')),
     # superponer estadisticas en index
-    url('admin/', staff_member_required(getRegistroOn.as_view()), name='admin'),
-    url('admin/', admin.site.urls),
-    url('password/(?P<url>\w{0,40})$/', process_password, name='recuperar_p'),
-    url('activar/(?P<url>\w{0,40})$', process_reg, name='activar_cuenta'),
-    url('reenviaremail/$', RequestToken.as_view(), name='email'),
-    url('markdownx/', include('markdownx.urls')),
-    url('', include('apps.paginas.urls', namespace='paginas')),
-    url('api/v1/', include('apps.api.urls', namespace='api'))
+    url(r'admin/', staff_member_required(getRegistroOn.as_view()), name='admin'),
+    url(r'admin/', admin.site.urls),
+    url(r'password/(?P<url>\w{0,40})$/', process_password, name='recuperar_p'),
+    url(r'activar/(?P<url>\w{0,40})$', process_reg, name='activar_cuenta'),
+    url(r'reenviaremail/$', RequestToken.as_view(), name='email'),
+    url(r'markdownx/', include('markdownx.urls')),    
+    url(r'api/v1/', include('apps.api.urls', namespace='api')),
+    url(r'', include('apps.paginas.urls', namespace='paginas')),
+    url(r'', index, name="index"),
 ]
 
 """if settings.DEBUG:
