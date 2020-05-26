@@ -7,7 +7,7 @@ from django.core.management.utils import get_random_secret_key
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Cargando la configuracion del proyecto
-CONFIG = yaml.load(open(BASE_DIR + '/config.yml').read())
+CONFIG = yaml.load(open(BASE_DIR + '/config.yml').read(), yaml.SafeLoader)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -156,6 +156,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 STATIC_URL = '/static/'
+
+# root static
+STATIC_ROOT = '/home/data/www/'
 
 # Nombre del servidor.
 SERVERNAME = CONFIG['server']['name']

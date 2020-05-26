@@ -1,4 +1,4 @@
-Django>=2.1.6
+Django==1.11.29
 django-bootstrap-form==3.2.1
 django-cors-headers==2.1.0
 django-markdownx==2.0.28
@@ -11,3 +11,4 @@ paymentwall-python==1.0.7
 Pillow==5.3.0
 pytz==2017.3
 PyYAML>=4.2b1
+pyjwt==1.7.1

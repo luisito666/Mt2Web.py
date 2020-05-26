@@ -4,7 +4,7 @@
 
 # cargando modulos de django
 # from django.conf.urls import include, url
-from django.urls import path, include
+from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.admin.views.decorators import staff_member_required
 
@@ -19,20 +19,20 @@ from core import task
 # Url principales.
 # Descomectar checkout si tiene implementado paymentwall
 urlpatterns = [
-    path('', index, name="index"),
-    path('donaciones/', donaciones, name="donaciones"),
-    # path('checkout/', PaymentwallCallbackView.as_view(), name="checkout"),
-    path('account/', include(('apps.account.urls', 'account'), namespace='account')),
+    url('', index, name="index"),
+    url('donaciones/', donaciones, name="donaciones"),
+    # url('checkout/', PaymentwallCallbackView.as_view(), name="checkout"),
+    url('account/', include('apps.account.urls', namespace='account')),
     
     # superponer estadisticas en index
-    path('admin/', staff_member_required(getRegistroOn.as_view()), name='admin'),
-    path('admin/', admin.site.urls),
-    path('password/<str:url>/', process_password, name='recuperar_p'),
-    path('activar/<str:url>', process_reg, name='activar_cuenta'),
-    path('reenviaremail/', RequestToken.as_view(), name='email'),
-    path('markdownx/', include('markdownx.urls')),
-    path('', include(('apps.paginas.urls', 'paginas'), namespace='pages')),
-    path('api/v1/', include(('apps.api.urls', 'api'), namespace='api'))
+    url('admin/', staff_member_required(getRegistroOn.as_view()), name='admin'),
+    url('admin/', admin.site.urls),
+    url('password/(?P<url>\w{0,40})$/', process_password, name='recuperar_p'),
+    url('activar/(?P<url>\w{0,40})$', process_reg, name='activar_cuenta'),
+    url('reenviaremail/$', RequestToken.as_view(), name='email'),
+    url('markdownx/', include('markdownx.urls')),
+    url('', include('apps.paginas.urls', namespace='paginas')),
+    url('api/v1/', include('apps.api.urls', namespace='api'))
 ]
 
 """if settings.DEBUG:

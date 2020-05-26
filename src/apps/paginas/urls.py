@@ -3,12 +3,12 @@
 # Mas informacion http://www.opensource.org/licenses/mit-license.php
 
 # imporacion por defecto
-from django.urls import path
+from django.conf.urls import url
 
 # Importando vistas para el correcto funcionamiento de las urls
 from apps.paginas import views
 
 # urls del proyecto
 urlpatterns = [
-    path('<slug:slug>', views.PageDetail.as_view(), name='page_details'),
+    url('(?P<slug>[-\w]+)$', views.PageDetail.as_view(), name='page_details'),
 ]
