@@ -23,8 +23,8 @@ urlpatterns = [
     # url(r'checkout/', PaymentwallCallbackView.as_view(), name="checkout"),
     url(r'account/', include('apps.account.urls', namespace='account')),
     # superponer estadisticas en index
-    url(r'admin/', staff_member_required(getRegistroOn.as_view()), name='admin'),
     url(r'admin/', admin.site.urls),
+    url(r'admin/', staff_member_required(getRegistroOn.as_view()), name='admin'),
     url(r'password/(?P<url>\w{0,40})$/', process_password, name='recuperar_p'),
     url(r'activar/(?P<url>\w{0,40})$', process_reg, name='activar_cuenta'),
     url(r'reenviaremail/$', RequestToken.as_view(), name='email'),

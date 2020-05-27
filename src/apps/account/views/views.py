@@ -61,19 +61,6 @@ from django.utils.translation import ugettext as _
 # importando las configuracines de django
 from core import settings
 
-from .future_views import (
-    SignUp, 
-    Login, 
-    ResetPassword, 
-    Downloads,
-    RankingPlayers,
-    RankingGuilds,
-    RequestToken,
-    RequestUsername,
-    UnlockPlayer
-) 
-
-
 # funcion usada para cerra session
 def logout(request):
     lenguaje(request)

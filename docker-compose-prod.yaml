@@ -1,0 +1,26 @@
+version: '3'
+
+volumes:
+  local_static_data: {}
+
+services:
+
+  django:
+    build:
+      context: .
+      dockerfile: ./compose/prod/django/Dockerfile
+    image: luisito666/mt2web-prod
+    volumes:
+      - ./src/:/var/www/html/Mt2Web.py
+      - local_static_data:/home/data/www
+
+  nginx:
+    build:
+      context: .
+      dockerfile: ./compose/prod/nginx/Dockerfile
+    image: nginx
+    volumes:
+      - local_static_data:/usr/share/nginx/html/static
+    ports:
+      - 80:80
+    

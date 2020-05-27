@@ -1,0 +1,7 @@
+#! /usr/bin/env bash
+
+set -eo pipefail
+
+python3 manage.py migrate
+python3 manage.py collectstatic --no-input
+gunicorn --bind 0.0.0.0:8000 -w 1 --threads 4 core.wsgi:application
