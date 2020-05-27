@@ -18,8 +18,8 @@ urlpatterns = [
     url(r'password/$', views.ResetPassword.as_view(), name='password'),
     url(r'descargas/$', views.Downloads.as_view(), name='descarga'),
     url(r'top/$', views.RankingPlayers.as_view(), name='top'),
-    url(r'top_g/$', views.RankingGuilds.as_view(), name='top_g'),
-    url(r'request_password/$', views.recuperar_password, name='request'),
-    url(r'unlock/$', views.UnlockPlayer.as_view() , name='unlock'),
+    url(r'top_g/$', views.RankingGuilds.as_view(), name='top_g'),    
+    url(r'unlock/$', views.UnlockPlayer.as_view(), name='unlock'),
     url(r'request_username/$', views.RequestUsername.as_view(), name='request_username'),
+    url(r'lose_password/$', views.lose_password, name='request_password'),
 ]

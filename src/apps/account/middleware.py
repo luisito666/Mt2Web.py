@@ -4,16 +4,16 @@
 
 from django.utils.deprecation import MiddlewareMixin
 from .models import Account
+from authentication import get_user
 
-
-def get_user(request):
-    if not hasattr(request, '_cached_account'):
-        try:
-            cuenta = Account.objects.get(id=request.session['g1jwvO'])
-            request._cached_account = cuenta
-        except Exception as e:
-            request._cached_account = 'nologin'
-    return request._cached_account
+# def get_user(request):
+#     if not hasattr(request, '_cached_account'):
+#         try:
+#             cuenta = Account.objects.get(id=request.session['g1jwvO'])
+#             request._cached_account = cuenta
+#         except Exception as e:
+#             request._cached_account = 'nologin'
+#     return request._cached_account
 
 
 class AccountMiddleware(MiddlewareMixin):

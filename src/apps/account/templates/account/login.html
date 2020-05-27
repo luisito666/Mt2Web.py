@@ -40,7 +40,7 @@
                 {% endif %}
                 <div class="panel-footer">
                     <p>{% trans 'No esta registrado?' %} <a href="{% url 'account:create' %}#content">{% trans 'Registrese aqui' %}</a></p>
-                    <p>{% trans 'Olvido su' %} <a href="{% url 'account:request' %}#content"> {% trans 'contraseña' %}</a> {% trans 'o su ' %} <a href="{% url 'account:request_username' %}#content"> {% trans 'usuario' %}</a></p>
+                    <p>{% trans 'Olvido su' %} <a href="{% url 'account:request_password' %}#content"> {% trans 'contraseña' %}</a> {% trans 'o su ' %} <a href="{% url 'account:request_username' %}#content"> {% trans 'usuario' %}</a></p>
                     <p><a href="{% url 'email' %}#content"> {% trans 'Re enviar correo de activacion' %} </a></p>
                     </div>
             </div>

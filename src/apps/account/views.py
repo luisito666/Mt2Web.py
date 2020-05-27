@@ -73,6 +73,7 @@ from .future_views import (
     UnlockPlayer
 ) 
 
+
 # funcion usada para cerra session
 def logout(request):
     lenguaje(request)
@@ -154,7 +155,7 @@ class ClaseExito(View):
 
 # Funcion usada para recuperar password por correo
 # Realizar refactorin a esta funcion
-def recuperar_password(request):
+def lose_password(request):
     lenguaje(request)
     # Declarando el formulario
     form = ResPassword(request.POST or None)
