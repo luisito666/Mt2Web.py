@@ -3,7 +3,7 @@ django-bootstrap-form==3.2.1
 django-cors-headers==2.1.0
 django-markdownx==2.0.28
 django-recaptcha==1.3.0
-djangorestframework==3.9.1
+djangorestframework==3.11.2
 gunicorn==19.7.1
 Markdown==3.0.1
 mysqlclient==1.3.10
